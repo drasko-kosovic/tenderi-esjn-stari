@@ -43,6 +43,9 @@
     "clientPackageManager": "npm",
     "languages": ["sr", "en"],
     "entities": ["Ponude", "Specifikacija", "ViewVrednovanje"],
-    "lastLiquibaseTimestamp": 1619008217000
+    "lastLiquibaseTimestamp": 1619008217000,
+    "herokuAppName": "tenderi",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "11"
   }
 }
