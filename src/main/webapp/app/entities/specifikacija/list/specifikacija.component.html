@@ -48,14 +48,18 @@
           <th scope="col" jhiSortBy="jacinaLijeka">
             <span jhiTranslate="tenderiApp.specifikacija.jacinaLijeka">Jacina Lijeka</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="kolicina">
-            <span jhiTranslate="tenderiApp.specifikacija.kolicina">Kolicina</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="trazenaKolicina">
+            <span jhiTranslate="tenderiApp.specifikacija.trazenaKolicina">Trazena Kolicina</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="pakovanje">
             <span jhiTranslate="tenderiApp.specifikacija.pakovanje">Pakovanje</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="procijenjenaVrijednost">
             <span jhiTranslate="tenderiApp.specifikacija.procijenjenaVrijednost">Procijenjena Vrijednost</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="trazenaJedinicnaCijena">
+            <span jhiTranslate="tenderiApp.specifikacija.trazenaJedinicnaCijena">Trazena Jedinicna Cijena</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -72,9 +76,10 @@
           <td>{{ specifikacija.inn }}</td>
           <td>{{ specifikacija.farmaceutskiOblikLijeka }}</td>
           <td>{{ specifikacija.jacinaLijeka }}</td>
-          <td>{{ specifikacija.kolicina }}</td>
+          <td>{{ specifikacija.trazenaKolicina }}</td>
           <td>{{ specifikacija.pakovanje }}</td>
           <td>{{ specifikacija.procijenjenaVrijednost }}</td>
+          <td>{{ specifikacija.trazenaJedinicnaCijena }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button

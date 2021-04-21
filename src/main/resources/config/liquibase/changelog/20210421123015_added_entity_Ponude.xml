@@ -35,6 +35,9 @@
             <column name="ponudjena_vrijednost" type="double">
                 <constraints nullable="false" />
             </column>
+            <column name="ponudjena_jedinicna_cijena" type="double">
+                <constraints nullable="false" />
+            </column>
             <column name="rok_isporuke" type="integer">
                 <constraints nullable="true" />
             </column>
@@ -65,6 +68,7 @@
             <column name="nazi_proizvodjaca" type="string"/>
             <column name="zastceni_naziv" type="string"/>
             <column name="ponudjena_vrijednost" type="numeric"/>
+            <column name="ponudjena_jedinicna_cijena" type="numeric"/>
             <column name="rok_isporuke" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

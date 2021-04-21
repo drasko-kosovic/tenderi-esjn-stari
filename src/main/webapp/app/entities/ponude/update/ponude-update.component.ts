@@ -24,6 +24,7 @@ export class PonudeUpdateComponent implements OnInit {
     naziProizvodjaca: [null, [Validators.required]],
     zastceniNaziv: [null, [Validators.required]],
     ponudjenaVrijednost: [null, [Validators.required]],
+    ponudjenaJedinicnaCijena: [null, [Validators.required]],
     rokIsporuke: [],
   });
 
@@ -78,6 +79,7 @@ export class PonudeUpdateComponent implements OnInit {
       naziProizvodjaca: ponude.naziProizvodjaca,
       zastceniNaziv: ponude.zastceniNaziv,
       ponudjenaVrijednost: ponude.ponudjenaVrijednost,
+      ponudjenaJedinicnaCijena: ponude.ponudjenaJedinicnaCijena,
       rokIsporuke: ponude.rokIsporuke,
     });
   }
@@ -93,6 +95,7 @@ export class PonudeUpdateComponent implements OnInit {
       naziProizvodjaca: this.editForm.get(['naziProizvodjaca'])!.value,
       zastceniNaziv: this.editForm.get(['zastceniNaziv'])!.value,
       ponudjenaVrijednost: this.editForm.get(['ponudjenaVrijednost'])!.value,
+      ponudjenaJedinicnaCijena: this.editForm.get(['ponudjenaJedinicnaCijena'])!.value,
       rokIsporuke: this.editForm.get(['rokIsporuke'])!.value,
     };
   }

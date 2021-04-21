@@ -43,8 +43,8 @@ public class Specifikacija implements Serializable {
     private String jacinaLijeka;
 
     @NotNull
-    @Column(name = "kolicina", nullable = false)
-    private Integer kolicina;
+    @Column(name = "trazena_kolicina", nullable = false)
+    private Integer trazenaKolicina;
 
     @Column(name = "pakovanje")
     private String pakovanje;
@@ -52,6 +52,10 @@ public class Specifikacija implements Serializable {
     @NotNull
     @Column(name = "procijenjena_vrijednost", nullable = false)
     private Double procijenjenaVrijednost;
+
+    @NotNull
+    @Column(name = "trazena_jedinicna_cijena", nullable = false)
+    private Double trazenaJedinicnaCijena;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -145,17 +149,17 @@ public class Specifikacija implements Serializable {
         this.jacinaLijeka = jacinaLijeka;
     }
 
-    public Integer getKolicina() {
-        return this.kolicina;
+    public Integer getTrazenaKolicina() {
+        return this.trazenaKolicina;
     }
 
-    public Specifikacija kolicina(Integer kolicina) {
-        this.kolicina = kolicina;
+    public Specifikacija trazenaKolicina(Integer trazenaKolicina) {
+        this.trazenaKolicina = trazenaKolicina;
         return this;
     }
 
-    public void setKolicina(Integer kolicina) {
-        this.kolicina = kolicina;
+    public void setTrazenaKolicina(Integer trazenaKolicina) {
+        this.trazenaKolicina = trazenaKolicina;
     }
 
     public String getPakovanje() {
@@ -182,6 +186,19 @@ public class Specifikacija implements Serializable {
 
     public void setProcijenjenaVrijednost(Double procijenjenaVrijednost) {
         this.procijenjenaVrijednost = procijenjenaVrijednost;
+    }
+
+    public Double getTrazenaJedinicnaCijena() {
+        return this.trazenaJedinicnaCijena;
+    }
+
+    public Specifikacija trazenaJedinicnaCijena(Double trazenaJedinicnaCijena) {
+        this.trazenaJedinicnaCijena = trazenaJedinicnaCijena;
+        return this;
+    }
+
+    public void setTrazenaJedinicnaCijena(Double trazenaJedinicnaCijena) {
+        this.trazenaJedinicnaCijena = trazenaJedinicnaCijena;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -214,9 +231,10 @@ public class Specifikacija implements Serializable {
             ", inn='" + getInn() + "'" +
             ", farmaceutskiOblikLijeka='" + getFarmaceutskiOblikLijeka() + "'" +
             ", jacinaLijeka='" + getJacinaLijeka() + "'" +
-            ", kolicina=" + getKolicina() +
+            ", trazenaKolicina=" + getTrazenaKolicina() +
             ", pakovanje='" + getPakovanje() + "'" +
             ", procijenjenaVrijednost=" + getProcijenjenaVrijednost() +
+            ", trazenaJedinicnaCijena=" + getTrazenaJedinicnaCijena() +
             "}";
     }
 }

@@ -102,6 +102,10 @@ public class PonudeQueryService extends QueryService<Ponude> {
             if (criteria.getPonudjenaVrijednost() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getPonudjenaVrijednost(), Ponude_.ponudjenaVrijednost));
             }
+            if (criteria.getPonudjenaJedinicnaCijena() != null) {
+                specification =
+                    specification.and(buildRangeSpecification(criteria.getPonudjenaJedinicnaCijena(), Ponude_.ponudjenaJedinicnaCijena));
+            }
             if (criteria.getRokIsporuke() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getRokIsporuke(), Ponude_.rokIsporuke));
             }

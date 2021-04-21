@@ -23,9 +23,10 @@ export class SpecifikacijaUpdateComponent implements OnInit {
     inn: [],
     farmaceutskiOblikLijeka: [],
     jacinaLijeka: [],
-    kolicina: [null, [Validators.required]],
+    trazenaKolicina: [null, [Validators.required]],
     pakovanje: [],
     procijenjenaVrijednost: [null, [Validators.required]],
+    trazenaJedinicnaCijena: [null, [Validators.required]],
   });
 
   constructor(protected specifikacijaService: SpecifikacijaService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
@@ -78,9 +79,10 @@ export class SpecifikacijaUpdateComponent implements OnInit {
       inn: specifikacija.inn,
       farmaceutskiOblikLijeka: specifikacija.farmaceutskiOblikLijeka,
       jacinaLijeka: specifikacija.jacinaLijeka,
-      kolicina: specifikacija.kolicina,
+      trazenaKolicina: specifikacija.trazenaKolicina,
       pakovanje: specifikacija.pakovanje,
       procijenjenaVrijednost: specifikacija.procijenjenaVrijednost,
+      trazenaJedinicnaCijena: specifikacija.trazenaJedinicnaCijena,
     });
   }
 
@@ -94,9 +96,10 @@ export class SpecifikacijaUpdateComponent implements OnInit {
       inn: this.editForm.get(['inn'])!.value,
       farmaceutskiOblikLijeka: this.editForm.get(['farmaceutskiOblikLijeka'])!.value,
       jacinaLijeka: this.editForm.get(['jacinaLijeka'])!.value,
-      kolicina: this.editForm.get(['kolicina'])!.value,
+      trazenaKolicina: this.editForm.get(['trazenaKolicina'])!.value,
       pakovanje: this.editForm.get(['pakovanje'])!.value,
       procijenjenaVrijednost: this.editForm.get(['procijenjenaVrijednost'])!.value,
+      trazenaJedinicnaCijena: this.editForm.get(['trazenaJedinicnaCijena'])!.value,
     };
   }
 }

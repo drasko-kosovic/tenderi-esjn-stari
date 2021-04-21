@@ -37,6 +37,11 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "ponudjenaJedinicnaCijena",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "rokIsporuke",
       "fieldType": "Integer"
     }

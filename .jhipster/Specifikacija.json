@@ -29,7 +29,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "kolicina",
+      "fieldName": "trazenaKolicina",
       "fieldType": "Integer",
       "fieldValidateRules": ["required"]
     },
@@ -39,6 +39,11 @@
     },
     {
       "fieldName": "procijenjenaVrijednost",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "trazenaJedinicnaCijena",
       "fieldType": "Double",
       "fieldValidateRules": ["required"]
     }

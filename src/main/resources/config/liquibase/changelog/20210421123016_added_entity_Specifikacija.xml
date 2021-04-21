@@ -32,13 +32,16 @@
             <column name="jacina_lijeka" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="kolicina" type="integer">
+            <column name="trazena_kolicina" type="integer">
                 <constraints nullable="false" />
             </column>
             <column name="pakovanje" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="procijenjena_vrijednost" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="trazena_jedinicna_cijena" type="double">
                 <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -67,9 +70,10 @@
             <column name="inn" type="string"/>
             <column name="farmaceutski_oblik_lijeka" type="string"/>
             <column name="jacina_lijeka" type="string"/>
-            <column name="kolicina" type="numeric"/>
+            <column name="trazena_kolicina" type="numeric"/>
             <column name="pakovanje" type="string"/>
             <column name="procijenjena_vrijednost" type="numeric"/>
+            <column name="trazena_jedinicna_cijena" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

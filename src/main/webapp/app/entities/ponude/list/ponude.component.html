@@ -54,6 +54,10 @@
           <th scope="col" jhiSortBy="ponudjenaVrijednost">
             <span jhiTranslate="tenderiApp.ponude.ponudjenaVrijednost">Ponudjena Vrijednost</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="ponudjenaJedinicnaCijena">
+            <span jhiTranslate="tenderiApp.ponude.ponudjenaJedinicnaCijena">Ponudjena Jedinicna Cijena</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="rokIsporuke">
             <span jhiTranslate="tenderiApp.ponude.rokIsporuke">Rok Isporuke</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -72,6 +76,7 @@
           <td>{{ ponude.naziProizvodjaca }}</td>
           <td>{{ ponude.zastceniNaziv }}</td>
           <td>{{ ponude.ponudjenaVrijednost }}</td>
+          <td>{{ ponude.ponudjenaJedinicnaCijena }}</td>
           <td>{{ ponude.rokIsporuke }}</td>
           <td class="text-right">
             <div class="btn-group">

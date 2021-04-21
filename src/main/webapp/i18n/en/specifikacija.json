@@ -24,9 +24,10 @@
       "inn": "Inn",
       "farmaceutskiOblikLijeka": "Farmaceutski Oblik Lijeka",
       "jacinaLijeka": "Jacina Lijeka",
-      "kolicina": "Kolicina",
+      "trazenaKolicina": "Trazena Kolicina",
       "pakovanje": "Pakovanje",
-      "procijenjenaVrijednost": "Procijenjena Vrijednost"
+      "procijenjenaVrijednost": "Procijenjena Vrijednost",
+      "trazenaJedinicnaCijena": "Trazena Jedinicna Cijena"
     }
   }
 }

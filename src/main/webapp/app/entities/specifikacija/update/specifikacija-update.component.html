@@ -126,19 +126,33 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.kolicina" for="field_kolicina">Kolicina</label>
-          <input type="number" class="form-control" name="kolicina" id="field_kolicina" data-cy="kolicina" formControlName="kolicina" />
-          <div *ngIf="editForm.get('kolicina')!.invalid && (editForm.get('kolicina')!.dirty || editForm.get('kolicina')!.touched)">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.trazenaKolicina" for="field_trazenaKolicina"
+            >Trazena Kolicina</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="trazenaKolicina"
+            id="field_trazenaKolicina"
+            data-cy="trazenaKolicina"
+            formControlName="trazenaKolicina"
+          />
+          <div
+            *ngIf="
+              editForm.get('trazenaKolicina')!.invalid &&
+              (editForm.get('trazenaKolicina')!.dirty || editForm.get('trazenaKolicina')!.touched)
+            "
+          >
             <small
               class="form-text text-danger"
-              *ngIf="editForm.get('kolicina')?.errors?.required"
+              *ngIf="editForm.get('trazenaKolicina')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
               This field is required.
             </small>
             <small
               class="form-text text-danger"
-              [hidden]="!editForm.get('kolicina')?.errors?.number"
+              [hidden]="!editForm.get('trazenaKolicina')?.errors?.number"
               jhiTranslate="entity.validation.number"
             >
               This field should be a number.
@@ -182,6 +196,44 @@
             <small
               class="form-text text-danger"
               [hidden]="!editForm.get('procijenjenaVrijednost')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tenderiApp.specifikacija.trazenaJedinicnaCijena"
+            for="field_trazenaJedinicnaCijena"
+            >Trazena Jedinicna Cijena</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="trazenaJedinicnaCijena"
+            id="field_trazenaJedinicnaCijena"
+            data-cy="trazenaJedinicnaCijena"
+            formControlName="trazenaJedinicnaCijena"
+          />
+          <div
+            *ngIf="
+              editForm.get('trazenaJedinicnaCijena')!.invalid &&
+              (editForm.get('trazenaJedinicnaCijena')!.dirty || editForm.get('trazenaJedinicnaCijena')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('trazenaJedinicnaCijena')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('trazenaJedinicnaCijena')?.errors?.number"
               jhiTranslate="entity.validation.number"
             >
               This field should be a number.

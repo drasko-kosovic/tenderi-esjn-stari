@@ -50,9 +50,9 @@ class SpecifikacijaResourceIT {
     private static final String DEFAULT_JACINA_LIJEKA = "AAAAAAAAAA";
     private static final String UPDATED_JACINA_LIJEKA = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_KOLICINA = 1;
-    private static final Integer UPDATED_KOLICINA = 2;
-    private static final Integer SMALLER_KOLICINA = 1 - 1;
+    private static final Integer DEFAULT_TRAZENA_KOLICINA = 1;
+    private static final Integer UPDATED_TRAZENA_KOLICINA = 2;
+    private static final Integer SMALLER_TRAZENA_KOLICINA = 1 - 1;
 
     private static final String DEFAULT_PAKOVANJE = "AAAAAAAAAA";
     private static final String UPDATED_PAKOVANJE = "BBBBBBBBBB";
@@ -60,6 +60,10 @@ class SpecifikacijaResourceIT {
     private static final Double DEFAULT_PROCIJENJENA_VRIJEDNOST = 1D;
     private static final Double UPDATED_PROCIJENJENA_VRIJEDNOST = 2D;
     private static final Double SMALLER_PROCIJENJENA_VRIJEDNOST = 1D - 1D;
+
+    private static final Double DEFAULT_TRAZENA_JEDINICNA_CIJENA = 1D;
+    private static final Double UPDATED_TRAZENA_JEDINICNA_CIJENA = 2D;
+    private static final Double SMALLER_TRAZENA_JEDINICNA_CIJENA = 1D - 1D;
 
     private static final String ENTITY_API_URL = "/api/specifikacijas";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -92,9 +96,10 @@ class SpecifikacijaResourceIT {
             .inn(DEFAULT_INN)
             .farmaceutskiOblikLijeka(DEFAULT_FARMACEUTSKI_OBLIK_LIJEKA)
             .jacinaLijeka(DEFAULT_JACINA_LIJEKA)
-            .kolicina(DEFAULT_KOLICINA)
+            .trazenaKolicina(DEFAULT_TRAZENA_KOLICINA)
             .pakovanje(DEFAULT_PAKOVANJE)
-            .procijenjenaVrijednost(DEFAULT_PROCIJENJENA_VRIJEDNOST);
+            .procijenjenaVrijednost(DEFAULT_PROCIJENJENA_VRIJEDNOST)
+            .trazenaJedinicnaCijena(DEFAULT_TRAZENA_JEDINICNA_CIJENA);
         return specifikacija;
     }
 
@@ -112,9 +117,10 @@ class SpecifikacijaResourceIT {
             .inn(UPDATED_INN)
             .farmaceutskiOblikLijeka(UPDATED_FARMACEUTSKI_OBLIK_LIJEKA)
             .jacinaLijeka(UPDATED_JACINA_LIJEKA)
-            .kolicina(UPDATED_KOLICINA)
+            .trazenaKolicina(UPDATED_TRAZENA_KOLICINA)
             .pakovanje(UPDATED_PAKOVANJE)
-            .procijenjenaVrijednost(UPDATED_PROCIJENJENA_VRIJEDNOST);
+            .procijenjenaVrijednost(UPDATED_PROCIJENJENA_VRIJEDNOST)
+            .trazenaJedinicnaCijena(UPDATED_TRAZENA_JEDINICNA_CIJENA);
         return specifikacija;
     }
 
@@ -142,9 +148,10 @@ class SpecifikacijaResourceIT {
         assertThat(testSpecifikacija.getInn()).isEqualTo(DEFAULT_INN);
         assertThat(testSpecifikacija.getFarmaceutskiOblikLijeka()).isEqualTo(DEFAULT_FARMACEUTSKI_OBLIK_LIJEKA);
         assertThat(testSpecifikacija.getJacinaLijeka()).isEqualTo(DEFAULT_JACINA_LIJEKA);
-        assertThat(testSpecifikacija.getKolicina()).isEqualTo(DEFAULT_KOLICINA);
+        assertThat(testSpecifikacija.getTrazenaKolicina()).isEqualTo(DEFAULT_TRAZENA_KOLICINA);
         assertThat(testSpecifikacija.getPakovanje()).isEqualTo(DEFAULT_PAKOVANJE);
         assertThat(testSpecifikacija.getProcijenjenaVrijednost()).isEqualTo(DEFAULT_PROCIJENJENA_VRIJEDNOST);
+        assertThat(testSpecifikacija.getTrazenaJedinicnaCijena()).isEqualTo(DEFAULT_TRAZENA_JEDINICNA_CIJENA);
     }
 
     @Test
@@ -218,10 +225,10 @@ class SpecifikacijaResourceIT {
 
     @Test
     @Transactional
-    void checkKolicinaIsRequired() throws Exception {
+    void checkTrazenaKolicinaIsRequired() throws Exception {
         int databaseSizeBeforeTest = specifikacijaRepository.findAll().size();
         // set the field null
-        specifikacija.setKolicina(null);
+        specifikacija.setTrazenaKolicina(null);
 
         // Create the Specifikacija, which fails.
 
@@ -252,6 +259,23 @@ class SpecifikacijaResourceIT {
 
     @Test
     @Transactional
+    void checkTrazenaJedinicnaCijenaIsRequired() throws Exception {
+        int databaseSizeBeforeTest = specifikacijaRepository.findAll().size();
+        // set the field null
+        specifikacija.setTrazenaJedinicnaCijena(null);
+
+        // Create the Specifikacija, which fails.
+
+        restSpecifikacijaMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(specifikacija)))
+            .andExpect(status().isBadRequest());
+
+        List<Specifikacija> specifikacijaList = specifikacijaRepository.findAll();
+        assertThat(specifikacijaList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllSpecifikacijas() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
@@ -268,9 +292,10 @@ class SpecifikacijaResourceIT {
             .andExpect(jsonPath("$.[*].inn").value(hasItem(DEFAULT_INN)))
             .andExpect(jsonPath("$.[*].farmaceutskiOblikLijeka").value(hasItem(DEFAULT_FARMACEUTSKI_OBLIK_LIJEKA)))
             .andExpect(jsonPath("$.[*].jacinaLijeka").value(hasItem(DEFAULT_JACINA_LIJEKA)))
-            .andExpect(jsonPath("$.[*].kolicina").value(hasItem(DEFAULT_KOLICINA)))
+            .andExpect(jsonPath("$.[*].trazenaKolicina").value(hasItem(DEFAULT_TRAZENA_KOLICINA)))
             .andExpect(jsonPath("$.[*].pakovanje").value(hasItem(DEFAULT_PAKOVANJE)))
-            .andExpect(jsonPath("$.[*].procijenjenaVrijednost").value(hasItem(DEFAULT_PROCIJENJENA_VRIJEDNOST.doubleValue())));
+            .andExpect(jsonPath("$.[*].procijenjenaVrijednost").value(hasItem(DEFAULT_PROCIJENJENA_VRIJEDNOST.doubleValue())))
+            .andExpect(jsonPath("$.[*].trazenaJedinicnaCijena").value(hasItem(DEFAULT_TRAZENA_JEDINICNA_CIJENA.doubleValue())));
     }
 
     @Test
@@ -291,9 +316,10 @@ class SpecifikacijaResourceIT {
             .andExpect(jsonPath("$.inn").value(DEFAULT_INN))
             .andExpect(jsonPath("$.farmaceutskiOblikLijeka").value(DEFAULT_FARMACEUTSKI_OBLIK_LIJEKA))
             .andExpect(jsonPath("$.jacinaLijeka").value(DEFAULT_JACINA_LIJEKA))
-            .andExpect(jsonPath("$.kolicina").value(DEFAULT_KOLICINA))
+            .andExpect(jsonPath("$.trazenaKolicina").value(DEFAULT_TRAZENA_KOLICINA))
             .andExpect(jsonPath("$.pakovanje").value(DEFAULT_PAKOVANJE))
-            .andExpect(jsonPath("$.procijenjenaVrijednost").value(DEFAULT_PROCIJENJENA_VRIJEDNOST.doubleValue()));
+            .andExpect(jsonPath("$.procijenjenaVrijednost").value(DEFAULT_PROCIJENJENA_VRIJEDNOST.doubleValue()))
+            .andExpect(jsonPath("$.trazenaJedinicnaCijena").value(DEFAULT_TRAZENA_JEDINICNA_CIJENA.doubleValue()));
     }
 
     @Test
@@ -838,106 +864,106 @@ class SpecifikacijaResourceIT {
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsEqualToSomething() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsEqualToSomething() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina equals to DEFAULT_KOLICINA
-        defaultSpecifikacijaShouldBeFound("kolicina.equals=" + DEFAULT_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina equals to DEFAULT_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.equals=" + DEFAULT_TRAZENA_KOLICINA);
 
-        // Get all the specifikacijaList where kolicina equals to UPDATED_KOLICINA
-        defaultSpecifikacijaShouldNotBeFound("kolicina.equals=" + UPDATED_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina equals to UPDATED_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.equals=" + UPDATED_TRAZENA_KOLICINA);
     }
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsNotEqualToSomething() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsNotEqualToSomething() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina not equals to DEFAULT_KOLICINA
-        defaultSpecifikacijaShouldNotBeFound("kolicina.notEquals=" + DEFAULT_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina not equals to DEFAULT_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.notEquals=" + DEFAULT_TRAZENA_KOLICINA);
 
-        // Get all the specifikacijaList where kolicina not equals to UPDATED_KOLICINA
-        defaultSpecifikacijaShouldBeFound("kolicina.notEquals=" + UPDATED_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina not equals to UPDATED_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.notEquals=" + UPDATED_TRAZENA_KOLICINA);
     }
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsInShouldWork() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsInShouldWork() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina in DEFAULT_KOLICINA or UPDATED_KOLICINA
-        defaultSpecifikacijaShouldBeFound("kolicina.in=" + DEFAULT_KOLICINA + "," + UPDATED_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina in DEFAULT_TRAZENA_KOLICINA or UPDATED_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.in=" + DEFAULT_TRAZENA_KOLICINA + "," + UPDATED_TRAZENA_KOLICINA);
 
-        // Get all the specifikacijaList where kolicina equals to UPDATED_KOLICINA
-        defaultSpecifikacijaShouldNotBeFound("kolicina.in=" + UPDATED_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina equals to UPDATED_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.in=" + UPDATED_TRAZENA_KOLICINA);
     }
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsNullOrNotNull() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsNullOrNotNull() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina is not null
-        defaultSpecifikacijaShouldBeFound("kolicina.specified=true");
+        // Get all the specifikacijaList where trazenaKolicina is not null
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.specified=true");
 
-        // Get all the specifikacijaList where kolicina is null
-        defaultSpecifikacijaShouldNotBeFound("kolicina.specified=false");
+        // Get all the specifikacijaList where trazenaKolicina is null
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsGreaterThanOrEqualToSomething() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina is greater than or equal to DEFAULT_KOLICINA
-        defaultSpecifikacijaShouldBeFound("kolicina.greaterThanOrEqual=" + DEFAULT_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is greater than or equal to DEFAULT_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.greaterThanOrEqual=" + DEFAULT_TRAZENA_KOLICINA);
 
-        // Get all the specifikacijaList where kolicina is greater than or equal to UPDATED_KOLICINA
-        defaultSpecifikacijaShouldNotBeFound("kolicina.greaterThanOrEqual=" + UPDATED_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is greater than or equal to UPDATED_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.greaterThanOrEqual=" + UPDATED_TRAZENA_KOLICINA);
     }
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsLessThanOrEqualToSomething() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsLessThanOrEqualToSomething() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina is less than or equal to DEFAULT_KOLICINA
-        defaultSpecifikacijaShouldBeFound("kolicina.lessThanOrEqual=" + DEFAULT_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is less than or equal to DEFAULT_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.lessThanOrEqual=" + DEFAULT_TRAZENA_KOLICINA);
 
-        // Get all the specifikacijaList where kolicina is less than or equal to SMALLER_KOLICINA
-        defaultSpecifikacijaShouldNotBeFound("kolicina.lessThanOrEqual=" + SMALLER_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is less than or equal to SMALLER_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.lessThanOrEqual=" + SMALLER_TRAZENA_KOLICINA);
     }
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsLessThanSomething() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsLessThanSomething() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina is less than DEFAULT_KOLICINA
-        defaultSpecifikacijaShouldNotBeFound("kolicina.lessThan=" + DEFAULT_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is less than DEFAULT_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.lessThan=" + DEFAULT_TRAZENA_KOLICINA);
 
-        // Get all the specifikacijaList where kolicina is less than UPDATED_KOLICINA
-        defaultSpecifikacijaShouldBeFound("kolicina.lessThan=" + UPDATED_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is less than UPDATED_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.lessThan=" + UPDATED_TRAZENA_KOLICINA);
     }
 
     @Test
     @Transactional
-    void getAllSpecifikacijasByKolicinaIsGreaterThanSomething() throws Exception {
+    void getAllSpecifikacijasByTrazenaKolicinaIsGreaterThanSomething() throws Exception {
         // Initialize the database
         specifikacijaRepository.saveAndFlush(specifikacija);
 
-        // Get all the specifikacijaList where kolicina is greater than DEFAULT_KOLICINA
-        defaultSpecifikacijaShouldNotBeFound("kolicina.greaterThan=" + DEFAULT_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is greater than DEFAULT_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldNotBeFound("trazenaKolicina.greaterThan=" + DEFAULT_TRAZENA_KOLICINA);
 
-        // Get all the specifikacijaList where kolicina is greater than SMALLER_KOLICINA
-        defaultSpecifikacijaShouldBeFound("kolicina.greaterThan=" + SMALLER_KOLICINA);
+        // Get all the specifikacijaList where trazenaKolicina is greater than SMALLER_TRAZENA_KOLICINA
+        defaultSpecifikacijaShouldBeFound("trazenaKolicina.greaterThan=" + SMALLER_TRAZENA_KOLICINA);
     }
 
     @Test
@@ -1124,6 +1150,112 @@ class SpecifikacijaResourceIT {
         defaultSpecifikacijaShouldBeFound("procijenjenaVrijednost.greaterThan=" + SMALLER_PROCIJENJENA_VRIJEDNOST);
     }
 
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena equals to DEFAULT_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldBeFound("trazenaJedinicnaCijena.equals=" + DEFAULT_TRAZENA_JEDINICNA_CIJENA);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena equals to UPDATED_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.equals=" + UPDATED_TRAZENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena not equals to DEFAULT_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.notEquals=" + DEFAULT_TRAZENA_JEDINICNA_CIJENA);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena not equals to UPDATED_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldBeFound("trazenaJedinicnaCijena.notEquals=" + UPDATED_TRAZENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsInShouldWork() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena in DEFAULT_TRAZENA_JEDINICNA_CIJENA or UPDATED_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldBeFound(
+            "trazenaJedinicnaCijena.in=" + DEFAULT_TRAZENA_JEDINICNA_CIJENA + "," + UPDATED_TRAZENA_JEDINICNA_CIJENA
+        );
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena equals to UPDATED_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.in=" + UPDATED_TRAZENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is not null
+        defaultSpecifikacijaShouldBeFound("trazenaJedinicnaCijena.specified=true");
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is null
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is greater than or equal to DEFAULT_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldBeFound("trazenaJedinicnaCijena.greaterThanOrEqual=" + DEFAULT_TRAZENA_JEDINICNA_CIJENA);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is greater than or equal to UPDATED_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.greaterThanOrEqual=" + UPDATED_TRAZENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is less than or equal to DEFAULT_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldBeFound("trazenaJedinicnaCijena.lessThanOrEqual=" + DEFAULT_TRAZENA_JEDINICNA_CIJENA);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is less than or equal to SMALLER_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.lessThanOrEqual=" + SMALLER_TRAZENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsLessThanSomething() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is less than DEFAULT_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.lessThan=" + DEFAULT_TRAZENA_JEDINICNA_CIJENA);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is less than UPDATED_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldBeFound("trazenaJedinicnaCijena.lessThan=" + UPDATED_TRAZENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllSpecifikacijasByTrazenaJedinicnaCijenaIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        specifikacijaRepository.saveAndFlush(specifikacija);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is greater than DEFAULT_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldNotBeFound("trazenaJedinicnaCijena.greaterThan=" + DEFAULT_TRAZENA_JEDINICNA_CIJENA);
+
+        // Get all the specifikacijaList where trazenaJedinicnaCijena is greater than SMALLER_TRAZENA_JEDINICNA_CIJENA
+        defaultSpecifikacijaShouldBeFound("trazenaJedinicnaCijena.greaterThan=" + SMALLER_TRAZENA_JEDINICNA_CIJENA);
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -1139,9 +1271,10 @@ class SpecifikacijaResourceIT {
             .andExpect(jsonPath("$.[*].inn").value(hasItem(DEFAULT_INN)))
             .andExpect(jsonPath("$.[*].farmaceutskiOblikLijeka").value(hasItem(DEFAULT_FARMACEUTSKI_OBLIK_LIJEKA)))
             .andExpect(jsonPath("$.[*].jacinaLijeka").value(hasItem(DEFAULT_JACINA_LIJEKA)))
-            .andExpect(jsonPath("$.[*].kolicina").value(hasItem(DEFAULT_KOLICINA)))
+            .andExpect(jsonPath("$.[*].trazenaKolicina").value(hasItem(DEFAULT_TRAZENA_KOLICINA)))
             .andExpect(jsonPath("$.[*].pakovanje").value(hasItem(DEFAULT_PAKOVANJE)))
-            .andExpect(jsonPath("$.[*].procijenjenaVrijednost").value(hasItem(DEFAULT_PROCIJENJENA_VRIJEDNOST.doubleValue())));
+            .andExpect(jsonPath("$.[*].procijenjenaVrijednost").value(hasItem(DEFAULT_PROCIJENJENA_VRIJEDNOST.doubleValue())))
+            .andExpect(jsonPath("$.[*].trazenaJedinicnaCijena").value(hasItem(DEFAULT_TRAZENA_JEDINICNA_CIJENA.doubleValue())));
 
         // Check, that the count call also returns 1
         restSpecifikacijaMockMvc
@@ -1196,9 +1329,10 @@ class SpecifikacijaResourceIT {
             .inn(UPDATED_INN)
             .farmaceutskiOblikLijeka(UPDATED_FARMACEUTSKI_OBLIK_LIJEKA)
             .jacinaLijeka(UPDATED_JACINA_LIJEKA)
-            .kolicina(UPDATED_KOLICINA)
+            .trazenaKolicina(UPDATED_TRAZENA_KOLICINA)
             .pakovanje(UPDATED_PAKOVANJE)
-            .procijenjenaVrijednost(UPDATED_PROCIJENJENA_VRIJEDNOST);
+            .procijenjenaVrijednost(UPDATED_PROCIJENJENA_VRIJEDNOST)
+            .trazenaJedinicnaCijena(UPDATED_TRAZENA_JEDINICNA_CIJENA);
 
         restSpecifikacijaMockMvc
             .perform(
@@ -1218,9 +1352,10 @@ class SpecifikacijaResourceIT {
         assertThat(testSpecifikacija.getInn()).isEqualTo(UPDATED_INN);
         assertThat(testSpecifikacija.getFarmaceutskiOblikLijeka()).isEqualTo(UPDATED_FARMACEUTSKI_OBLIK_LIJEKA);
         assertThat(testSpecifikacija.getJacinaLijeka()).isEqualTo(UPDATED_JACINA_LIJEKA);
-        assertThat(testSpecifikacija.getKolicina()).isEqualTo(UPDATED_KOLICINA);
+        assertThat(testSpecifikacija.getTrazenaKolicina()).isEqualTo(UPDATED_TRAZENA_KOLICINA);
         assertThat(testSpecifikacija.getPakovanje()).isEqualTo(UPDATED_PAKOVANJE);
         assertThat(testSpecifikacija.getProcijenjenaVrijednost()).isEqualTo(UPDATED_PROCIJENJENA_VRIJEDNOST);
+        assertThat(testSpecifikacija.getTrazenaJedinicnaCijena()).isEqualTo(UPDATED_TRAZENA_JEDINICNA_CIJENA);
     }
 
     @Test
@@ -1296,7 +1431,7 @@ class SpecifikacijaResourceIT {
             .brojPartije(UPDATED_BROJ_PARTIJE)
             .atc(UPDATED_ATC)
             .farmaceutskiOblikLijeka(UPDATED_FARMACEUTSKI_OBLIK_LIJEKA)
-            .kolicina(UPDATED_KOLICINA);
+            .trazenaKolicina(UPDATED_TRAZENA_KOLICINA);
 
         restSpecifikacijaMockMvc
             .perform(
@@ -1316,9 +1451,10 @@ class SpecifikacijaResourceIT {
         assertThat(testSpecifikacija.getInn()).isEqualTo(DEFAULT_INN);
         assertThat(testSpecifikacija.getFarmaceutskiOblikLijeka()).isEqualTo(UPDATED_FARMACEUTSKI_OBLIK_LIJEKA);
         assertThat(testSpecifikacija.getJacinaLijeka()).isEqualTo(DEFAULT_JACINA_LIJEKA);
-        assertThat(testSpecifikacija.getKolicina()).isEqualTo(UPDATED_KOLICINA);
+        assertThat(testSpecifikacija.getTrazenaKolicina()).isEqualTo(UPDATED_TRAZENA_KOLICINA);
         assertThat(testSpecifikacija.getPakovanje()).isEqualTo(DEFAULT_PAKOVANJE);
         assertThat(testSpecifikacija.getProcijenjenaVrijednost()).isEqualTo(DEFAULT_PROCIJENJENA_VRIJEDNOST);
+        assertThat(testSpecifikacija.getTrazenaJedinicnaCijena()).isEqualTo(DEFAULT_TRAZENA_JEDINICNA_CIJENA);
     }
 
     @Test
@@ -1340,9 +1476,10 @@ class SpecifikacijaResourceIT {
             .inn(UPDATED_INN)
             .farmaceutskiOblikLijeka(UPDATED_FARMACEUTSKI_OBLIK_LIJEKA)
             .jacinaLijeka(UPDATED_JACINA_LIJEKA)
-            .kolicina(UPDATED_KOLICINA)
+            .trazenaKolicina(UPDATED_TRAZENA_KOLICINA)
             .pakovanje(UPDATED_PAKOVANJE)
-            .procijenjenaVrijednost(UPDATED_PROCIJENJENA_VRIJEDNOST);
+            .procijenjenaVrijednost(UPDATED_PROCIJENJENA_VRIJEDNOST)
+            .trazenaJedinicnaCijena(UPDATED_TRAZENA_JEDINICNA_CIJENA);
 
         restSpecifikacijaMockMvc
             .perform(
@@ -1362,9 +1499,10 @@ class SpecifikacijaResourceIT {
         assertThat(testSpecifikacija.getInn()).isEqualTo(UPDATED_INN);
         assertThat(testSpecifikacija.getFarmaceutskiOblikLijeka()).isEqualTo(UPDATED_FARMACEUTSKI_OBLIK_LIJEKA);
         assertThat(testSpecifikacija.getJacinaLijeka()).isEqualTo(UPDATED_JACINA_LIJEKA);
-        assertThat(testSpecifikacija.getKolicina()).isEqualTo(UPDATED_KOLICINA);
+        assertThat(testSpecifikacija.getTrazenaKolicina()).isEqualTo(UPDATED_TRAZENA_KOLICINA);
         assertThat(testSpecifikacija.getPakovanje()).isEqualTo(UPDATED_PAKOVANJE);
         assertThat(testSpecifikacija.getProcijenjenaVrijednost()).isEqualTo(UPDATED_PROCIJENJENA_VRIJEDNOST);
+        assertThat(testSpecifikacija.getTrazenaJedinicnaCijena()).isEqualTo(UPDATED_TRAZENA_JEDINICNA_CIJENA);
     }
 
     @Test

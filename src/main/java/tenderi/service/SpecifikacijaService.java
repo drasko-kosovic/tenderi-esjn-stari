@@ -67,14 +67,17 @@ public class SpecifikacijaService {
                     if (specifikacija.getJacinaLijeka() != null) {
                         existingSpecifikacija.setJacinaLijeka(specifikacija.getJacinaLijeka());
                     }
-                    if (specifikacija.getKolicina() != null) {
-                        existingSpecifikacija.setKolicina(specifikacija.getKolicina());
+                    if (specifikacija.getTrazenaKolicina() != null) {
+                        existingSpecifikacija.setTrazenaKolicina(specifikacija.getTrazenaKolicina());
                     }
                     if (specifikacija.getPakovanje() != null) {
                         existingSpecifikacija.setPakovanje(specifikacija.getPakovanje());
                     }
                     if (specifikacija.getProcijenjenaVrijednost() != null) {
                         existingSpecifikacija.setProcijenjenaVrijednost(specifikacija.getProcijenjenaVrijednost());
+                    }
+                    if (specifikacija.getTrazenaJedinicnaCijena() != null) {
+                        existingSpecifikacija.setTrazenaJedinicnaCijena(specifikacija.getTrazenaJedinicnaCijena());
                     }
 
                     return existingSpecifikacija;

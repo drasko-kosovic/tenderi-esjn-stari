@@ -40,6 +40,8 @@ public class PonudeCriteria implements Serializable, Criteria {
 
     private DoubleFilter ponudjenaVrijednost;
 
+    private DoubleFilter ponudjenaJedinicnaCijena;
+
     private IntegerFilter rokIsporuke;
 
     public PonudeCriteria() {}
@@ -53,6 +55,7 @@ public class PonudeCriteria implements Serializable, Criteria {
         this.naziProizvodjaca = other.naziProizvodjaca == null ? null : other.naziProizvodjaca.copy();
         this.zastceniNaziv = other.zastceniNaziv == null ? null : other.zastceniNaziv.copy();
         this.ponudjenaVrijednost = other.ponudjenaVrijednost == null ? null : other.ponudjenaVrijednost.copy();
+        this.ponudjenaJedinicnaCijena = other.ponudjenaJedinicnaCijena == null ? null : other.ponudjenaJedinicnaCijena.copy();
         this.rokIsporuke = other.rokIsporuke == null ? null : other.rokIsporuke.copy();
     }
 
@@ -181,6 +184,21 @@ public class PonudeCriteria implements Serializable, Criteria {
         this.ponudjenaVrijednost = ponudjenaVrijednost;
     }
 
+    public DoubleFilter getPonudjenaJedinicnaCijena() {
+        return ponudjenaJedinicnaCijena;
+    }
+
+    public DoubleFilter ponudjenaJedinicnaCijena() {
+        if (ponudjenaJedinicnaCijena == null) {
+            ponudjenaJedinicnaCijena = new DoubleFilter();
+        }
+        return ponudjenaJedinicnaCijena;
+    }
+
+    public void setPonudjenaJedinicnaCijena(DoubleFilter ponudjenaJedinicnaCijena) {
+        this.ponudjenaJedinicnaCijena = ponudjenaJedinicnaCijena;
+    }
+
     public IntegerFilter getRokIsporuke() {
         return rokIsporuke;
     }
@@ -214,6 +232,7 @@ public class PonudeCriteria implements Serializable, Criteria {
             Objects.equals(naziProizvodjaca, that.naziProizvodjaca) &&
             Objects.equals(zastceniNaziv, that.zastceniNaziv) &&
             Objects.equals(ponudjenaVrijednost, that.ponudjenaVrijednost) &&
+            Objects.equals(ponudjenaJedinicnaCijena, that.ponudjenaJedinicnaCijena) &&
             Objects.equals(rokIsporuke, that.rokIsporuke)
         );
     }
@@ -229,6 +248,7 @@ public class PonudeCriteria implements Serializable, Criteria {
             naziProizvodjaca,
             zastceniNaziv,
             ponudjenaVrijednost,
+            ponudjenaJedinicnaCijena,
             rokIsporuke
         );
     }
@@ -245,6 +265,7 @@ public class PonudeCriteria implements Serializable, Criteria {
             (naziProizvodjaca != null ? "naziProizvodjaca=" + naziProizvodjaca + ", " : "") +
             (zastceniNaziv != null ? "zastceniNaziv=" + zastceniNaziv + ", " : "") +
             (ponudjenaVrijednost != null ? "ponudjenaVrijednost=" + ponudjenaVrijednost + ", " : "") +
+            (ponudjenaJedinicnaCijena != null ? "ponudjenaJedinicnaCijena=" + ponudjenaJedinicnaCijena + ", " : "") +
             (rokIsporuke != null ? "rokIsporuke=" + rokIsporuke + ", " : "") +
             "}";
     }

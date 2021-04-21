@@ -28,9 +28,10 @@ describe('Service Tests', () => {
         inn: 'AAAAAAA',
         farmaceutskiOblikLijeka: 'AAAAAAA',
         jacinaLijeka: 'AAAAAAA',
-        kolicina: 0,
+        trazenaKolicina: 0,
         pakovanje: 'AAAAAAA',
         procijenjenaVrijednost: 0,
+        trazenaJedinicnaCijena: 0,
       };
     });
 
@@ -72,9 +73,10 @@ describe('Service Tests', () => {
             inn: 'BBBBBB',
             farmaceutskiOblikLijeka: 'BBBBBB',
             jacinaLijeka: 'BBBBBB',
-            kolicina: 1,
+            trazenaKolicina: 1,
             pakovanje: 'BBBBBB',
             procijenjenaVrijednost: 1,
+            trazenaJedinicnaCijena: 1,
           },
           elemDefault
         );
@@ -95,7 +97,7 @@ describe('Service Tests', () => {
             brojPartije: 1,
             atc: 'BBBBBB',
             farmaceutskiOblikLijeka: 'BBBBBB',
-            kolicina: 1,
+            trazenaKolicina: 1,
           },
           new Specifikacija()
         );
@@ -121,9 +123,10 @@ describe('Service Tests', () => {
             inn: 'BBBBBB',
             farmaceutskiOblikLijeka: 'BBBBBB',
             jacinaLijeka: 'BBBBBB',
-            kolicina: 1,
+            trazenaKolicina: 1,
             pakovanje: 'BBBBBB',
             procijenjenaVrijednost: 1,
+            trazenaJedinicnaCijena: 1,
           },
           elemDefault
         );
@@ -175,7 +178,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Specifikacija to an array', () => {
-          const specifikacijaArray: ISpecifikacija[] = [{ id: 123 }, { id: 456 }, { id: 43771 }];
+          const specifikacijaArray: ISpecifikacija[] = [{ id: 123 }, { id: 456 }, { id: 3300 }];
           const specifikacijaCollection: ISpecifikacija[] = [{ id: 123 }];
           expectedResult = service.addSpecifikacijaToCollectionIfMissing(specifikacijaCollection, ...specifikacijaArray);
           expect(expectedResult).toHaveLength(3);

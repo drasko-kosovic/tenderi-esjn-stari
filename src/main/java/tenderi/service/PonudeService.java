@@ -70,6 +70,9 @@ public class PonudeService {
                     if (ponude.getPonudjenaVrijednost() != null) {
                         existingPonude.setPonudjenaVrijednost(ponude.getPonudjenaVrijednost());
                     }
+                    if (ponude.getPonudjenaJedinicnaCijena() != null) {
+                        existingPonude.setPonudjenaJedinicnaCijena(ponude.getPonudjenaJedinicnaCijena());
+                    }
                     if (ponude.getRokIsporuke() != null) {
                         existingPonude.setRokIsporuke(ponude.getRokIsporuke());
                     }

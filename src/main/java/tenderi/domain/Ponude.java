@@ -49,6 +49,10 @@ public class Ponude implements Serializable {
     @Column(name = "ponudjena_vrijednost", nullable = false)
     private Double ponudjenaVrijednost;
 
+    @NotNull
+    @Column(name = "ponudjena_jedinicna_cijena", nullable = false)
+    private Double ponudjenaJedinicnaCijena;
+
     @Column(name = "rok_isporuke")
     private Integer rokIsporuke;
 
@@ -157,6 +161,19 @@ public class Ponude implements Serializable {
         this.ponudjenaVrijednost = ponudjenaVrijednost;
     }
 
+    public Double getPonudjenaJedinicnaCijena() {
+        return this.ponudjenaJedinicnaCijena;
+    }
+
+    public Ponude ponudjenaJedinicnaCijena(Double ponudjenaJedinicnaCijena) {
+        this.ponudjenaJedinicnaCijena = ponudjenaJedinicnaCijena;
+        return this;
+    }
+
+    public void setPonudjenaJedinicnaCijena(Double ponudjenaJedinicnaCijena) {
+        this.ponudjenaJedinicnaCijena = ponudjenaJedinicnaCijena;
+    }
+
     public Integer getRokIsporuke() {
         return this.rokIsporuke;
     }
@@ -201,6 +218,7 @@ public class Ponude implements Serializable {
             ", naziProizvodjaca='" + getNaziProizvodjaca() + "'" +
             ", zastceniNaziv='" + getZastceniNaziv() + "'" +
             ", ponudjenaVrijednost=" + getPonudjenaVrijednost() +
+            ", ponudjenaJedinicnaCijena=" + getPonudjenaJedinicnaCijena() +
             ", rokIsporuke=" + getRokIsporuke() +
             "}";
     }

@@ -102,8 +102,8 @@ public class SpecifikacijaQueryService extends QueryService<Specifikacija> {
             if (criteria.getJacinaLijeka() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getJacinaLijeka(), Specifikacija_.jacinaLijeka));
             }
-            if (criteria.getKolicina() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getKolicina(), Specifikacija_.kolicina));
+            if (criteria.getTrazenaKolicina() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getTrazenaKolicina(), Specifikacija_.trazenaKolicina));
             }
             if (criteria.getPakovanje() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPakovanje(), Specifikacija_.pakovanje));
@@ -111,6 +111,10 @@ public class SpecifikacijaQueryService extends QueryService<Specifikacija> {
             if (criteria.getProcijenjenaVrijednost() != null) {
                 specification =
                     specification.and(buildRangeSpecification(criteria.getProcijenjenaVrijednost(), Specifikacija_.procijenjenaVrijednost));
+            }
+            if (criteria.getTrazenaJedinicnaCijena() != null) {
+                specification =
+                    specification.and(buildRangeSpecification(criteria.getTrazenaJedinicnaCijena(), Specifikacija_.trazenaJedinicnaCijena));
             }
         }
         return specification;

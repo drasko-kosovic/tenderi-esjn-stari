@@ -55,6 +55,10 @@ class PonudeResourceIT {
     private static final Double UPDATED_PONUDJENA_VRIJEDNOST = 2D;
     private static final Double SMALLER_PONUDJENA_VRIJEDNOST = 1D - 1D;
 
+    private static final Double DEFAULT_PONUDJENA_JEDINICNA_CIJENA = 1D;
+    private static final Double UPDATED_PONUDJENA_JEDINICNA_CIJENA = 2D;
+    private static final Double SMALLER_PONUDJENA_JEDINICNA_CIJENA = 1D - 1D;
+
     private static final Integer DEFAULT_ROK_ISPORUKE = 1;
     private static final Integer UPDATED_ROK_ISPORUKE = 2;
     private static final Integer SMALLER_ROK_ISPORUKE = 1 - 1;
@@ -91,6 +95,7 @@ class PonudeResourceIT {
             .naziProizvodjaca(DEFAULT_NAZI_PROIZVODJACA)
             .zastceniNaziv(DEFAULT_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(DEFAULT_PONUDJENA_VRIJEDNOST)
+            .ponudjenaJedinicnaCijena(DEFAULT_PONUDJENA_JEDINICNA_CIJENA)
             .rokIsporuke(DEFAULT_ROK_ISPORUKE);
         return ponude;
     }
@@ -110,6 +115,7 @@ class PonudeResourceIT {
             .naziProizvodjaca(UPDATED_NAZI_PROIZVODJACA)
             .zastceniNaziv(UPDATED_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(UPDATED_PONUDJENA_VRIJEDNOST)
+            .ponudjenaJedinicnaCijena(UPDATED_PONUDJENA_JEDINICNA_CIJENA)
             .rokIsporuke(UPDATED_ROK_ISPORUKE);
         return ponude;
     }
@@ -139,6 +145,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getNaziProizvodjaca()).isEqualTo(DEFAULT_NAZI_PROIZVODJACA);
         assertThat(testPonude.getZastceniNaziv()).isEqualTo(DEFAULT_ZASTCENI_NAZIV);
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(DEFAULT_PONUDJENA_VRIJEDNOST);
+        assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(DEFAULT_ROK_ISPORUKE);
     }
 
@@ -281,6 +288,23 @@ class PonudeResourceIT {
 
     @Test
     @Transactional
+    void checkPonudjenaJedinicnaCijenaIsRequired() throws Exception {
+        int databaseSizeBeforeTest = ponudeRepository.findAll().size();
+        // set the field null
+        ponude.setPonudjenaJedinicnaCijena(null);
+
+        // Create the Ponude, which fails.
+
+        restPonudeMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(ponude)))
+            .andExpect(status().isBadRequest());
+
+        List<Ponude> ponudeList = ponudeRepository.findAll();
+        assertThat(ponudeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllPonudes() throws Exception {
         // Initialize the database
         ponudeRepository.saveAndFlush(ponude);
@@ -298,6 +322,7 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.[*].naziProizvodjaca").value(hasItem(DEFAULT_NAZI_PROIZVODJACA)))
             .andExpect(jsonPath("$.[*].zastceniNaziv").value(hasItem(DEFAULT_ZASTCENI_NAZIV)))
             .andExpect(jsonPath("$.[*].ponudjenaVrijednost").value(hasItem(DEFAULT_PONUDJENA_VRIJEDNOST.doubleValue())))
+            .andExpect(jsonPath("$.[*].ponudjenaJedinicnaCijena").value(hasItem(DEFAULT_PONUDJENA_JEDINICNA_CIJENA.doubleValue())))
             .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)));
     }
 
@@ -320,6 +345,7 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.naziProizvodjaca").value(DEFAULT_NAZI_PROIZVODJACA))
             .andExpect(jsonPath("$.zastceniNaziv").value(DEFAULT_ZASTCENI_NAZIV))
             .andExpect(jsonPath("$.ponudjenaVrijednost").value(DEFAULT_PONUDJENA_VRIJEDNOST.doubleValue()))
+            .andExpect(jsonPath("$.ponudjenaJedinicnaCijena").value(DEFAULT_PONUDJENA_JEDINICNA_CIJENA.doubleValue()))
             .andExpect(jsonPath("$.rokIsporuke").value(DEFAULT_ROK_ISPORUKE));
     }
 
@@ -993,6 +1019,112 @@ class PonudeResourceIT {
 
     @Test
     @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena equals to DEFAULT_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldBeFound("ponudjenaJedinicnaCijena.equals=" + DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena equals to UPDATED_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.equals=" + UPDATED_PONUDJENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena not equals to DEFAULT_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.notEquals=" + DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena not equals to UPDATED_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldBeFound("ponudjenaJedinicnaCijena.notEquals=" + UPDATED_PONUDJENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsInShouldWork() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena in DEFAULT_PONUDJENA_JEDINICNA_CIJENA or UPDATED_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldBeFound(
+            "ponudjenaJedinicnaCijena.in=" + DEFAULT_PONUDJENA_JEDINICNA_CIJENA + "," + UPDATED_PONUDJENA_JEDINICNA_CIJENA
+        );
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena equals to UPDATED_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.in=" + UPDATED_PONUDJENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is not null
+        defaultPonudeShouldBeFound("ponudjenaJedinicnaCijena.specified=true");
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is null
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is greater than or equal to DEFAULT_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldBeFound("ponudjenaJedinicnaCijena.greaterThanOrEqual=" + DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is greater than or equal to UPDATED_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.greaterThanOrEqual=" + UPDATED_PONUDJENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is less than or equal to DEFAULT_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldBeFound("ponudjenaJedinicnaCijena.lessThanOrEqual=" + DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is less than or equal to SMALLER_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.lessThanOrEqual=" + SMALLER_PONUDJENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsLessThanSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is less than DEFAULT_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.lessThan=" + DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is less than UPDATED_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldBeFound("ponudjenaJedinicnaCijena.lessThan=" + UPDATED_PONUDJENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByPonudjenaJedinicnaCijenaIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is greater than DEFAULT_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldNotBeFound("ponudjenaJedinicnaCijena.greaterThan=" + DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
+
+        // Get all the ponudeList where ponudjenaJedinicnaCijena is greater than SMALLER_PONUDJENA_JEDINICNA_CIJENA
+        defaultPonudeShouldBeFound("ponudjenaJedinicnaCijena.greaterThan=" + SMALLER_PONUDJENA_JEDINICNA_CIJENA);
+    }
+
+    @Test
+    @Transactional
     void getAllPonudesByRokIsporukeIsEqualToSomething() throws Exception {
         // Initialize the database
         ponudeRepository.saveAndFlush(ponude);
@@ -1111,6 +1243,7 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.[*].naziProizvodjaca").value(hasItem(DEFAULT_NAZI_PROIZVODJACA)))
             .andExpect(jsonPath("$.[*].zastceniNaziv").value(hasItem(DEFAULT_ZASTCENI_NAZIV)))
             .andExpect(jsonPath("$.[*].ponudjenaVrijednost").value(hasItem(DEFAULT_PONUDJENA_VRIJEDNOST.doubleValue())))
+            .andExpect(jsonPath("$.[*].ponudjenaJedinicnaCijena").value(hasItem(DEFAULT_PONUDJENA_JEDINICNA_CIJENA.doubleValue())))
             .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)));
 
         // Check, that the count call also returns 1
@@ -1167,6 +1300,7 @@ class PonudeResourceIT {
             .naziProizvodjaca(UPDATED_NAZI_PROIZVODJACA)
             .zastceniNaziv(UPDATED_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(UPDATED_PONUDJENA_VRIJEDNOST)
+            .ponudjenaJedinicnaCijena(UPDATED_PONUDJENA_JEDINICNA_CIJENA)
             .rokIsporuke(UPDATED_ROK_ISPORUKE);
 
         restPonudeMockMvc
@@ -1188,6 +1322,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getNaziProizvodjaca()).isEqualTo(UPDATED_NAZI_PROIZVODJACA);
         assertThat(testPonude.getZastceniNaziv()).isEqualTo(UPDATED_ZASTCENI_NAZIV);
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(UPDATED_PONUDJENA_VRIJEDNOST);
+        assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(UPDATED_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(UPDATED_ROK_ISPORUKE);
     }
 
@@ -1285,6 +1420,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getNaziProizvodjaca()).isEqualTo(UPDATED_NAZI_PROIZVODJACA);
         assertThat(testPonude.getZastceniNaziv()).isEqualTo(DEFAULT_ZASTCENI_NAZIV);
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(UPDATED_PONUDJENA_VRIJEDNOST);
+        assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(DEFAULT_ROK_ISPORUKE);
     }
 
@@ -1308,6 +1444,7 @@ class PonudeResourceIT {
             .naziProizvodjaca(UPDATED_NAZI_PROIZVODJACA)
             .zastceniNaziv(UPDATED_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(UPDATED_PONUDJENA_VRIJEDNOST)
+            .ponudjenaJedinicnaCijena(UPDATED_PONUDJENA_JEDINICNA_CIJENA)
             .rokIsporuke(UPDATED_ROK_ISPORUKE);
 
         restPonudeMockMvc
@@ -1329,6 +1466,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getNaziProizvodjaca()).isEqualTo(UPDATED_NAZI_PROIZVODJACA);
         assertThat(testPonude.getZastceniNaziv()).isEqualTo(UPDATED_ZASTCENI_NAZIV);
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(UPDATED_PONUDJENA_VRIJEDNOST);
+        assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(UPDATED_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(UPDATED_ROK_ISPORUKE);
     }
 

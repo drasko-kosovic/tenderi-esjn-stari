@@ -38,11 +38,13 @@ public class SpecifikacijaCriteria implements Serializable, Criteria {
 
     private StringFilter jacinaLijeka;
 
-    private IntegerFilter kolicina;
+    private IntegerFilter trazenaKolicina;
 
     private StringFilter pakovanje;
 
     private DoubleFilter procijenjenaVrijednost;
+
+    private DoubleFilter trazenaJedinicnaCijena;
 
     public SpecifikacijaCriteria() {}
 
@@ -54,9 +56,10 @@ public class SpecifikacijaCriteria implements Serializable, Criteria {
         this.inn = other.inn == null ? null : other.inn.copy();
         this.farmaceutskiOblikLijeka = other.farmaceutskiOblikLijeka == null ? null : other.farmaceutskiOblikLijeka.copy();
         this.jacinaLijeka = other.jacinaLijeka == null ? null : other.jacinaLijeka.copy();
-        this.kolicina = other.kolicina == null ? null : other.kolicina.copy();
+        this.trazenaKolicina = other.trazenaKolicina == null ? null : other.trazenaKolicina.copy();
         this.pakovanje = other.pakovanje == null ? null : other.pakovanje.copy();
         this.procijenjenaVrijednost = other.procijenjenaVrijednost == null ? null : other.procijenjenaVrijednost.copy();
+        this.trazenaJedinicnaCijena = other.trazenaJedinicnaCijena == null ? null : other.trazenaJedinicnaCijena.copy();
     }
 
     @Override
@@ -169,19 +172,19 @@ public class SpecifikacijaCriteria implements Serializable, Criteria {
         this.jacinaLijeka = jacinaLijeka;
     }
 
-    public IntegerFilter getKolicina() {
-        return kolicina;
+    public IntegerFilter getTrazenaKolicina() {
+        return trazenaKolicina;
     }
 
-    public IntegerFilter kolicina() {
-        if (kolicina == null) {
-            kolicina = new IntegerFilter();
+    public IntegerFilter trazenaKolicina() {
+        if (trazenaKolicina == null) {
+            trazenaKolicina = new IntegerFilter();
         }
-        return kolicina;
+        return trazenaKolicina;
     }
 
-    public void setKolicina(IntegerFilter kolicina) {
-        this.kolicina = kolicina;
+    public void setTrazenaKolicina(IntegerFilter trazenaKolicina) {
+        this.trazenaKolicina = trazenaKolicina;
     }
 
     public StringFilter getPakovanje() {
@@ -214,6 +217,21 @@ public class SpecifikacijaCriteria implements Serializable, Criteria {
         this.procijenjenaVrijednost = procijenjenaVrijednost;
     }
 
+    public DoubleFilter getTrazenaJedinicnaCijena() {
+        return trazenaJedinicnaCijena;
+    }
+
+    public DoubleFilter trazenaJedinicnaCijena() {
+        if (trazenaJedinicnaCijena == null) {
+            trazenaJedinicnaCijena = new DoubleFilter();
+        }
+        return trazenaJedinicnaCijena;
+    }
+
+    public void setTrazenaJedinicnaCijena(DoubleFilter trazenaJedinicnaCijena) {
+        this.trazenaJedinicnaCijena = trazenaJedinicnaCijena;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -231,9 +249,10 @@ public class SpecifikacijaCriteria implements Serializable, Criteria {
             Objects.equals(inn, that.inn) &&
             Objects.equals(farmaceutskiOblikLijeka, that.farmaceutskiOblikLijeka) &&
             Objects.equals(jacinaLijeka, that.jacinaLijeka) &&
-            Objects.equals(kolicina, that.kolicina) &&
+            Objects.equals(trazenaKolicina, that.trazenaKolicina) &&
             Objects.equals(pakovanje, that.pakovanje) &&
-            Objects.equals(procijenjenaVrijednost, that.procijenjenaVrijednost)
+            Objects.equals(procijenjenaVrijednost, that.procijenjenaVrijednost) &&
+            Objects.equals(trazenaJedinicnaCijena, that.trazenaJedinicnaCijena)
         );
     }
 
@@ -247,9 +266,10 @@ public class SpecifikacijaCriteria implements Serializable, Criteria {
             inn,
             farmaceutskiOblikLijeka,
             jacinaLijeka,
-            kolicina,
+            trazenaKolicina,
             pakovanje,
-            procijenjenaVrijednost
+            procijenjenaVrijednost,
+            trazenaJedinicnaCijena
         );
     }
 
@@ -264,9 +284,10 @@ public class SpecifikacijaCriteria implements Serializable, Criteria {
             (inn != null ? "inn=" + inn + ", " : "") +
             (farmaceutskiOblikLijeka != null ? "farmaceutskiOblikLijeka=" + farmaceutskiOblikLijeka + ", " : "") +
             (jacinaLijeka != null ? "jacinaLijeka=" + jacinaLijeka + ", " : "") +
-            (kolicina != null ? "kolicina=" + kolicina + ", " : "") +
+            (trazenaKolicina != null ? "trazenaKolicina=" + trazenaKolicina + ", " : "") +
             (pakovanje != null ? "pakovanje=" + pakovanje + ", " : "") +
             (procijenjenaVrijednost != null ? "procijenjenaVrijednost=" + procijenjenaVrijednost + ", " : "") +
+            (trazenaJedinicnaCijena != null ? "trazenaJedinicnaCijena=" + trazenaJedinicnaCijena + ", " : "") +
             "}";
     }
 }

@@ -6,9 +6,10 @@ export interface ISpecifikacija {
   inn?: string | null;
   farmaceutskiOblikLijeka?: string | null;
   jacinaLijeka?: string | null;
-  kolicina?: number;
+  trazenaKolicina?: number;
   pakovanje?: string | null;
   procijenjenaVrijednost?: number;
+  trazenaJedinicnaCijena?: number;
 }
 
 export class Specifikacija implements ISpecifikacija {
@@ -20,9 +21,10 @@ export class Specifikacija implements ISpecifikacija {
     public inn?: string | null,
     public farmaceutskiOblikLijeka?: string | null,
     public jacinaLijeka?: string | null,
-    public kolicina?: number,
+    public trazenaKolicina?: number,
     public pakovanje?: string | null,
-    public procijenjenaVrijednost?: number
+    public procijenjenaVrijednost?: number,
+    public trazenaJedinicnaCijena?: number
   ) {}
 }
 

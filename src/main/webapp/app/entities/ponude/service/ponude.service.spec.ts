@@ -29,6 +29,7 @@ describe('Service Tests', () => {
         naziProizvodjaca: 'AAAAAAA',
         zastceniNaziv: 'AAAAAAA',
         ponudjenaVrijednost: 0,
+        ponudjenaJedinicnaCijena: 0,
         rokIsporuke: 0,
       };
     });
@@ -72,6 +73,7 @@ describe('Service Tests', () => {
             naziProizvodjaca: 'BBBBBB',
             zastceniNaziv: 'BBBBBB',
             ponudjenaVrijednost: 1,
+            ponudjenaJedinicnaCijena: 1,
             rokIsporuke: 1,
           },
           elemDefault
@@ -120,6 +122,7 @@ describe('Service Tests', () => {
             naziProizvodjaca: 'BBBBBB',
             zastceniNaziv: 'BBBBBB',
             ponudjenaVrijednost: 1,
+            ponudjenaJedinicnaCijena: 1,
             rokIsporuke: 1,
           },
           elemDefault
@@ -172,7 +175,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Ponude to an array', () => {
-          const ponudeArray: IPonude[] = [{ id: 123 }, { id: 456 }, { id: 31878 }];
+          const ponudeArray: IPonude[] = [{ id: 123 }, { id: 456 }, { id: 49051 }];
           const ponudeCollection: IPonude[] = [{ id: 123 }];
           expectedResult = service.addPonudeToCollectionIfMissing(ponudeCollection, ...ponudeArray);
           expect(expectedResult).toHaveLength(3);
