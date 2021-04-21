@@ -1,0 +1,210 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-specifikacija-heading"
+        data-cy="SpecifikacijaCreateUpdateHeading"
+        jhiTranslate="tenderiApp.specifikacija.home.createOrEditLabel"
+      >
+        Create or edit a Specifikacija
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.sifraPostupka" for="field_sifraPostupka"
+            >Sifra Postupka</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="sifraPostupka"
+            id="field_sifraPostupka"
+            data-cy="sifraPostupka"
+            formControlName="sifraPostupka"
+          />
+          <div
+            *ngIf="
+              editForm.get('sifraPostupka')!.invalid && (editForm.get('sifraPostupka')!.dirty || editForm.get('sifraPostupka')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sifraPostupka')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('sifraPostupka')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.brojPartije" for="field_brojPartije">Broj Partije</label>
+          <input
+            type="number"
+            class="form-control"
+            name="brojPartije"
+            id="field_brojPartije"
+            data-cy="brojPartije"
+            formControlName="brojPartije"
+          />
+          <div *ngIf="editForm.get('brojPartije')!.invalid && (editForm.get('brojPartije')!.dirty || editForm.get('brojPartije')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('brojPartije')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('brojPartije')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.atc" for="field_atc">Atc</label>
+          <input type="text" class="form-control" name="atc" id="field_atc" data-cy="atc" formControlName="atc" />
+          <div *ngIf="editForm.get('atc')!.invalid && (editForm.get('atc')!.dirty || editForm.get('atc')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('atc')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.inn" for="field_inn">Inn</label>
+          <input type="text" class="form-control" name="inn" id="field_inn" data-cy="inn" formControlName="inn" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tenderiApp.specifikacija.farmaceutskiOblikLijeka"
+            for="field_farmaceutskiOblikLijeka"
+            >Farmaceutski Oblik Lijeka</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="farmaceutskiOblikLijeka"
+            id="field_farmaceutskiOblikLijeka"
+            data-cy="farmaceutskiOblikLijeka"
+            formControlName="farmaceutskiOblikLijeka"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.jacinaLijeka" for="field_jacinaLijeka"
+            >Jacina Lijeka</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="jacinaLijeka"
+            id="field_jacinaLijeka"
+            data-cy="jacinaLijeka"
+            formControlName="jacinaLijeka"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.kolicina" for="field_kolicina">Kolicina</label>
+          <input type="number" class="form-control" name="kolicina" id="field_kolicina" data-cy="kolicina" formControlName="kolicina" />
+          <div *ngIf="editForm.get('kolicina')!.invalid && (editForm.get('kolicina')!.dirty || editForm.get('kolicina')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('kolicina')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('kolicina')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.specifikacija.pakovanje" for="field_pakovanje">Pakovanje</label>
+          <input type="text" class="form-control" name="pakovanje" id="field_pakovanje" data-cy="pakovanje" formControlName="pakovanje" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tenderiApp.specifikacija.procijenjenaVrijednost"
+            for="field_procijenjenaVrijednost"
+            >Procijenjena Vrijednost</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="procijenjenaVrijednost"
+            id="field_procijenjenaVrijednost"
+            data-cy="procijenjenaVrijednost"
+            formControlName="procijenjenaVrijednost"
+          />
+          <div
+            *ngIf="
+              editForm.get('procijenjenaVrijednost')!.invalid &&
+              (editForm.get('procijenjenaVrijednost')!.dirty || editForm.get('procijenjenaVrijednost')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('procijenjenaVrijednost')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('procijenjenaVrijednost')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

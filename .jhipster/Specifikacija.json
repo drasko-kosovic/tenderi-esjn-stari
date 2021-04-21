@@ -1,0 +1,57 @@
+{
+  "name": "Specifikacija",
+  "fields": [
+    {
+      "fieldName": "sifraPostupka",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "brojPartije",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "atc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "inn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "farmaceutskiOblikLijeka",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "jacinaLijeka",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "kolicina",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "pakovanje",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "procijenjenaVrijednost",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "specifikacija",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210421123016"
+}

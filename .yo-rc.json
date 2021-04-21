@@ -41,6 +41,8 @@
     "packageFolder": "tenderi",
     "jwtSecretKey": "OGJjNmNhZmI5Njg0YmY1NzQ4ODEwYTI1M2FkOTM5YzQzZGU2NjUwNGNiNDQ3MWIxZWY2MDNmM2QwYTVlZGJlOWY4ODQyZTU4Njg4ZWVhYjE5OTk5M2E0Y2I4YjhiYjI3MzU0YmRmZDYwODBiOWZjNTYyYzZiZTFlYTAxOGM4ZWU=",
     "clientPackageManager": "npm",
-    "languages": ["sr", "en"]
+    "languages": ["sr", "en"],
+    "entities": ["Ponude", "Specifikacija", "ViewVrednovanje"],
+    "lastLiquibaseTimestamp": 1619008217000
   }
 }

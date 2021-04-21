@@ -1,0 +1,128 @@
+<div>
+  <h2 id="page-heading" data-cy="SpecifikacijaHeading">
+    <span jhiTranslate="tenderiApp.specifikacija.home.title">Specifikacijas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tenderiApp.specifikacija.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-specifikacija"
+        [routerLink]="['/specifikacija/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tenderiApp.specifikacija.home.createLabel"> Create a new Specifikacija </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="specifikacijas?.length === 0">
+    <span jhiTranslate="tenderiApp.specifikacija.home.notFound">No specifikacijas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="specifikacijas && specifikacijas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="sifraPostupka">
+            <span jhiTranslate="tenderiApp.specifikacija.sifraPostupka">Sifra Postupka</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="brojPartije">
+            <span jhiTranslate="tenderiApp.specifikacija.brojPartije">Broj Partije</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="atc"><span jhiTranslate="tenderiApp.specifikacija.atc">Atc</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="inn"><span jhiTranslate="tenderiApp.specifikacija.inn">Inn</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="farmaceutskiOblikLijeka">
+            <span jhiTranslate="tenderiApp.specifikacija.farmaceutskiOblikLijeka">Farmaceutski Oblik Lijeka</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="jacinaLijeka">
+            <span jhiTranslate="tenderiApp.specifikacija.jacinaLijeka">Jacina Lijeka</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="kolicina">
+            <span jhiTranslate="tenderiApp.specifikacija.kolicina">Kolicina</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pakovanje">
+            <span jhiTranslate="tenderiApp.specifikacija.pakovanje">Pakovanje</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="procijenjenaVrijednost">
+            <span jhiTranslate="tenderiApp.specifikacija.procijenjenaVrijednost">Procijenjena Vrijednost</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let specifikacija of specifikacijas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/specifikacija', specifikacija.id, 'view']">{{ specifikacija.id }}</a>
+          </td>
+          <td>{{ specifikacija.sifraPostupka }}</td>
+          <td>{{ specifikacija.brojPartije }}</td>
+          <td>{{ specifikacija.atc }}</td>
+          <td>{{ specifikacija.inn }}</td>
+          <td>{{ specifikacija.farmaceutskiOblikLijeka }}</td>
+          <td>{{ specifikacija.jacinaLijeka }}</td>
+          <td>{{ specifikacija.kolicina }}</td>
+          <td>{{ specifikacija.pakovanje }}</td>
+          <td>{{ specifikacija.procijenjenaVrijednost }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/specifikacija', specifikacija.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/specifikacija', specifikacija.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(specifikacija)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="specifikacijas && specifikacijas.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

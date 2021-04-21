@@ -1,0 +1,44 @@
+entity Ponude {
+  sifraPostupka Integer required
+  sifraPonude Integer required
+  brojPartije Integer required
+  nazivPonudjaca String required
+  naziProizvodjaca String required
+  zastceniNaziv String required
+  ponudjenaVrijednost Double required
+  rokIsporuke Integer
+   }
+entity Specifikacija {
+  sifraPostupka Integer required
+  brojPartije Integer required
+  atc String required
+  inn String
+  farmaceutskiOblikLijeka String
+  jacinaLijeka String
+  kolicina Integer required
+  pakovanje String
+  procijenjenaVrijednost Double required
+}
+entity ViewVrednovanje {
+  sifraPostupka Integer
+  sifraPonude Integer
+  brojPartije Integer
+  nazivPonudjaca String
+  procijenjenaVrijednost Double
+  ponudjenaVrijednost Double
+  kolicina Integer
+  atc String
+  inn String
+  zastceniNaziv String
+  farmaceutskiOblikLijeka String
+  jacinaLijeka String
+  pakovanje String
+  bodIsporuka Double
+  rokIsporuke Integer
+  bodCijena Double
+  bodUkupno Double
+}
+paginate Ponude, Specifikacija, ViewVrednovanje with pagination
+service Ponude, Specifikacija, ViewVrednovanje with serviceClass
+filter Ponude, Specifikacija, ViewVrednovanje
+readOnly ViewVrednovanje

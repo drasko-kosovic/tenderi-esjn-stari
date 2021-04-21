@@ -1,0 +1,32 @@
+{
+  "tenderiApp": {
+    "specifikacija": {
+      "home": {
+        "title": "Specifikacijas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Specifikacija",
+        "createOrEditLabel": "Create or edit a Specifikacija",
+        "notFound": "No Specifikacijas found"
+      },
+      "created": "A new Specifikacija is created with identifier {{ param }}",
+      "updated": "A Specifikacija is updated with identifier {{ param }}",
+      "deleted": "A Specifikacija is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Specifikacija {{ id }}?"
+      },
+      "detail": {
+        "title": "Specifikacija"
+      },
+      "id": "ID",
+      "sifraPostupka": "Sifra Postupka",
+      "brojPartije": "Broj Partije",
+      "atc": "Atc",
+      "inn": "Inn",
+      "farmaceutskiOblikLijeka": "Farmaceutski Oblik Lijeka",
+      "jacinaLijeka": "Jacina Lijeka",
+      "kolicina": "Kolicina",
+      "pakovanje": "Pakovanje",
+      "procijenjenaVrijednost": "Procijenjena Vrijednost"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="specifikacija">
+      <h2 data-cy="specifikacijaDetailsHeading"><span jhiTranslate="tenderiApp.specifikacija.detail.title">Specifikacija</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ specifikacija.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.sifraPostupka">Sifra Postupka</span></dt>
+        <dd>
+          <span>{{ specifikacija.sifraPostupka }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.brojPartije">Broj Partije</span></dt>
+        <dd>
+          <span>{{ specifikacija.brojPartije }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.atc">Atc</span></dt>
+        <dd>
+          <span>{{ specifikacija.atc }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.inn">Inn</span></dt>
+        <dd>
+          <span>{{ specifikacija.inn }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.farmaceutskiOblikLijeka">Farmaceutski Oblik Lijeka</span></dt>
+        <dd>
+          <span>{{ specifikacija.farmaceutskiOblikLijeka }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.jacinaLijeka">Jacina Lijeka</span></dt>
+        <dd>
+          <span>{{ specifikacija.jacinaLijeka }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.kolicina">Kolicina</span></dt>
+        <dd>
+          <span>{{ specifikacija.kolicina }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.pakovanje">Pakovanje</span></dt>
+        <dd>
+          <span>{{ specifikacija.pakovanje }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.specifikacija.procijenjenaVrijednost">Procijenjena Vrijednost</span></dt>
+        <dd>
+          <span>{{ specifikacija.procijenjenaVrijednost }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/specifikacija', specifikacija.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
