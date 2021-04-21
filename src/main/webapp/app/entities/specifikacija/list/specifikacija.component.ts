@@ -23,7 +23,8 @@ export class SpecifikacijaComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-
+  brojPostupka: any;
+  brojPartije: any;
   constructor(
     protected specifikacijaService: SpecifikacijaService,
     protected activatedRoute: ActivatedRoute,
@@ -53,10 +54,66 @@ export class SpecifikacijaComponent implements OnInit {
       );
   }
 
+  loadPageByPostupak(page?: number, dontNavigate?: boolean): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    this.specifikacijaService
+      .query({
+        'sifraPostupka.in': this.brojPostupka,
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe(
+        (res: HttpResponse<ISpecifikacija[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        () => {
+          this.isLoading = false;
+          this.onError();
+        }
+      );
+  }
+  loadPageByPartija(page?: number, dontNavigate?: boolean): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    this.specifikacijaService
+      .query({
+        'brojPartije.in': this.brojPartije,
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe(
+        (res: HttpResponse<ISpecifikacija[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        () => {
+          this.isLoading = false;
+          this.onError();
+        }
+      );
+  }
+
   ngOnInit(): void {
     this.handleNavigation();
   }
-
+  prazanRefresh(): void {
+    this.prazanPostupak();
+    this.prazanPartije();
+  }
+  prazanPostupak(): void {
+    this.brojPostupka = '';
+    this.loadPage();
+  }
+  prazanPartije(): void {
+    this.brojPartije = '';
+    this.loadPage();
+  }
   trackId(index: number, item: ISpecifikacija): number {
     return item.id!;
   }

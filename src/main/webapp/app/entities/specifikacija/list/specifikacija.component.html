@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-end">
       <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="tenderiApp.specifikacija.home.refreshListLabel">Refresh List</span>
+        <span jhiTranslate="tenderiApp.specifikacija.home.refreshListLabel" (click)="prazanRefresh()"></span>
       </button>
 
       <button
@@ -19,7 +19,38 @@
       </button>
     </div>
   </h2>
+  <div class="row">
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input type="text" class="form-control" [(ngModel)]="brojPostupka" id="artikal" name="artikal" placeholder="postupak" />
 
+          <button class="input-group-append btn btn-info" (click)="loadPageByPostupak()">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="prazanPostupak()" *ngIf="brojPostupka">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input type="text" class="form-control" [(ngModel)]="brojPartije" id="ponuda" name="ponuda" placeholder="ponuda" />
+
+          <button class="input-group-append btn btn-info" (click)="loadPageByPartija()">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="prazanPartije()" *ngIf="brojPartije">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
