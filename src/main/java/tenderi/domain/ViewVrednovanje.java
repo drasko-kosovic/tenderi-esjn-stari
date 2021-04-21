@@ -1,6 +1,7 @@
 package tenderi.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -29,18 +30,6 @@ public class ViewVrednovanje implements Serializable {
     @Column(name = "broj_partije")
     private Integer brojPartije;
 
-    @Column(name = "naziv_ponudjaca")
-    private String nazivPonudjaca;
-
-    @Column(name = "procijenjena_vrijednost")
-    private Double procijenjenaVrijednost;
-
-    @Column(name = "ponudjena_vrijednost")
-    private Double ponudjenaVrijednost;
-
-    @Column(name = "kolicina")
-    private Integer kolicina;
-
     @Column(name = "atc")
     private String atc;
 
@@ -59,19 +48,34 @@ public class ViewVrednovanje implements Serializable {
     @Column(name = "pakovanje")
     private String pakovanje;
 
-    @Column(name = "bod_isporuka")
-    private Double bodIsporuka;
+    @Column(name = "trazena_kolicina")
+    private Integer trazanaKolicina;
+
+    @Column(name = "trazena_jedinicna_cijena")
+    private Double trazenaJedinicnaCijena;
+
+    @Column(name = "procijenjena_vrijednost")
+    private Double procijenjenaVrijednost;
+
+    @Column(name = "ponudjena_vrijednost")
+    private Double ponudjenaVrijednost;
 
     @Column(name = "rok_isporuke")
     private Integer rokIsporuke;
 
-    @Column(name = "bod_cijena")
-    private Double bodCijena;
+    @Column(name = "naziv_ponudjaca")
+    private String nazivPonudjaca;
 
-    @Column(name = "bod_ukupno")
-    private Double bodUkupno;
+    @Column(name = "broj_ugovora")
+    private String brojUgovora;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    @Column(name = "datum_ugovora")
+    private Date datumjUgovora;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     public Long getId() {
         return id;
     }
@@ -80,18 +84,8 @@ public class ViewVrednovanje implements Serializable {
         this.id = id;
     }
 
-    public ViewVrednovanje id(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public Integer getSifraPostupka() {
-        return this.sifraPostupka;
-    }
-
-    public ViewVrednovanje sifraPostupka(Integer sifraPostupka) {
-        this.sifraPostupka = sifraPostupka;
-        return this;
+        return sifraPostupka;
     }
 
     public void setSifraPostupka(Integer sifraPostupka) {
@@ -99,12 +93,7 @@ public class ViewVrednovanje implements Serializable {
     }
 
     public Integer getSifraPonude() {
-        return this.sifraPonude;
-    }
-
-    public ViewVrednovanje sifraPonude(Integer sifraPonude) {
-        this.sifraPonude = sifraPonude;
-        return this;
+        return sifraPonude;
     }
 
     public void setSifraPonude(Integer sifraPonude) {
@@ -112,77 +101,15 @@ public class ViewVrednovanje implements Serializable {
     }
 
     public Integer getBrojPartije() {
-        return this.brojPartije;
-    }
-
-    public ViewVrednovanje brojPartije(Integer brojPartije) {
-        this.brojPartije = brojPartije;
-        return this;
+        return brojPartije;
     }
 
     public void setBrojPartije(Integer brojPartije) {
         this.brojPartije = brojPartije;
     }
 
-    public String getNazivPonudjaca() {
-        return this.nazivPonudjaca;
-    }
-
-    public ViewVrednovanje nazivPonudjaca(String nazivPonudjaca) {
-        this.nazivPonudjaca = nazivPonudjaca;
-        return this;
-    }
-
-    public void setNazivPonudjaca(String nazivPonudjaca) {
-        this.nazivPonudjaca = nazivPonudjaca;
-    }
-
-    public Double getProcijenjenaVrijednost() {
-        return this.procijenjenaVrijednost;
-    }
-
-    public ViewVrednovanje procijenjenaVrijednost(Double procijenjenaVrijednost) {
-        this.procijenjenaVrijednost = procijenjenaVrijednost;
-        return this;
-    }
-
-    public void setProcijenjenaVrijednost(Double procijenjenaVrijednost) {
-        this.procijenjenaVrijednost = procijenjenaVrijednost;
-    }
-
-    public Double getPonudjenaVrijednost() {
-        return this.ponudjenaVrijednost;
-    }
-
-    public ViewVrednovanje ponudjenaVrijednost(Double ponudjenaVrijednost) {
-        this.ponudjenaVrijednost = ponudjenaVrijednost;
-        return this;
-    }
-
-    public void setPonudjenaVrijednost(Double ponudjenaVrijednost) {
-        this.ponudjenaVrijednost = ponudjenaVrijednost;
-    }
-
-    public Integer getKolicina() {
-        return this.kolicina;
-    }
-
-    public ViewVrednovanje kolicina(Integer kolicina) {
-        this.kolicina = kolicina;
-        return this;
-    }
-
-    public void setKolicina(Integer kolicina) {
-        this.kolicina = kolicina;
-    }
-
     public String getAtc() {
-        return this.atc;
-    }
-
-    public ViewVrednovanje atc(String atc) {
-        this.atc = atc;
-        return this;
+        return atc;
     }
 
     public void setAtc(String atc) {
@@ -190,12 +117,7 @@ public class ViewVrednovanje implements Serializable {
     }
 
     public String getInn() {
-        return this.inn;
-    }
-
-    public ViewVrednovanje inn(String inn) {
-        this.inn = inn;
-        return this;
+        return inn;
     }
 
     public void setInn(String inn) {
@@ -203,12 +125,7 @@ public class ViewVrednovanje implements Serializable {
     }
 
     public String getZastceniNaziv() {
-        return this.zastceniNaziv;
-    }
-
-    public ViewVrednovanje zastceniNaziv(String zastceniNaziv) {
-        this.zastceniNaziv = zastceniNaziv;
-        return this;
+        return zastceniNaziv;
     }
 
     public void setZastceniNaziv(String zastceniNaziv) {
@@ -216,12 +133,7 @@ public class ViewVrednovanje implements Serializable {
     }
 
     public String getFarmaceutskiOblikLijeka() {
-        return this.farmaceutskiOblikLijeka;
-    }
-
-    public ViewVrednovanje farmaceutskiOblikLijeka(String farmaceutskiOblikLijeka) {
-        this.farmaceutskiOblikLijeka = farmaceutskiOblikLijeka;
-        return this;
+        return farmaceutskiOblikLijeka;
     }
 
     public void setFarmaceutskiOblikLijeka(String farmaceutskiOblikLijeka) {
@@ -229,12 +141,7 @@ public class ViewVrednovanje implements Serializable {
     }
 
     public String getJacinaLijeka() {
-        return this.jacinaLijeka;
-    }
-
-    public ViewVrednovanje jacinaLijeka(String jacinaLijeka) {
-        this.jacinaLijeka = jacinaLijeka;
-        return this;
+        return jacinaLijeka;
     }
 
     public void setJacinaLijeka(String jacinaLijeka) {
@@ -242,111 +149,74 @@ public class ViewVrednovanje implements Serializable {
     }
 
     public String getPakovanje() {
-        return this.pakovanje;
-    }
-
-    public ViewVrednovanje pakovanje(String pakovanje) {
-        this.pakovanje = pakovanje;
-        return this;
+        return pakovanje;
     }
 
     public void setPakovanje(String pakovanje) {
         this.pakovanje = pakovanje;
     }
 
-    public Double getBodIsporuka() {
-        return this.bodIsporuka;
+    public Integer getTrazanaKolicina() {
+        return trazanaKolicina;
     }
 
-    public ViewVrednovanje bodIsporuka(Double bodIsporuka) {
-        this.bodIsporuka = bodIsporuka;
-        return this;
+    public void setTrazanaKolicina(Integer trazanaKolicina) {
+        this.trazanaKolicina = trazanaKolicina;
     }
 
-    public void setBodIsporuka(Double bodIsporuka) {
-        this.bodIsporuka = bodIsporuka;
+    public Double getTrazenaJedinicnaCijena() {
+        return trazenaJedinicnaCijena;
+    }
+
+    public void setTrazenaJedinicnaCijena(Double trazenaJedinicnaCijena) {
+        this.trazenaJedinicnaCijena = trazenaJedinicnaCijena;
+    }
+
+    public Double getProcijenjenaVrijednost() {
+        return procijenjenaVrijednost;
+    }
+
+    public void setProcijenjenaVrijednost(Double procijenjenaVrijednost) {
+        this.procijenjenaVrijednost = procijenjenaVrijednost;
+    }
+
+    public Double getPonudjenaVrijednost() {
+        return ponudjenaVrijednost;
+    }
+
+    public void setPonudjenaVrijednost(Double ponudjenaVrijednost) {
+        this.ponudjenaVrijednost = ponudjenaVrijednost;
     }
 
     public Integer getRokIsporuke() {
-        return this.rokIsporuke;
-    }
-
-    public ViewVrednovanje rokIsporuke(Integer rokIsporuke) {
-        this.rokIsporuke = rokIsporuke;
-        return this;
+        return rokIsporuke;
     }
 
     public void setRokIsporuke(Integer rokIsporuke) {
         this.rokIsporuke = rokIsporuke;
     }
 
-    public Double getBodCijena() {
-        return this.bodCijena;
+    public String getNazivPonudjaca() {
+        return nazivPonudjaca;
     }
 
-    public ViewVrednovanje bodCijena(Double bodCijena) {
-        this.bodCijena = bodCijena;
-        return this;
+    public void setNazivPonudjaca(String nazivPonudjaca) {
+        this.nazivPonudjaca = nazivPonudjaca;
     }
 
-    public void setBodCijena(Double bodCijena) {
-        this.bodCijena = bodCijena;
+    public String getBrojUgovora() {
+        return brojUgovora;
     }
 
-    public Double getBodUkupno() {
-        return this.bodUkupno;
+    public void setBrojUgovora(String brojUgovora) {
+        this.brojUgovora = brojUgovora;
     }
 
-    public ViewVrednovanje bodUkupno(Double bodUkupno) {
-        this.bodUkupno = bodUkupno;
-        return this;
+    public Date getDatumjUgovora() {
+        return datumjUgovora;
     }
 
-    public void setBodUkupno(Double bodUkupno) {
-        this.bodUkupno = bodUkupno;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof ViewVrednovanje)) {
-            return false;
-        }
-        return id != null && id.equals(((ViewVrednovanje) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "ViewVrednovanje{" +
-            "id=" + getId() +
-            ", sifraPostupka=" + getSifraPostupka() +
-            ", sifraPonude=" + getSifraPonude() +
-            ", brojPartije=" + getBrojPartije() +
-            ", nazivPonudjaca='" + getNazivPonudjaca() + "'" +
-            ", procijenjenaVrijednost=" + getProcijenjenaVrijednost() +
-            ", ponudjenaVrijednost=" + getPonudjenaVrijednost() +
-            ", kolicina=" + getKolicina() +
-            ", atc='" + getAtc() + "'" +
-            ", inn='" + getInn() + "'" +
-            ", zastceniNaziv='" + getZastceniNaziv() + "'" +
-            ", farmaceutskiOblikLijeka='" + getFarmaceutskiOblikLijeka() + "'" +
-            ", jacinaLijeka='" + getJacinaLijeka() + "'" +
-            ", pakovanje='" + getPakovanje() + "'" +
-            ", bodIsporuka=" + getBodIsporuka() +
-            ", rokIsporuke=" + getRokIsporuke() +
-            ", bodCijena=" + getBodCijena() +
-            ", bodUkupno=" + getBodUkupno() +
-            "}";
+    public void setDatumjUgovora(Date datumjUgovora) {
+        this.datumjUgovora = datumjUgovora;
     }
 }

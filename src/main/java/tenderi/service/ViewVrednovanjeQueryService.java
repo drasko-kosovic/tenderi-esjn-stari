@@ -104,7 +104,7 @@ public class ViewVrednovanjeQueryService extends QueryService<ViewVrednovanje> {
                     specification.and(buildRangeSpecification(criteria.getPonudjenaVrijednost(), ViewVrednovanje_.ponudjenaVrijednost));
             }
             if (criteria.getKolicina() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getKolicina(), ViewVrednovanje_.kolicina));
+                specification = specification.and(buildRangeSpecification(criteria.getKolicina(), ViewVrednovanje_.trazanaKolicina));
             }
             if (criteria.getAtc() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getAtc(), ViewVrednovanje_.atc));
@@ -126,18 +126,6 @@ public class ViewVrednovanjeQueryService extends QueryService<ViewVrednovanje> {
             }
             if (criteria.getPakovanje() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPakovanje(), ViewVrednovanje_.pakovanje));
-            }
-            if (criteria.getBodIsporuka() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getBodIsporuka(), ViewVrednovanje_.bodIsporuka));
-            }
-            if (criteria.getRokIsporuke() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getRokIsporuke(), ViewVrednovanje_.rokIsporuke));
-            }
-            if (criteria.getBodCijena() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getBodCijena(), ViewVrednovanje_.bodCijena));
-            }
-            if (criteria.getBodUkupno() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getBodUkupno(), ViewVrednovanje_.bodUkupno));
             }
         }
         return specification;

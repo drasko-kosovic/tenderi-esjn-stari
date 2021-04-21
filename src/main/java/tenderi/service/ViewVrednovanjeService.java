@@ -67,8 +67,8 @@ public class ViewVrednovanjeService {
                     if (viewVrednovanje.getPonudjenaVrijednost() != null) {
                         existingViewVrednovanje.setPonudjenaVrijednost(viewVrednovanje.getPonudjenaVrijednost());
                     }
-                    if (viewVrednovanje.getKolicina() != null) {
-                        existingViewVrednovanje.setKolicina(viewVrednovanje.getKolicina());
+                    if (viewVrednovanje.getTrazanaKolicina() != null) {
+                        existingViewVrednovanje.setTrazanaKolicina(viewVrednovanje.getTrazanaKolicina());
                     }
                     if (viewVrednovanje.getAtc() != null) {
                         existingViewVrednovanje.setAtc(viewVrednovanje.getAtc());
@@ -87,18 +87,6 @@ public class ViewVrednovanjeService {
                     }
                     if (viewVrednovanje.getPakovanje() != null) {
                         existingViewVrednovanje.setPakovanje(viewVrednovanje.getPakovanje());
-                    }
-                    if (viewVrednovanje.getBodIsporuka() != null) {
-                        existingViewVrednovanje.setBodIsporuka(viewVrednovanje.getBodIsporuka());
-                    }
-                    if (viewVrednovanje.getRokIsporuke() != null) {
-                        existingViewVrednovanje.setRokIsporuke(viewVrednovanje.getRokIsporuke());
-                    }
-                    if (viewVrednovanje.getBodCijena() != null) {
-                        existingViewVrednovanje.setBodCijena(viewVrednovanje.getBodCijena());
-                    }
-                    if (viewVrednovanje.getBodUkupno() != null) {
-                        existingViewVrednovanje.setBodUkupno(viewVrednovanje.getBodUkupno());
                     }
 
                     return existingViewVrednovanje;
