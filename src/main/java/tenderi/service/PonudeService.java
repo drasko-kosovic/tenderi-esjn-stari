@@ -76,6 +76,12 @@ public class PonudeService {
                     if (ponude.getRokIsporuke() != null) {
                         existingPonude.setRokIsporuke(ponude.getRokIsporuke());
                     }
+                    if (ponude.getBrojUgovora() != null) {
+                        existingPonude.setBrojUgovora(ponude.getBrojUgovora());
+                    }
+                    if (ponude.getDatumUgovora() != null) {
+                        existingPonude.setDatumUgovora(ponude.getDatumUgovora());
+                    }
 
                     return existingPonude;
                 }

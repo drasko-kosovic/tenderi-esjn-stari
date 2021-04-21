@@ -8,6 +8,7 @@ import tech.jhipster.service.filter.DoubleFilter;
 import tech.jhipster.service.filter.Filter;
 import tech.jhipster.service.filter.FloatFilter;
 import tech.jhipster.service.filter.IntegerFilter;
+import tech.jhipster.service.filter.LocalDateFilter;
 import tech.jhipster.service.filter.LongFilter;
 import tech.jhipster.service.filter.StringFilter;
 
@@ -44,6 +45,10 @@ public class PonudeCriteria implements Serializable, Criteria {
 
     private IntegerFilter rokIsporuke;
 
+    private StringFilter brojUgovora;
+
+    private LocalDateFilter datumUgovora;
+
     public PonudeCriteria() {}
 
     public PonudeCriteria(PonudeCriteria other) {
@@ -57,6 +62,8 @@ public class PonudeCriteria implements Serializable, Criteria {
         this.ponudjenaVrijednost = other.ponudjenaVrijednost == null ? null : other.ponudjenaVrijednost.copy();
         this.ponudjenaJedinicnaCijena = other.ponudjenaJedinicnaCijena == null ? null : other.ponudjenaJedinicnaCijena.copy();
         this.rokIsporuke = other.rokIsporuke == null ? null : other.rokIsporuke.copy();
+        this.brojUgovora = other.brojUgovora == null ? null : other.brojUgovora.copy();
+        this.datumUgovora = other.datumUgovora == null ? null : other.datumUgovora.copy();
     }
 
     @Override
@@ -214,6 +221,36 @@ public class PonudeCriteria implements Serializable, Criteria {
         this.rokIsporuke = rokIsporuke;
     }
 
+    public StringFilter getBrojUgovora() {
+        return brojUgovora;
+    }
+
+    public StringFilter brojUgovora() {
+        if (brojUgovora == null) {
+            brojUgovora = new StringFilter();
+        }
+        return brojUgovora;
+    }
+
+    public void setBrojUgovora(StringFilter brojUgovora) {
+        this.brojUgovora = brojUgovora;
+    }
+
+    public LocalDateFilter getDatumUgovora() {
+        return datumUgovora;
+    }
+
+    public LocalDateFilter datumUgovora() {
+        if (datumUgovora == null) {
+            datumUgovora = new LocalDateFilter();
+        }
+        return datumUgovora;
+    }
+
+    public void setDatumUgovora(LocalDateFilter datumUgovora) {
+        this.datumUgovora = datumUgovora;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -233,7 +270,9 @@ public class PonudeCriteria implements Serializable, Criteria {
             Objects.equals(zastceniNaziv, that.zastceniNaziv) &&
             Objects.equals(ponudjenaVrijednost, that.ponudjenaVrijednost) &&
             Objects.equals(ponudjenaJedinicnaCijena, that.ponudjenaJedinicnaCijena) &&
-            Objects.equals(rokIsporuke, that.rokIsporuke)
+            Objects.equals(rokIsporuke, that.rokIsporuke) &&
+            Objects.equals(brojUgovora, that.brojUgovora) &&
+            Objects.equals(datumUgovora, that.datumUgovora)
         );
     }
 
@@ -249,7 +288,9 @@ public class PonudeCriteria implements Serializable, Criteria {
             zastceniNaziv,
             ponudjenaVrijednost,
             ponudjenaJedinicnaCijena,
-            rokIsporuke
+            rokIsporuke,
+            brojUgovora,
+            datumUgovora
         );
     }
 
@@ -267,6 +308,8 @@ public class PonudeCriteria implements Serializable, Criteria {
             (ponudjenaVrijednost != null ? "ponudjenaVrijednost=" + ponudjenaVrijednost + ", " : "") +
             (ponudjenaJedinicnaCijena != null ? "ponudjenaJedinicnaCijena=" + ponudjenaJedinicnaCijena + ", " : "") +
             (rokIsporuke != null ? "rokIsporuke=" + rokIsporuke + ", " : "") +
+            (brojUgovora != null ? "brojUgovora=" + brojUgovora + ", " : "") +
+            (datumUgovora != null ? "datumUgovora=" + datumUgovora + ", " : "") +
             "}";
     }
 }

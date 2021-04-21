@@ -50,6 +50,14 @@
         <dd>
           <span>{{ ponude.rokIsporuke }}</span>
         </dd>
+        <dt><span jhiTranslate="tenderiApp.ponude.brojUgovora">Broj Ugovora</span></dt>
+        <dd>
+          <span>{{ ponude.brojUgovora }}</span>
+        </dd>
+        <dt><span jhiTranslate="tenderiApp.ponude.datumUgovora">Datum Ugovora</span></dt>
+        <dd>
+          <span>{{ ponude.datumUgovora | formatMediumDate }}</span>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

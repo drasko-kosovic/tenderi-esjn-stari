@@ -109,6 +109,12 @@ public class PonudeQueryService extends QueryService<Ponude> {
             if (criteria.getRokIsporuke() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getRokIsporuke(), Ponude_.rokIsporuke));
             }
+            if (criteria.getBrojUgovora() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getBrojUgovora(), Ponude_.brojUgovora));
+            }
+            if (criteria.getDatumUgovora() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDatumUgovora(), Ponude_.datumUgovora));
+            }
         }
         return specification;
     }

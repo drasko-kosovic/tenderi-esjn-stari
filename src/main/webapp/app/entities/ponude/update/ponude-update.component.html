@@ -262,6 +262,39 @@
             formControlName="rokIsporuke"
           />
         </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.ponude.brojUgovora" for="field_brojUgovora">Broj Ugovora</label>
+          <input
+            type="text"
+            class="form-control"
+            name="brojUgovora"
+            id="field_brojUgovora"
+            data-cy="brojUgovora"
+            formControlName="brojUgovora"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tenderiApp.ponude.datumUgovora" for="field_datumUgovora">Datum Ugovora</label>
+          <div class="input-group">
+            <input
+              id="field_datumUgovora"
+              data-cy="datumUgovora"
+              type="text"
+              class="form-control"
+              name="datumUgovora"
+              ngbDatepicker
+              #datumUgovoraDp="ngbDatepicker"
+              formControlName="datumUgovora"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="datumUgovoraDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
       </div>
 
       <div>

@@ -92,6 +92,12 @@
           <th scope="col" jhiSortBy="rokIsporuke">
             <span jhiTranslate="tenderiApp.ponude.rokIsporuke">Rok Isporuke</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="brojUgovora">
+            <span jhiTranslate="tenderiApp.ponude.brojUgovora">Broj Ugovora</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="datumUgovora">
+            <span jhiTranslate="tenderiApp.ponude.datumUgovora">Datum Ugovora</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -109,6 +115,8 @@
           <td>{{ ponude.ponudjenaVrijednost }}</td>
           <td>{{ ponude.ponudjenaJedinicnaCijena }}</td>
           <td>{{ ponude.rokIsporuke }}</td>
+          <td>{{ ponude.brojUgovora }}</td>
+          <td>{{ ponude.datumUgovora | formatMediumDate }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/ponude', ponude.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

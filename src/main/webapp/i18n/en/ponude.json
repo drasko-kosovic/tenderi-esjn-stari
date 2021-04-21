@@ -26,7 +26,9 @@
       "zastceniNaziv": "Zastceni Naziv",
       "ponudjenaVrijednost": "Ponudjena Vrijednost",
       "ponudjenaJedinicnaCijena": "Ponudjena Jedinicna Cijena",
-      "rokIsporuke": "Rok Isporuke"
+      "rokIsporuke": "Rok Isporuke",
+      "brojUgovora": "Broj Ugovora",
+      "datumUgovora": "Datum Ugovora"
     }
   }
 }

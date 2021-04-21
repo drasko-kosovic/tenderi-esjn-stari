@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
@@ -63,6 +65,13 @@ class PonudeResourceIT {
     private static final Integer UPDATED_ROK_ISPORUKE = 2;
     private static final Integer SMALLER_ROK_ISPORUKE = 1 - 1;
 
+    private static final String DEFAULT_BROJ_UGOVORA = "AAAAAAAAAA";
+    private static final String UPDATED_BROJ_UGOVORA = "BBBBBBBBBB";
+
+    private static final LocalDate DEFAULT_DATUM_UGOVORA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATUM_UGOVORA = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate SMALLER_DATUM_UGOVORA = LocalDate.ofEpochDay(-1L);
+
     private static final String ENTITY_API_URL = "/api/ponudes";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -96,7 +105,9 @@ class PonudeResourceIT {
             .zastceniNaziv(DEFAULT_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(DEFAULT_PONUDJENA_VRIJEDNOST)
             .ponudjenaJedinicnaCijena(DEFAULT_PONUDJENA_JEDINICNA_CIJENA)
-            .rokIsporuke(DEFAULT_ROK_ISPORUKE);
+            .rokIsporuke(DEFAULT_ROK_ISPORUKE)
+            .brojUgovora(DEFAULT_BROJ_UGOVORA)
+            .datumUgovora(DEFAULT_DATUM_UGOVORA);
         return ponude;
     }
 
@@ -116,7 +127,9 @@ class PonudeResourceIT {
             .zastceniNaziv(UPDATED_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(UPDATED_PONUDJENA_VRIJEDNOST)
             .ponudjenaJedinicnaCijena(UPDATED_PONUDJENA_JEDINICNA_CIJENA)
-            .rokIsporuke(UPDATED_ROK_ISPORUKE);
+            .rokIsporuke(UPDATED_ROK_ISPORUKE)
+            .brojUgovora(UPDATED_BROJ_UGOVORA)
+            .datumUgovora(UPDATED_DATUM_UGOVORA);
         return ponude;
     }
 
@@ -147,6 +160,8 @@ class PonudeResourceIT {
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(DEFAULT_PONUDJENA_VRIJEDNOST);
         assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(DEFAULT_ROK_ISPORUKE);
+        assertThat(testPonude.getBrojUgovora()).isEqualTo(DEFAULT_BROJ_UGOVORA);
+        assertThat(testPonude.getDatumUgovora()).isEqualTo(DEFAULT_DATUM_UGOVORA);
     }
 
     @Test
@@ -323,7 +338,9 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.[*].zastceniNaziv").value(hasItem(DEFAULT_ZASTCENI_NAZIV)))
             .andExpect(jsonPath("$.[*].ponudjenaVrijednost").value(hasItem(DEFAULT_PONUDJENA_VRIJEDNOST.doubleValue())))
             .andExpect(jsonPath("$.[*].ponudjenaJedinicnaCijena").value(hasItem(DEFAULT_PONUDJENA_JEDINICNA_CIJENA.doubleValue())))
-            .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)));
+            .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)))
+            .andExpect(jsonPath("$.[*].brojUgovora").value(hasItem(DEFAULT_BROJ_UGOVORA)))
+            .andExpect(jsonPath("$.[*].datumUgovora").value(hasItem(DEFAULT_DATUM_UGOVORA.toString())));
     }
 
     @Test
@@ -346,7 +363,9 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.zastceniNaziv").value(DEFAULT_ZASTCENI_NAZIV))
             .andExpect(jsonPath("$.ponudjenaVrijednost").value(DEFAULT_PONUDJENA_VRIJEDNOST.doubleValue()))
             .andExpect(jsonPath("$.ponudjenaJedinicnaCijena").value(DEFAULT_PONUDJENA_JEDINICNA_CIJENA.doubleValue()))
-            .andExpect(jsonPath("$.rokIsporuke").value(DEFAULT_ROK_ISPORUKE));
+            .andExpect(jsonPath("$.rokIsporuke").value(DEFAULT_ROK_ISPORUKE))
+            .andExpect(jsonPath("$.brojUgovora").value(DEFAULT_BROJ_UGOVORA))
+            .andExpect(jsonPath("$.datumUgovora").value(DEFAULT_DATUM_UGOVORA.toString()));
     }
 
     @Test
@@ -1227,6 +1246,188 @@ class PonudeResourceIT {
         defaultPonudeShouldBeFound("rokIsporuke.greaterThan=" + SMALLER_ROK_ISPORUKE);
     }
 
+    @Test
+    @Transactional
+    void getAllPonudesByBrojUgovoraIsEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where brojUgovora equals to DEFAULT_BROJ_UGOVORA
+        defaultPonudeShouldBeFound("brojUgovora.equals=" + DEFAULT_BROJ_UGOVORA);
+
+        // Get all the ponudeList where brojUgovora equals to UPDATED_BROJ_UGOVORA
+        defaultPonudeShouldNotBeFound("brojUgovora.equals=" + UPDATED_BROJ_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByBrojUgovoraIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where brojUgovora not equals to DEFAULT_BROJ_UGOVORA
+        defaultPonudeShouldNotBeFound("brojUgovora.notEquals=" + DEFAULT_BROJ_UGOVORA);
+
+        // Get all the ponudeList where brojUgovora not equals to UPDATED_BROJ_UGOVORA
+        defaultPonudeShouldBeFound("brojUgovora.notEquals=" + UPDATED_BROJ_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByBrojUgovoraIsInShouldWork() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where brojUgovora in DEFAULT_BROJ_UGOVORA or UPDATED_BROJ_UGOVORA
+        defaultPonudeShouldBeFound("brojUgovora.in=" + DEFAULT_BROJ_UGOVORA + "," + UPDATED_BROJ_UGOVORA);
+
+        // Get all the ponudeList where brojUgovora equals to UPDATED_BROJ_UGOVORA
+        defaultPonudeShouldNotBeFound("brojUgovora.in=" + UPDATED_BROJ_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByBrojUgovoraIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where brojUgovora is not null
+        defaultPonudeShouldBeFound("brojUgovora.specified=true");
+
+        // Get all the ponudeList where brojUgovora is null
+        defaultPonudeShouldNotBeFound("brojUgovora.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByBrojUgovoraContainsSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where brojUgovora contains DEFAULT_BROJ_UGOVORA
+        defaultPonudeShouldBeFound("brojUgovora.contains=" + DEFAULT_BROJ_UGOVORA);
+
+        // Get all the ponudeList where brojUgovora contains UPDATED_BROJ_UGOVORA
+        defaultPonudeShouldNotBeFound("brojUgovora.contains=" + UPDATED_BROJ_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByBrojUgovoraNotContainsSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where brojUgovora does not contain DEFAULT_BROJ_UGOVORA
+        defaultPonudeShouldNotBeFound("brojUgovora.doesNotContain=" + DEFAULT_BROJ_UGOVORA);
+
+        // Get all the ponudeList where brojUgovora does not contain UPDATED_BROJ_UGOVORA
+        defaultPonudeShouldBeFound("brojUgovora.doesNotContain=" + UPDATED_BROJ_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora equals to DEFAULT_DATUM_UGOVORA
+        defaultPonudeShouldBeFound("datumUgovora.equals=" + DEFAULT_DATUM_UGOVORA);
+
+        // Get all the ponudeList where datumUgovora equals to UPDATED_DATUM_UGOVORA
+        defaultPonudeShouldNotBeFound("datumUgovora.equals=" + UPDATED_DATUM_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora not equals to DEFAULT_DATUM_UGOVORA
+        defaultPonudeShouldNotBeFound("datumUgovora.notEquals=" + DEFAULT_DATUM_UGOVORA);
+
+        // Get all the ponudeList where datumUgovora not equals to UPDATED_DATUM_UGOVORA
+        defaultPonudeShouldBeFound("datumUgovora.notEquals=" + UPDATED_DATUM_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsInShouldWork() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora in DEFAULT_DATUM_UGOVORA or UPDATED_DATUM_UGOVORA
+        defaultPonudeShouldBeFound("datumUgovora.in=" + DEFAULT_DATUM_UGOVORA + "," + UPDATED_DATUM_UGOVORA);
+
+        // Get all the ponudeList where datumUgovora equals to UPDATED_DATUM_UGOVORA
+        defaultPonudeShouldNotBeFound("datumUgovora.in=" + UPDATED_DATUM_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora is not null
+        defaultPonudeShouldBeFound("datumUgovora.specified=true");
+
+        // Get all the ponudeList where datumUgovora is null
+        defaultPonudeShouldNotBeFound("datumUgovora.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora is greater than or equal to DEFAULT_DATUM_UGOVORA
+        defaultPonudeShouldBeFound("datumUgovora.greaterThanOrEqual=" + DEFAULT_DATUM_UGOVORA);
+
+        // Get all the ponudeList where datumUgovora is greater than or equal to UPDATED_DATUM_UGOVORA
+        defaultPonudeShouldNotBeFound("datumUgovora.greaterThanOrEqual=" + UPDATED_DATUM_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora is less than or equal to DEFAULT_DATUM_UGOVORA
+        defaultPonudeShouldBeFound("datumUgovora.lessThanOrEqual=" + DEFAULT_DATUM_UGOVORA);
+
+        // Get all the ponudeList where datumUgovora is less than or equal to SMALLER_DATUM_UGOVORA
+        defaultPonudeShouldNotBeFound("datumUgovora.lessThanOrEqual=" + SMALLER_DATUM_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsLessThanSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora is less than DEFAULT_DATUM_UGOVORA
+        defaultPonudeShouldNotBeFound("datumUgovora.lessThan=" + DEFAULT_DATUM_UGOVORA);
+
+        // Get all the ponudeList where datumUgovora is less than UPDATED_DATUM_UGOVORA
+        defaultPonudeShouldBeFound("datumUgovora.lessThan=" + UPDATED_DATUM_UGOVORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByDatumUgovoraIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where datumUgovora is greater than DEFAULT_DATUM_UGOVORA
+        defaultPonudeShouldNotBeFound("datumUgovora.greaterThan=" + DEFAULT_DATUM_UGOVORA);
+
+        // Get all the ponudeList where datumUgovora is greater than SMALLER_DATUM_UGOVORA
+        defaultPonudeShouldBeFound("datumUgovora.greaterThan=" + SMALLER_DATUM_UGOVORA);
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -1244,7 +1445,9 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.[*].zastceniNaziv").value(hasItem(DEFAULT_ZASTCENI_NAZIV)))
             .andExpect(jsonPath("$.[*].ponudjenaVrijednost").value(hasItem(DEFAULT_PONUDJENA_VRIJEDNOST.doubleValue())))
             .andExpect(jsonPath("$.[*].ponudjenaJedinicnaCijena").value(hasItem(DEFAULT_PONUDJENA_JEDINICNA_CIJENA.doubleValue())))
-            .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)));
+            .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)))
+            .andExpect(jsonPath("$.[*].brojUgovora").value(hasItem(DEFAULT_BROJ_UGOVORA)))
+            .andExpect(jsonPath("$.[*].datumUgovora").value(hasItem(DEFAULT_DATUM_UGOVORA.toString())));
 
         // Check, that the count call also returns 1
         restPonudeMockMvc
@@ -1301,7 +1504,9 @@ class PonudeResourceIT {
             .zastceniNaziv(UPDATED_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(UPDATED_PONUDJENA_VRIJEDNOST)
             .ponudjenaJedinicnaCijena(UPDATED_PONUDJENA_JEDINICNA_CIJENA)
-            .rokIsporuke(UPDATED_ROK_ISPORUKE);
+            .rokIsporuke(UPDATED_ROK_ISPORUKE)
+            .brojUgovora(UPDATED_BROJ_UGOVORA)
+            .datumUgovora(UPDATED_DATUM_UGOVORA);
 
         restPonudeMockMvc
             .perform(
@@ -1324,6 +1529,8 @@ class PonudeResourceIT {
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(UPDATED_PONUDJENA_VRIJEDNOST);
         assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(UPDATED_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(UPDATED_ROK_ISPORUKE);
+        assertThat(testPonude.getBrojUgovora()).isEqualTo(UPDATED_BROJ_UGOVORA);
+        assertThat(testPonude.getDatumUgovora()).isEqualTo(UPDATED_DATUM_UGOVORA);
     }
 
     @Test
@@ -1422,6 +1629,8 @@ class PonudeResourceIT {
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(UPDATED_PONUDJENA_VRIJEDNOST);
         assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(DEFAULT_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(DEFAULT_ROK_ISPORUKE);
+        assertThat(testPonude.getBrojUgovora()).isEqualTo(DEFAULT_BROJ_UGOVORA);
+        assertThat(testPonude.getDatumUgovora()).isEqualTo(DEFAULT_DATUM_UGOVORA);
     }
 
     @Test
@@ -1445,7 +1654,9 @@ class PonudeResourceIT {
             .zastceniNaziv(UPDATED_ZASTCENI_NAZIV)
             .ponudjenaVrijednost(UPDATED_PONUDJENA_VRIJEDNOST)
             .ponudjenaJedinicnaCijena(UPDATED_PONUDJENA_JEDINICNA_CIJENA)
-            .rokIsporuke(UPDATED_ROK_ISPORUKE);
+            .rokIsporuke(UPDATED_ROK_ISPORUKE)
+            .brojUgovora(UPDATED_BROJ_UGOVORA)
+            .datumUgovora(UPDATED_DATUM_UGOVORA);
 
         restPonudeMockMvc
             .perform(
@@ -1468,6 +1679,8 @@ class PonudeResourceIT {
         assertThat(testPonude.getPonudjenaVrijednost()).isEqualTo(UPDATED_PONUDJENA_VRIJEDNOST);
         assertThat(testPonude.getPonudjenaJedinicnaCijena()).isEqualTo(UPDATED_PONUDJENA_JEDINICNA_CIJENA);
         assertThat(testPonude.getRokIsporuke()).isEqualTo(UPDATED_ROK_ISPORUKE);
+        assertThat(testPonude.getBrojUgovora()).isEqualTo(UPDATED_BROJ_UGOVORA);
+        assertThat(testPonude.getDatumUgovora()).isEqualTo(UPDATED_DATUM_UGOVORA);
     }
 
     @Test

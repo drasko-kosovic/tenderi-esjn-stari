@@ -1,6 +1,7 @@
 package tenderi.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -55,6 +56,12 @@ public class Ponude implements Serializable {
 
     @Column(name = "rok_isporuke")
     private Integer rokIsporuke;
+
+    @Column(name = "broj_ugovora")
+    private String brojUgovora;
+
+    @Column(name = "datum_ugovora")
+    private LocalDate datumUgovora;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -187,6 +194,32 @@ public class Ponude implements Serializable {
         this.rokIsporuke = rokIsporuke;
     }
 
+    public String getBrojUgovora() {
+        return this.brojUgovora;
+    }
+
+    public Ponude brojUgovora(String brojUgovora) {
+        this.brojUgovora = brojUgovora;
+        return this;
+    }
+
+    public void setBrojUgovora(String brojUgovora) {
+        this.brojUgovora = brojUgovora;
+    }
+
+    public LocalDate getDatumUgovora() {
+        return this.datumUgovora;
+    }
+
+    public Ponude datumUgovora(LocalDate datumUgovora) {
+        this.datumUgovora = datumUgovora;
+        return this;
+    }
+
+    public void setDatumUgovora(LocalDate datumUgovora) {
+        this.datumUgovora = datumUgovora;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -220,6 +253,8 @@ public class Ponude implements Serializable {
             ", ponudjenaVrijednost=" + getPonudjenaVrijednost() +
             ", ponudjenaJedinicnaCijena=" + getPonudjenaJedinicnaCijena() +
             ", rokIsporuke=" + getRokIsporuke() +
+            ", brojUgovora='" + getBrojUgovora() + "'" +
+            ", datumUgovora='" + getDatumUgovora() + "'" +
             "}";
     }
 }

@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import * as dayjs from 'dayjs';
 
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { IPonude, Ponude } from '../ponude.model';
 
 import { PonudeService } from './ponude.service';
@@ -11,6 +13,7 @@ describe('Service Tests', () => {
     let httpMock: HttpTestingController;
     let elemDefault: IPonude;
     let expectedResult: IPonude | IPonude[] | boolean | null;
+    let currentDate: dayjs.Dayjs;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -19,6 +22,7 @@ describe('Service Tests', () => {
       expectedResult = null;
       service = TestBed.inject(PonudeService);
       httpMock = TestBed.inject(HttpTestingController);
+      currentDate = dayjs();
 
       elemDefault = {
         id: 0,
@@ -31,12 +35,19 @@ describe('Service Tests', () => {
         ponudjenaVrijednost: 0,
         ponudjenaJedinicnaCijena: 0,
         rokIsporuke: 0,
+        brojUgovora: 'AAAAAAA',
+        datumUgovora: currentDate,
       };
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            datumUgovora: currentDate.format(DATE_FORMAT),
+          },
+          elemDefault
+        );
 
         service.find(123).subscribe(resp => (expectedResult = resp.body));
 
@@ -49,11 +60,17 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
+            datumUgovora: currentDate.format(DATE_FORMAT),
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            datumUgovora: currentDate,
+          },
+          returnedFromService
+        );
 
         service.create(new Ponude()).subscribe(resp => (expectedResult = resp.body));
 
@@ -75,11 +92,18 @@ describe('Service Tests', () => {
             ponudjenaVrijednost: 1,
             ponudjenaJedinicnaCijena: 1,
             rokIsporuke: 1,
+            brojUgovora: 'BBBBBB',
+            datumUgovora: currentDate.format(DATE_FORMAT),
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            datumUgovora: currentDate,
+          },
+          returnedFromService
+        );
 
         service.update(expected).subscribe(resp => (expectedResult = resp.body));
 
@@ -102,7 +126,12 @@ describe('Service Tests', () => {
 
         const returnedFromService = Object.assign(patchObject, elemDefault);
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            datumUgovora: currentDate,
+          },
+          returnedFromService
+        );
 
         service.partialUpdate(patchObject).subscribe(resp => (expectedResult = resp.body));
 
@@ -124,11 +153,18 @@ describe('Service Tests', () => {
             ponudjenaVrijednost: 1,
             ponudjenaJedinicnaCijena: 1,
             rokIsporuke: 1,
+            brojUgovora: 'BBBBBB',
+            datumUgovora: currentDate.format(DATE_FORMAT),
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            datumUgovora: currentDate,
+          },
+          returnedFromService
+        );
 
         service.query().subscribe(resp => (expectedResult = resp.body));
 
@@ -175,7 +211,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Ponude to an array', () => {
-          const ponudeArray: IPonude[] = [{ id: 123 }, { id: 456 }, { id: 49051 }];
+          const ponudeArray: IPonude[] = [{ id: 123 }, { id: 456 }, { id: 94947 }];
           const ponudeCollection: IPonude[] = [{ id: 123 }];
           expectedResult = service.addPonudeToCollectionIfMissing(ponudeCollection, ...ponudeArray);
           expect(expectedResult).toHaveLength(3);

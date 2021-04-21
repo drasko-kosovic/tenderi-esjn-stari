@@ -41,6 +41,12 @@
             <column name="rok_isporuke" type="integer">
                 <constraints nullable="true" />
             </column>
+            <column name="broj_ugovora" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="datum_ugovora" type="date">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -70,6 +76,8 @@
             <column name="ponudjena_vrijednost" type="numeric"/>
             <column name="ponudjena_jedinicna_cijena" type="numeric"/>
             <column name="rok_isporuke" type="numeric"/>
+            <column name="broj_ugovora" type="string"/>
+            <column name="datum_ugovora" type="date"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

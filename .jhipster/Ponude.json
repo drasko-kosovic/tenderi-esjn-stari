@@ -44,6 +44,14 @@
     {
       "fieldName": "rokIsporuke",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "brojUgovora",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datumUgovora",
+      "fieldType": "LocalDate"
     }
   ],
   "relationships": [],

@@ -1,11 +1,11 @@
-id;sifra_postupka;sifra_ponude;broj_partije;naziv_ponudjaca;nazi_proizvodjaca;zastceni_naziv;ponudjena_vrijednost;ponudjena_jedinicna_cijena;rok_isporuke
-1;77033;65484;74446;withdrawal Fully-configurable;Group;Ergonomic mobile engage;82343;5965;50061
-2;86351;52266;13619;Saint Right-sized;Program Account Fresh;Mayotte;75152;37441;19296
-3;52733;52816;13457;clicks-and-mortar;program;Implementation Trace Borders;35789;1774;42870
-4;17219;16430;91004;Cedi;Turnpike Markets functionalities;Generic intangible Generic;32516;39377;85898
-5;47042;57921;38863;interfaces invoice;neural Customizable;Delaware online Concrete;52167;9147;97019
-6;41224;30567;93391;Illinois Montana;Intranet Austria;Licensed Tools;59385;87052;15656
-7;1234;47320;21886;intangible attitude;Infrastructure turquoise;disintermediate El;27573;7957;26156
-8;89210;12281;59516;Usability Car parse;aggregate Garden;Metal Incredible Cambridgeshire;31175;79435;65008
-9;71319;73131;41548;Home invoice Ergonomic;Human instruction maroon;silver Car;41189;82590;21053
-10;71509;64774;29326;task-force synergistic drive;Electronics;transmitter unleash generating;26679;77307;34108
+id;sifra_postupka;sifra_ponude;broj_partije;naziv_ponudjaca;nazi_proizvodjaca;zastceni_naziv;ponudjena_vrijednost;ponudjena_jedinicna_cijena;rok_isporuke;broj_ugovora;datum_ugovora
+1;77033;65484;74446;withdrawal Fully-configurable;Group;Ergonomic mobile engage;82343;5965;50061;Burkina Saint Right-sized;2021-04-20
+2;95544;5224;80144;quantifying XML;Connecticut reinvent;Wooden Clothing;76370;86199;26863;Implementation Trace Borders;2021-04-21
+3;1774;42870;17219;Dynamic;Somoni;XSS Berkshire Track;63466;2483;25942;up cross-platform;2021-04-21
+4;39377;85898;47042;harness Delaware;COM connecting Cotton;Chicken Avon;22429;67169;52167;Administrator;2021-04-20
+5;54870;58288;24799;Montana Ukraine Nebraska;transform auxiliary;Auto Health Gardens;17400;32391;11746;cultivate reinvent;2021-04-21
+6;57053;37483;39012;El;Gorgeous;Account;96256;61117;14885;Cheese;2021-04-20
+7;59606;39473;20286;Garden Lead;target cutting-edge Factors;payment applications Bedfordshire;86298;49869;5998;Tools;2021-04-20
+8;91954;90368;68596;Avon;Beauty Specialist;fresh-thinking;21053;71509;64774;copying;2021-04-21
+9;34267;71449;76810;compress Electronics;transmitter unleash generating;navigate;60457;42072;23339;Tanzanian;2021-04-21
+10;66636;58698;58970;Fish;connect;bypassing program Grocery;79343;30809;90184;disintermediate indigo connect;2021-04-21

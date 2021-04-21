@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import * as dayjs from 'dayjs';
 
 import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPonude, getPonudeIdentifier } from '../ponude.model';
@@ -17,24 +20,37 @@ export class PonudeService {
   constructor(protected http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
   create(ponude: IPonude): Observable<EntityResponseType> {
-    return this.http.post<IPonude>(this.resourceUrl, ponude, { observe: 'response' });
+    const copy = this.convertDateFromClient(ponude);
+    return this.http
+      .post<IPonude>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   update(ponude: IPonude): Observable<EntityResponseType> {
-    return this.http.put<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, ponude, { observe: 'response' });
+    const copy = this.convertDateFromClient(ponude);
+    return this.http
+      .put<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   partialUpdate(ponude: IPonude): Observable<EntityResponseType> {
-    return this.http.patch<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, ponude, { observe: 'response' });
+    const copy = this.convertDateFromClient(ponude);
+    return this.http
+      .patch<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IPonude>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    return this.http
+      .get<IPonude>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<IPonude[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http
+      .get<IPonude[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
@@ -56,5 +72,27 @@ export class PonudeService {
       return [...ponudesToAdd, ...ponudeCollection];
     }
     return ponudeCollection;
+  }
+
+  protected convertDateFromClient(ponude: IPonude): IPonude {
+    return Object.assign({}, ponude, {
+      datumUgovora: ponude.datumUgovora?.isValid() ? ponude.datumUgovora.format(DATE_FORMAT) : undefined,
+    });
+  }
+
+  protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
+    if (res.body) {
+      res.body.datumUgovora = res.body.datumUgovora ? dayjs(res.body.datumUgovora) : undefined;
+    }
+    return res;
+  }
+
+  protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
+    if (res.body) {
+      res.body.forEach((ponude: IPonude) => {
+        ponude.datumUgovora = ponude.datumUgovora ? dayjs(ponude.datumUgovora) : undefined;
+      });
+    }
+    return res;
   }
 }
