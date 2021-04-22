@@ -10,7 +10,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * A Prvorangirani.
  */
 @Entity
-@Table(name = "prvorangirani")
+@Table(name = "view_prvorangirani")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Prvorangirani implements Serializable {
 

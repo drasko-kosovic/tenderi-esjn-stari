@@ -2,7 +2,7 @@
   "tenderiApp": {
     "viewVrednovanje": {
       "home": {
-        "title": "View Vrednovanjes",
+        "title": "View Vrednovanje",
         "refreshListLabel": "Refresh list",
         "notFound": "No View Vrednovanjes found"
       },
