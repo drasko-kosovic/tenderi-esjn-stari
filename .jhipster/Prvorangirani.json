@@ -1,0 +1,92 @@
+{
+  "name": "Prvorangirani",
+  "fields": [
+    {
+      "fieldName": "sifraPostupka",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "sifraPonude",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "brojPartije",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "atc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "inn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zastceniNaziv",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "farmaceutskiOblikLijeka",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "jacinaLijeka",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pakovanje",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "trazenaKolicina",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "trazenaJedinicnaCijena",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "procijenjenaVrijednost",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "ponudjenaJedinicnaCijena",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "ponudjenaVrijednost",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "rokIsporuke",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nazivPonudjaca",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bodIsporuka",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "brojUgovora",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datumUgovora",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "prvorangirani",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": true,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210422195245"
+}

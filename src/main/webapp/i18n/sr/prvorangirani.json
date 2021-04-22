@@ -1,0 +1,34 @@
+{
+  "tenderiApp": {
+    "prvorangirani": {
+      "home": {
+        "title": "Prvorangirani",
+        "refreshListLabel": "Refresh list",
+        "notFound": "No Prvorangiranis found"
+      },
+      "detail": {
+        "title": "Prvorangirani"
+      },
+      "id": "ID",
+      "sifraPostupka": "Sifra Postupka",
+      "sifraPonude": "Sifra Ponude",
+      "brojPartije": "Broj Partije",
+      "atc": "Atc",
+      "inn": "Inn",
+      "zastceniNaziv": "Zastceni Naziv",
+      "farmaceutskiOblikLijeka": "Farmaceutski Oblik Lijeka",
+      "jacinaLijeka": "Jacina Lijeka",
+      "pakovanje": "Pakovanje",
+      "trazenaKolicina": "Trazena Kolicina",
+      "trazenaJedinicnaCijena": "Trazena Jedinicna Cijena",
+      "procijenjenaVrijednost": "Procijenjena Vrijednost",
+      "ponudjenaJedinicnaCijena": "Ponudjena Jedinicna Cijena",
+      "ponudjenaVrijednost": "Ponudjena Vrijednost",
+      "rokIsporuke": "Rok Isporuke",
+      "nazivPonudjaca": "Naziv Ponudjaca",
+      "bodIsporuka": "Bod Isporuka",
+      "brojUgovora": "Broj Ugovora",
+      "datumUgovora": "Datum Ugovora"
+    }
+  }
+}

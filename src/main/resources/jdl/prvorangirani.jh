@@ -1,0 +1,25 @@
+entity Prvorangirani {
+  sifraPostupka Integer
+  sifraPonude Integer
+  brojPartije Integer
+  atc String
+  inn String
+  zastceniNaziv String
+  farmaceutskiOblikLijeka String
+  jacinaLijeka String
+  pakovanje String
+  trazenaKolicina Integer
+  trazenaJedinicnaCijena Double
+  procijenjenaVrijednost Double
+  ponudjenaJedinicnaCijena Double
+  ponudjenaVrijednost Double
+  rokIsporuke Integer
+  nazivPonudjaca String
+  bodIsporuka Double
+  brojUgovora String
+  datumUgovora LocalDate
+}
+paginate Prvorangirani with pagination
+service Prvorangirani with serviceClass
+filter Prvorangirani
+readOnly Prvorangirani

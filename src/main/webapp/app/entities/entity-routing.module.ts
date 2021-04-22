@@ -15,6 +15,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./specifikacija/specifikacija.module').then(m => m.SpecifikacijaModule),
       },
       {
+        path: 'prvorangirani',
+        data: { pageTitle: 'tenderiApp.prvorangirani.home.title' },
+        loadChildren: () => import('./prvorangirani/prvorangirani.module').then(m => m.PrvorangiraniModule),
+      },
+      {
         path: 'view-vrednovanje',
         data: { pageTitle: 'tenderiApp.viewVrednovanje.home.title' },
         loadChildren: () => import('./view-vrednovanje/view-vrednovanje.module').then(m => m.ViewVrednovanjeModule),
