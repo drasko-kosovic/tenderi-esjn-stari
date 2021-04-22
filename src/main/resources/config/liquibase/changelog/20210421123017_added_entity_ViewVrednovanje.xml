@@ -30,7 +30,12 @@
             ponude.rok_isporuke,
             ponude.naziv_ponudjaca,
             ponude.broj_ugovora,
-            ponude.datum_ugovora
+            ponude.datum_ugovora,
+
+            (((90)::numeric * min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.ponudjena_jedinicna_cijena) AS bod_cijena,
+            ((10 * min(ponude.rok_isporuke) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.rok_isporuke) AS bod_rok,
+            ((((90)::numeric * min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.ponudjena_jedinicna_cijena) + (((10 * min(ponude.rok_isporuke) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.rok_isporuke))::numeric) AS bod_ukupno
+
 
             FROM (ponude
             JOIN specifikacija ON
