@@ -72,6 +72,39 @@ public class ViewVrednovanje implements Serializable {
     @Column(name = "datum_ugovora")
     private Date datumjUgovora;
 
+    @Column(name = "bod_cijena")
+    private Double bodCijena;
+
+    @Column(name = "bod_rok")
+    private Double bodRok;
+
+    @Column(name = "bod_ukupno")
+    private Double bodUkupno;
+
+    public Double getBodCijena() {
+        return bodCijena;
+    }
+
+    public void setBodCijena(Double bodCijena) {
+        this.bodCijena = bodCijena;
+    }
+
+    public Double getBodRok() {
+        return bodRok;
+    }
+
+    public void setBodRok(Double bodRok) {
+        this.bodRok = bodRok;
+    }
+
+    public Double getBodUkupno() {
+        return bodUkupno;
+    }
+
+    public void setBodUkupno(Double bodUkupno) {
+        this.bodUkupno = bodUkupno;
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
