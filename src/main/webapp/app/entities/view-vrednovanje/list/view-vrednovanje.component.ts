@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -7,6 +7,8 @@ import { IViewVrednovanje } from '../view-vrednovanje.model';
 
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { ViewVrednovanjeService } from '../service/view-vrednovanje.service';
+import { SERVER_API_URL } from 'app/app.constants';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'jhi-view-vrednovanje',
@@ -23,11 +25,37 @@ export class ViewVrednovanjeComponent implements OnInit {
   ngbPaginationPage = 1;
   brojPostupka: any;
   brojPonude: any;
+
+  public resourceUrlExel = SERVER_API_URL + '/api/excel/download';
+
   constructor(
     protected viewVrednovanjeService: ViewVrednovanjeService,
     protected activatedRoute: ActivatedRoute,
-    protected router: Router
+    protected router: Router,
+    @Inject(DOCUMENT) private document: Document
   ) {}
+  public exel(): void {
+    if (this.brojPonude === undefined && this.brojPostupka !== undefined) {
+      // (`${this.resourceUrl}/${id}`, { observe: 'response' });
+      this.document.location.href = this.resourceUrlExel + '/sifra-postupka/' + String(this.brojPostupka);
+    }
+    if (this.brojPostupka === undefined && this.brojPonude !== undefined) {
+      // eslint-disable-next-line no-console
+      console.log('polje cijena je puno a polje artikal je prazno zato dajem samo potrgu za cijenu exel');
+      this.document.location.href = this.resourceUrlExel + '/sifra-ponude/' + String(this.brojPonude);
+    }
+    if (this.brojPonude !== undefined && this.brojPostupka !== undefined) {
+      // eslint-disable-next-line no-console
+      console.log('oba polja su puna');
+      this.document.location.href =
+        this.resourceUrlExel + '/postupakponuda?sifraPostupka=' + String(this.brojPostupka) + '&sifraPonude=' + String(this.brojPonude);
+    }
+    if (this.brojPostupka === undefined && this.brojPonude === undefined) {
+      // eslint-disable-next-line no-console
+      console.log('oba polja su puna');
+      this.document.location.href = this.resourceUrlExel;
+    }
+  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;

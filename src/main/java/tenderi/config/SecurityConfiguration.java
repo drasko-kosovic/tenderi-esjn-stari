@@ -58,10 +58,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/excel/download/sifra-postupka/**")
             .antMatchers("/api/excel/download/sifra-ponude/**")
             .antMatchers("/api/excel/download/postupakponuda/**")
+            .antMatchers("/api/excel/download/**")
             .antMatchers("/content/**")
             .antMatchers("/swagger-ui/**")
+            .antMatchers("/swagger-ui/**")
             .antMatchers("/api/view-vrednovanjes")
-            .antMatchers("/test/**");
+            .antMatchers("/api/postupakponuda")
+            .antMatchers("/api/view-vrednovanje-postupak/**")
+            .antMatchers("/api/view-vrednovanje-ponude/**");
     }
 
     @Override
@@ -96,6 +100,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/**").authenticated()
+            .antMatchers("/api/excel/download").permitAll()
+            .antMatchers("/api/view-vrednovanjes").permitAll()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()
             .antMatchers("/management/info").permitAll()
