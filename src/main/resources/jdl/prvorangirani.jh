@@ -15,7 +15,6 @@ entity Prvorangirani {
   ponudjenaVrijednost Double
   rokIsporuke Integer
   nazivPonudjaca String
-  bodIsporuka Double
   brojUgovora String
   datumUgovora LocalDate
 }

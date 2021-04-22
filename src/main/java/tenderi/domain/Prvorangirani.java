@@ -69,9 +69,6 @@ public class Prvorangirani implements Serializable {
     @Column(name = "naziv_ponudjaca")
     private String nazivPonudjaca;
 
-    @Column(name = "bod_isporuka")
-    private Double bodIsporuka;
-
     @Column(name = "broj_ugovora")
     private String brojUgovora;
 
@@ -300,19 +297,6 @@ public class Prvorangirani implements Serializable {
         this.nazivPonudjaca = nazivPonudjaca;
     }
 
-    public Double getBodIsporuka() {
-        return this.bodIsporuka;
-    }
-
-    public Prvorangirani bodIsporuka(Double bodIsporuka) {
-        this.bodIsporuka = bodIsporuka;
-        return this;
-    }
-
-    public void setBodIsporuka(Double bodIsporuka) {
-        this.bodIsporuka = bodIsporuka;
-    }
-
     public String getBrojUgovora() {
         return this.brojUgovora;
     }
@@ -379,7 +363,6 @@ public class Prvorangirani implements Serializable {
             ", ponudjenaVrijednost=" + getPonudjenaVrijednost() +
             ", rokIsporuke=" + getRokIsporuke() +
             ", nazivPonudjaca='" + getNazivPonudjaca() + "'" +
-            ", bodIsporuka=" + getBodIsporuka() +
             ", brojUgovora='" + getBrojUgovora() + "'" +
             ", datumUgovora='" + getDatumUgovora() + "'" +
             "}";

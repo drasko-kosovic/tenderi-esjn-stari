@@ -97,9 +97,7 @@ public class PrvorangiraniService {
                     if (prvorangirani.getNazivPonudjaca() != null) {
                         existingPrvorangirani.setNazivPonudjaca(prvorangirani.getNazivPonudjaca());
                     }
-                    if (prvorangirani.getBodIsporuka() != null) {
-                        existingPrvorangirani.setBodIsporuka(prvorangirani.getBodIsporuka());
-                    }
+
                     if (prvorangirani.getBrojUgovora() != null) {
                         existingPrvorangirani.setBrojUgovora(prvorangirani.getBrojUgovora());
                     }
