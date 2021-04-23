@@ -9,7 +9,8 @@
         "main": "Entiteti",
         "ponude": "Ponude",
         "specifikacija": "Specifikacija",
-        "viewVrednovanje": "View Vrednovanje",
+        "hvaleponude": "Hvale Ponude",
+        "viewVrednovanje": "Vrednovanje",
         "prvorangirani": "Prvorangirani",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },

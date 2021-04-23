@@ -20,6 +20,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./prvorangirani/prvorangirani.module').then(m => m.PrvorangiraniModule),
       },
       {
+        path: 'hvale-ponude',
+        data: { pageTitle: 'tenderiApp.hvaleponude.home.title' },
+        loadChildren: () => import('./hvale-ponude/hvale-ponude.module').then(m => m.HvalePonudeModule),
+      },
+      {
         path: 'view-vrednovanje',
         data: { pageTitle: 'tenderiApp.viewVrednovanje.home.title' },
         loadChildren: () => import('./view-vrednovanje/view-vrednovanje.module').then(m => m.ViewVrednovanjeModule),
