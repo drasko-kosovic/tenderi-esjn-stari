@@ -32,129 +32,146 @@
           <button class="input-group-append btn btn-danger" (click)="prazanPostupak()" *ngIf="brojPostupka">
             <fa-icon icon="trash-alt"></fa-icon>
           </button>
+          <select class="form-control" id="field_language" name="language" [(ngModel)]="brojPonude" (change)="loadPageByPonuda()">
+            <!--            <option [ngValue]="ponudes" selected></option>-->
+            <option [ngValue]="languageOption.sifraPonude" *ngFor="let languageOption of ponudes">
+              {{ languageOption.nazivPonudjaca }}
+            </option>
+          </select>
         </div>
       </form>
     </div>
-    <div class="col-sm-12">
-      <form name="searchForm" class="form-inline">
-        <div class="input-group w-100 mt-3">
-          <input type="text" class="form-control" [(ngModel)]="brojPonude" id="ponuda" name="ponuda" placeholder="ponuda" />
+    <!--    <div class="col-sm-12">-->
+    <!--      <form name="searchForm" class="form-inline">-->
+    <!--        <div class="input-group w-100 mt-3">-->
+    <!--          <input type="text" class="form-control" [(ngModel)]="brojPonude" id="ponuda" name="ponuda" placeholder="ponuda" />-->
 
-          <button class="input-group-append btn btn-info" (click)="loadPageByPonuda()">
-            <fa-icon icon="search"></fa-icon>
-          </button>
+    <!--          <button class="input-group-append btn btn-info" (click)="loadPageByPonuda()">-->
+    <!--            <fa-icon icon="search"></fa-icon>-->
+    <!--          </button>-->
 
-          <button class="input-group-append btn btn-danger" (click)="prazanPonude()" *ngIf="brojPonude">
-            <fa-icon icon="trash-alt"></fa-icon>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <jhi-alert-error></jhi-alert-error>
+    <!--          <button class="input-group-append btn btn-danger" (click)="prazanPonude()" *ngIf="brojPonude">-->
+    <!--            <fa-icon icon="trash-alt"></fa-icon>-->
+    <!--          </button>-->
+    <!--        </div>-->
+    <!--      </form>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <jhi-alert-error></jhi-alert-error>
 
-  <jhi-alert></jhi-alert>
+    <jhi-alert></jhi-alert>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="ponudes?.length === 0">
-    <span jhiTranslate="tenderiApp.ponude.home.notFound">No ponudes found</span>
-  </div>
-
-  <div class="table-responsive" id="entities" *ngIf="ponudes && ponudes.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="sifraPostupka">
-            <span jhiTranslate="tenderiApp.ponude.sifraPostupka">Sifra Postupka</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="sifraPonude">
-            <span jhiTranslate="tenderiApp.ponude.sifraPonude">Sifra Ponude</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="brojPartije">
-            <span jhiTranslate="tenderiApp.ponude.brojPartije">Broj Partije</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="nazivPonudjaca">
-            <span jhiTranslate="tenderiApp.ponude.nazivPonudjaca">Naziv Ponudjaca</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="naziProizvodjaca">
-            <span jhiTranslate="tenderiApp.ponude.naziProizvodjaca">Nazi Proizvodjaca</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="zastceniNaziv">
-            <span jhiTranslate="tenderiApp.ponude.zastceniNaziv">Zastceni Naziv</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="ponudjenaVrijednost">
-            <span jhiTranslate="tenderiApp.ponude.ponudjenaVrijednost">Ponudjena Vrijednost</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="ponudjenaJedinicnaCijena">
-            <span jhiTranslate="tenderiApp.ponude.ponudjenaJedinicnaCijena">Ponudjena Jedinicna Cijena</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="rokIsporuke">
-            <span jhiTranslate="tenderiApp.ponude.rokIsporuke">Rok Isporuke</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="brojUgovora">
-            <span jhiTranslate="tenderiApp.ponude.brojUgovora">Broj Ugovora</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="datumUgovora">
-            <span jhiTranslate="tenderiApp.ponude.datumUgovora">Datum Ugovora</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ponude of ponudes; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/ponude', ponude.id, 'view']">{{ ponude.id }}</a>
-          </td>
-          <td>{{ ponude.sifraPostupka }}</td>
-          <td>{{ ponude.sifraPonude }}</td>
-          <td>{{ ponude.brojPartije }}</td>
-          <td>{{ ponude.nazivPonudjaca }}</td>
-          <td>{{ ponude.naziProizvodjaca }}</td>
-          <td>{{ ponude.zastceniNaziv }}</td>
-          <td>{{ ponude.ponudjenaVrijednost }}</td>
-          <td>{{ ponude.ponudjenaJedinicnaCijena }}</td>
-          <td>{{ ponude.rokIsporuke }}</td>
-          <td>{{ ponude.brojUgovora }}</td>
-          <td>{{ ponude.datumUgovora | formatMediumDate }}</td>
-          <td class="text-right">
-            <div class="btn-group">
-              <button type="submit" [routerLink]="['/ponude', ponude.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-              </button>
-
-              <button type="submit" [routerLink]="['/ponude', ponude.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(ponude)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div *ngIf="ponudes && ponudes.length > 0">
-    <div class="row justify-content-center">
-      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    <div class="alert alert-warning" id="no-result" *ngIf="ponudes?.length === 0">
+      <span jhiTranslate="tenderiApp.ponude.home.notFound">No ponudes found</span>
     </div>
 
-    <div class="row justify-content-center">
-      <ngb-pagination
-        [collectionSize]="totalItems"
-        [(page)]="ngbPaginationPage"
-        [pageSize]="itemsPerPage"
-        [maxSize]="5"
-        [rotate]="true"
-        [boundaryLinks]="true"
-        (pageChange)="loadPage($event)"
-      ></ngb-pagination>
+    <div class="table-responsive" id="entities" *ngIf="ponudes && ponudes.length > 0">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col" jhiSortBy="sifraPostupka">
+              <span jhiTranslate="tenderiApp.ponude.sifraPostupka">Sifra Postupka</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="sifraPonude">
+              <span jhiTranslate="tenderiApp.ponude.sifraPonude">Sifra Ponude</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="brojPartije">
+              <span jhiTranslate="tenderiApp.ponude.brojPartije">Broj Partije</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="nazivPonudjaca">
+              <span jhiTranslate="tenderiApp.ponude.nazivPonudjaca">Naziv Ponudjaca</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="naziProizvodjaca">
+              <span jhiTranslate="tenderiApp.ponude.naziProizvodjaca">Nazi Proizvodjaca</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="zastceniNaziv">
+              <span jhiTranslate="tenderiApp.ponude.zastceniNaziv">Zastceni Naziv</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="ponudjenaVrijednost">
+              <span jhiTranslate="tenderiApp.ponude.ponudjenaVrijednost">Ponudjena Vrijednost</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="ponudjenaJedinicnaCijena">
+              <span jhiTranslate="tenderiApp.ponude.ponudjenaJedinicnaCijena">Ponudjena Jedinicna Cijena</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="rokIsporuke">
+              <span jhiTranslate="tenderiApp.ponude.rokIsporuke">Rok Isporuke</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="brojUgovora">
+              <span jhiTranslate="tenderiApp.ponude.brojUgovora">Broj Ugovora</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="datumUgovora">
+              <span jhiTranslate="tenderiApp.ponude.datumUgovora">Datum Ugovora</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ponude of ponudes; trackBy: trackId" data-cy="entityTable">
+            <td>
+              <a [routerLink]="['/ponude', ponude.id, 'view']">{{ ponude.id }}</a>
+            </td>
+            <td>{{ ponude.sifraPostupka }}</td>
+            <td>{{ ponude.sifraPonude }}</td>
+            <td>{{ ponude.brojPartije }}</td>
+            <td>{{ ponude.nazivPonudjaca }}</td>
+            <td>{{ ponude.naziProizvodjaca }}</td>
+            <td>{{ ponude.zastceniNaziv }}</td>
+            <td>{{ ponude.ponudjenaVrijednost }}</td>
+            <td>{{ ponude.ponudjenaJedinicnaCijena }}</td>
+            <td>{{ ponude.rokIsporuke }}</td>
+            <td>{{ ponude.brojUgovora }}</td>
+            <td>{{ ponude.datumUgovora | formatMediumDate }}</td>
+            <td class="text-right">
+              <div class="btn-group">
+                <button
+                  type="submit"
+                  [routerLink]="['/ponude', ponude.id, 'view']"
+                  class="btn btn-info btn-sm"
+                  data-cy="entityDetailsButton"
+                >
+                  <fa-icon icon="eye"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                </button>
+
+                <button
+                  type="submit"
+                  [routerLink]="['/ponude', ponude.id, 'edit']"
+                  class="btn btn-primary btn-sm"
+                  data-cy="entityEditButton"
+                >
+                  <fa-icon icon="pencil-alt"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                </button>
+
+                <button type="submit" (click)="delete(ponude)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                  <fa-icon icon="times"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="ponudes && ponudes.length > 0">
+      <div class="row justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="row justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="ngbPaginationPage"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPage($event)"
+        ></ngb-pagination>
+      </div>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ export interface IHvalePonude {
   farmaceutskiOblikLijeka?: string | null;
   pakivanje?: string | null;
   trazenaKolicina?: number | null;
-  trazenaJedinaicnaCijena?: number | null;
+  trazenaJedinicnaCijena?: number | null;
   procijenjenaVrijednost?: number | null;
 }
 
@@ -19,7 +19,7 @@ export class HvalePonude implements IHvalePonude {
     public farmaceutskiOblikLijeka?: string | null,
     public pakivanje?: string | null,
     public trazenaKolicina?: number | null,
-    public trazenaJedinaicnaCijena?: number | null,
+    public trazenaJedinicnaCijena?: number | null,
     public procijenjenaVrijednost?: number | null
   ) {}
 }

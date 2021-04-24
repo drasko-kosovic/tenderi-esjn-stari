@@ -2,12 +2,12 @@
   "tenderiApp": {
     "viewVrednovanje": {
       "home": {
-        "title": "View Vrednovanje",
+        "title": "Vrednovanje",
         "refreshListLabel": "Refresh list",
         "notFound": "No View Vrednovanjes found"
       },
       "detail": {
-        "title": "View Vrednovanje"
+        "title": "Vrednovanje"
       },
       "id": "ID",
       "sifraPostupka": "Sifra Postupka",
