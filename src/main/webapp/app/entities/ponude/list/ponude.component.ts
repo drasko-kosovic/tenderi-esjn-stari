@@ -9,12 +9,15 @@ import { IPonude } from '../ponude.model';
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { PonudeService } from '../service/ponude.service';
 import { PonudeDeleteDialogComponent } from '../delete/ponude-delete-dialog.component';
+import { IPonudjaci } from 'app/entities/ponudjaci/ponudjaci.model';
+import { PonudjaciService } from 'app/entities/ponudjaci/service/ponudjaci.service';
 
 @Component({
   selector: 'jhi-ponude',
   templateUrl: './ponude.component.html',
 })
 export class PonudeComponent implements OnInit {
+  ponudjaci?: IPonudjaci[] | null;
   ponudes?: IPonude[];
   isLoading = false;
   totalItems = 0;
@@ -23,13 +26,14 @@ export class PonudeComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-  brojPostupka: any;
+  brojPostupka = 2366;
   brojPonude: any;
   constructor(
     protected ponudeService: PonudeService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected ponudjaciService: PonudjaciService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -53,9 +57,20 @@ export class PonudeComponent implements OnInit {
         }
       );
   }
-
+  loadPagePonudjaci(): void {
+    this.ponudjaciService
+      .query({
+        'sifraPostupka.in': this.brojPostupka,
+      })
+      .subscribe((res: HttpResponse<IPonudjaci[]>) => {
+        this.ponudjaci = res.body;
+        // eslint-disable-next-line no-console
+        console.log(res.body);
+      });
+  }
   ngOnInit(): void {
     this.handleNavigation();
+    this.loadPagePonudjaci();
   }
 
   trackId(index: number, item: IPonude): number {
@@ -112,7 +127,7 @@ export class PonudeComponent implements OnInit {
     this.prazanPonude();
   }
   prazanPostupak(): void {
-    this.brojPostupka = '';
+    this.brojPostupka = 0;
     this.loadPage();
   }
   prazanPonude(): void {

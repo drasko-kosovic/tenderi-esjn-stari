@@ -34,7 +34,7 @@
           </button>
           <select class="form-control" id="field_language" name="language" [(ngModel)]="brojPonude" (change)="loadPageByPonuda()">
             <!--            <option [ngValue]="ponudes" selected></option>-->
-            <option [ngValue]="languageOption.sifraPonude" *ngFor="let languageOption of ponudes">
+            <option [ngValue]="languageOption.sifraPonude" *ngFor="let languageOption of ponudjaci">
               {{ languageOption.nazivPonudjaca }}
             </option>
           </select>
