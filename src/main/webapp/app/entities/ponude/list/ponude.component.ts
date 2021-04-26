@@ -128,7 +128,7 @@ export class PonudeComponent implements OnInit, OnChanges {
     this.prazanPonude();
   }
   prazanPostupak(): void {
-    this.brojPostupka = 0;
+    this.brojPostupka = '';
     this.loadPage();
   }
   prazanPonude(): void {

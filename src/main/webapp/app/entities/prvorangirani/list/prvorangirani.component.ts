@@ -21,8 +21,68 @@ export class PrvorangiraniComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  brojPostupka: any;
+  brojPonude: any;
 
   constructor(protected prvorangiraniService: PrvorangiraniService, protected activatedRoute: ActivatedRoute, protected router: Router) {}
+
+  loadPageByPostupak(page?: number, dontNavigate?: boolean): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    this.prvorangiraniService
+      .query({
+        'sifraPostupka.in': this.brojPostupka,
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe(
+        (res: HttpResponse<IPrvorangirani[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        () => {
+          this.isLoading = false;
+          this.onError();
+        }
+      );
+  }
+
+  loadPageByPonude(page?: number, dontNavigate?: boolean): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    this.prvorangiraniService
+      .query({
+        'sifraPonude.in': this.brojPonude,
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe(
+        (res: HttpResponse<IPrvorangirani[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        () => {
+          this.isLoading = false;
+          this.onError();
+        }
+      );
+  }
+  prazanRefresh(): void {
+    this.prazanPostupak();
+    this.prazanPonude();
+  }
+  prazanPostupak(): void {
+    this.brojPostupka = '';
+    this.loadPage();
+  }
+  prazanPonude(): void {
+    this.brojPonude = '';
+    this.loadPage();
+  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
