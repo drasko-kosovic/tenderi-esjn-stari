@@ -11,8 +11,7 @@
     -->
     <changeSet author="Drasko" id="view-vrednovanje">
         <createView catalogName="tenderi" schemaName="public" viewName="view_vrednovanje">
-            SELECT
-            ponude.id,
+            SELECT ponude.id,
             ponude.sifra_postupka,
             ponude.sifra_ponude,
             ponude.broj_partije,
@@ -31,20 +30,23 @@
             ponude.naziv_ponudjaca,
             ponude.broj_ugovora,
             ponude.datum_ugovora,
-
-            (((90)::numeric * min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.ponudjena_jedinicna_cijena) AS bod_cijena,
-            ((10 * min(ponude.rok_isporuke) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.rok_isporuke) AS bod_rok,
-            ((((90)::numeric * min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.ponudjena_jedinicna_cijena) + (((10 * min(ponude.rok_isporuke) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.rok_isporuke))::numeric) AS bod_ukupno
-
-
+            ((((90)::numeric)::double precision *
+            min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY
+            ponude.broj_partije, ponude.sifra_postupka)) /
+            ponude.ponudjena_jedinicna_cijena) AS bod_cijena,
+            ((((10)::numeric)::double precision * (min(ponude.rok_isporuke) OVER
+            (PARTITION BY ponude.broj_partije, ponude.sifra_postupka))::double
+            precision) / (ponude.rok_isporuke)::double precision) AS bod_rok,
+            (((((90)::numeric)::double precision *
+            min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY
+            ponude.broj_partije, ponude.sifra_postupka)) /
+            ponude.ponudjena_jedinicna_cijena) + ((((10 * min(ponude.rok_isporuke) OVER
+            (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) /
+            ponude.rok_isporuke))::numeric)::double precision) AS bod_ukupno
             FROM (ponude
-            JOIN specifikacija ON
-            (
-            (
-            (ponude.sifra_postupka = specifikacija.sifra_postupka) AND
-            (ponude.broj_partije = specifikacija.broj_partije)
-            )
-            ));
+            JOIN specifikacija ON (((ponude.sifra_postupka =
+            specifikacija.sifra_postupka) AND (ponude.broj_partije =
+            specifikacija.broj_partije))));
 
         </createView>
     </changeSet>
