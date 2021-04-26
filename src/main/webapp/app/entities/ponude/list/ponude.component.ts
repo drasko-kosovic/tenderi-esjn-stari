@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { IPonude } from '../ponude.model';
-
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { PonudeService } from '../service/ponude.service';
 import { PonudeDeleteDialogComponent } from '../delete/ponude-delete-dialog.component';
@@ -16,7 +14,7 @@ import { PonudjaciService } from 'app/entities/ponudjaci/service/ponudjaci.servi
   selector: 'jhi-ponude',
   templateUrl: './ponude.component.html',
 })
-export class PonudeComponent implements OnInit {
+export class PonudeComponent implements OnInit, OnChanges {
   ponudjaci?: IPonudjaci[] | null;
   ponudes?: IPonude[];
   isLoading = false;
@@ -26,7 +24,7 @@ export class PonudeComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-  brojPostupka = 2366;
+  brojPostupka: any;
   brojPonude: any;
   constructor(
     protected ponudeService: PonudeService,
@@ -35,6 +33,10 @@ export class PonudeComponent implements OnInit {
     protected modalService: NgbModal,
     protected ponudjaciService: PonudjaciService
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadPagePonudjaci();
+  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
@@ -70,7 +72,6 @@ export class PonudeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.handleNavigation();
-    this.loadPagePonudjaci();
   }
 
   trackId(index: number, item: IPonude): number {

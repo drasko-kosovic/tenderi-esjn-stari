@@ -7,7 +7,6 @@
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="tenderiApp.ponude.home.refreshListLabel" (click)="prazanRefresh()">""</span>
       </button>
-
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -25,7 +24,7 @@
         <div class="input-group w-100 mt-3">
           <input type="text" class="form-control" [(ngModel)]="brojPostupka" id="artikal" name="artikal" placeholder="postupak" />
 
-          <button class="input-group-append btn btn-info" (click)="loadPageByPostupak()">
+          <button class="input-group-append btn btn-info" (click)="loadPageByPostupak()" (click)="loadPagePonudjaci()">
             <fa-icon icon="search"></fa-icon>
           </button>
 

@@ -21,7 +21,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="atc" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="inn" type="varchar(255)">
                 <constraints nullable="true" />

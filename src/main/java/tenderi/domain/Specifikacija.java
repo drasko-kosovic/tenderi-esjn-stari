@@ -30,7 +30,7 @@ public class Specifikacija implements Serializable {
     private Integer brojPartije;
 
     @NotNull
-    @Column(name = "atc", nullable = false)
+    @Column(name = "atc", nullable = true)
     private String atc;
 
     @Column(name = "inn")

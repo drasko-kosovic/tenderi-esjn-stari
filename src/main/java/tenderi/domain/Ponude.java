@@ -43,7 +43,7 @@ public class Ponude implements Serializable {
     private String naziProizvodjaca;
 
     @NotNull
-    @Column(name = "zastceni_naziv", nullable = false)
+    @Column(name = "zastceni_naziv", nullable = true)
     private String zastceniNaziv;
 
     @NotNull

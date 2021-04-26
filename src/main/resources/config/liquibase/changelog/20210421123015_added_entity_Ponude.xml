@@ -30,7 +30,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="zastceni_naziv" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="ponudjena_vrijednost" type="double">
                 <constraints nullable="false" />

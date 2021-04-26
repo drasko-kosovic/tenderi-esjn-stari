@@ -14,7 +14,7 @@
     {
       "fieldName": "atc",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+
     },
     {
       "fieldName": "inn",
