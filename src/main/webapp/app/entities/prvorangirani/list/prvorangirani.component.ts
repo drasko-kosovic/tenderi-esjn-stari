@@ -25,7 +25,7 @@ export class PrvorangiraniComponent implements OnInit {
   ngbPaginationPage = 1;
   brojPostupka: any;
   brojPonude: any;
-  public resourceUrlExel = SERVER_API_URL + '/api/excel-prvorangirani/download';
+  public resourceUrlExel = SERVER_API_URL + 'api/excel-prvorangirani/download';
   constructor(
     protected prvorangiraniService: PrvorangiraniService,
     protected activatedRoute: ActivatedRoute,
@@ -34,7 +34,24 @@ export class PrvorangiraniComponent implements OnInit {
   ) {}
 
   public exel(): void {
-    {
+    if (this.brojPonude === undefined && this.brojPostupka !== undefined) {
+      // (`${this.resourceUrl}/${id}`, { observe: 'response' });
+      this.document.location.href = this.resourceUrlExel + '/sifra-postupka/' + String(this.brojPostupka);
+    }
+    if (this.brojPostupka === undefined && this.brojPonude !== undefined) {
+      // eslint-disable-next-line no-console
+      console.log('polje cijena je puno a polje artikal je prazno zato dajem samo potrgu za cijenu exel');
+      this.document.location.href = this.resourceUrlExel + '/sifra-ponude/' + String(this.brojPonude);
+    }
+    // if (this.brojPonude !== undefined && this.brojPostupka !== undefined) {
+    //   // eslint-disable-next-line no-console
+    //   console.log('oba polja su puna');
+    //   this.document.location.href =
+    //     this.resourceUrlExel + '/postupakponuda?sifraPostupka=' + String(this.brojPostupka) + '&sifraPonude=' + String(this.brojPonude);
+    // }
+    if (this.brojPostupka === undefined && this.brojPonude === undefined) {
+      // eslint-disable-next-line no-console
+      console.log('oba polja su puna');
       this.document.location.href = this.resourceUrlExel;
     }
   }
