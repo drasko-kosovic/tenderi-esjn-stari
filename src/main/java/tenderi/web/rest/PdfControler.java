@@ -29,7 +29,7 @@ public class PdfControler {
     @GetMapping(path = "/vrednovanje/{sifraPostupka}")
     @ResponseBody
     public void getPdfPonude(HttpServletResponse response, @PathVariable Integer sifraPostupka) throws Exception {
-        Resource resource = context.getResource("classpath:reports/ponude/Cherry_Landscape.jrxml");
+        Resource resource = context.getResource("classpath:reports/Vrednovanje.jrxml");
 
         InputStream inputStream = resource.getInputStream();
         JasperReport report = JasperCompileManager.compileReport(inputStream);
@@ -37,6 +37,28 @@ public class PdfControler {
         Map<String, Object> params = new HashMap<>();
 
         List<ViewVrednovanje> vrednovanje = (List<ViewVrednovanje>) viewVrednovanjeRepository.findBySifraPotupka(sifraPostupka);
+
+        JRDataSource dataSource = new JRBeanCollectionDataSource(vrednovanje);
+        params.put("datasource", dataSource);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(report, params, dataSource);
+
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+
+        JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+    }
+
+    @GetMapping(path = "/vrednovanje")
+    @ResponseBody
+    public void getPdfPonude(HttpServletResponse response) throws Exception {
+        Resource resource = context.getResource("classpath:reports/Vrednovanje.jrxml");
+
+        InputStream inputStream = resource.getInputStream();
+        JasperReport report = JasperCompileManager.compileReport(inputStream);
+
+        Map<String, Object> params = new HashMap<>();
+
+        List<ViewVrednovanje> vrednovanje = (List<ViewVrednovanje>) viewVrednovanjeRepository.findAll();
 
         JRDataSource dataSource = new JRBeanCollectionDataSource(vrednovanje);
         params.put("datasource", dataSource);

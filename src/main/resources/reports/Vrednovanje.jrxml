@@ -10,90 +10,90 @@
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
 	</field>
-	<field name="sifra_postupka" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="sifra_postupka"/>
+	<field name="sifraPostupka" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="sifraPostupka"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
 	</field>
-	<field name="sifra_ponude" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="sifra_ponude"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="broj_partije" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="broj_partije"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="atc" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="atc"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="inn" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="inn"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="zastceni_naziv" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="zastceni_naziv"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="farmaceutski_oblik_lijeka" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="farmaceutski_oblik_lijeka"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="jacina_lijeka" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="jacina_lijeka"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="pakovanje" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="pakovanje"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="trazena_kolicina" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="trazena_kolicina"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="trazena_jedinicna_cijena" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="trazena_jedinicna_cijena"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="procijenjena_vrijednost" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="procijenjena_vrijednost"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="ponudjena_jedinicna_cijena" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="ponudjena_jedinicna_cijena"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="ponudjena_vrijednost" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="ponudjena_vrijednost"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="rok_isporuke" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="rok_isporuke"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="naziv_ponudjaca" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="naziv_ponudjaca"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="broj_ugovora" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="broj_ugovora"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="datum_ugovora" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="datum_ugovora"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="bod_cijena" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="bod_cijena"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="bod_rok" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="bod_rok"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
-	<field name="bod_ukupno" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="bod_ukupno"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>
-	</field>
+<!--	<field name="sifra_ponude" class="java.lang.Integer">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="sifra_ponude"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="broj_partije" class="java.lang.Integer">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="broj_partije"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="atc" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="atc"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="inn" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="inn"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="zastceni_naziv" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="zastceni_naziv"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="farmaceutski_oblik_lijeka" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="farmaceutski_oblik_lijeka"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="jacina_lijeka" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="jacina_lijeka"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="pakovanje" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="pakovanje"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="trazena_kolicina" class="java.lang.Integer">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="trazena_kolicina"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="trazena_jedinicna_cijena" class="java.lang.Double">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="trazena_jedinicna_cijena"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="procijenjena_vrijednost" class="java.lang.Double">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="procijenjena_vrijednost"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="ponudjena_jedinicna_cijena" class="java.lang.Double">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="ponudjena_jedinicna_cijena"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="ponudjena_vrijednost" class="java.lang.Double">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="ponudjena_vrijednost"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="rok_isporuke" class="java.lang.Integer">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="rok_isporuke"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="naziv_ponudjaca" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="naziv_ponudjaca"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="broj_ugovora" class="java.lang.String">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="broj_ugovora"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="datum_ugovora" class="java.sql.Date">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="datum_ugovora"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="bod_cijena" class="java.lang.Double">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="bod_cijena"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="bod_rok" class="java.lang.Double">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="bod_rok"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
+<!--	<field name="bod_ukupno" class="java.lang.Double">-->
+<!--		<property name="com.jaspersoft.studio.field.label" value="bod_ukupno"/>-->
+<!--		<property name="com.jaspersoft.studio.field.tree.path" value="view_vrednovanje"/>-->
+<!--	</field>-->
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -131,20 +131,20 @@
 				<reportElement x="52" y="30" width="100" height="30" uuid="b437b3df-024f-4988-86a8-1632da631b67">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="001de366-dc14-4bb6-b067-acaa697dbb7c"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{sifra_postupka}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{sifraPostupka}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="222" y="32" width="100" height="30" uuid="a8008679-dd41-41d3-a010-f3f7fee80d70">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0fb5feb5-5d68-4700-9ab4-22310863b7be"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{sifra_ponude}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="380" y="32" width="150" height="30" uuid="cbfa3261-faa0-487b-8851-ad4197192ff5">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9bde0e9e-b787-4fb5-a940-f6e66e1a3d79"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{inn}]]></textFieldExpression>
-			</textField>
+<!--			<textField>-->
+<!--				<reportElement x="222" y="32" width="100" height="30" uuid="a8008679-dd41-41d3-a010-f3f7fee80d70">-->
+<!--					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0fb5feb5-5d68-4700-9ab4-22310863b7be"/>-->
+<!--				</reportElement>-->
+<!--				<textFieldExpression><![CDATA[$F{sifra_ponude}]]></textFieldExpression>-->
+<!--			</textField>-->
+<!--			<textField>-->
+<!--				<reportElement x="380" y="32" width="150" height="30" uuid="cbfa3261-faa0-487b-8851-ad4197192ff5">-->
+<!--					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9bde0e9e-b787-4fb5-a940-f6e66e1a3d79"/>-->
+<!--				</reportElement>-->
+<!--				<textFieldExpression><![CDATA[$F{inn}]]></textFieldExpression>-->
+<!--			</textField>-->
 		</band>
 	</detail>
 	<columnFooter>

@@ -62,6 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/excel-prvorangirani/download/sifra-postupka/**")
             .antMatchers("/api/excel-prvorangirani/download/sifra-ponude/**")
             .antMatchers("/api/excel/download/**")
+            .antMatchers("/report/vrednovanje/**")
             .antMatchers("/content/**")
             .antMatchers("/swagger-ui/**")
             .antMatchers("/swagger-ui/**")
