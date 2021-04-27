@@ -46,8 +46,8 @@ spring:
   mail:
     host: localhost
     port: 25
-    username:
-    password:
+    username: drasko.kosovic@gmail.com
+    password: trepca12345
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:
@@ -102,4 +102,3 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:

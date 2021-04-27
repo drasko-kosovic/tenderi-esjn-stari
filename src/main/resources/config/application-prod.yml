@@ -45,13 +45,26 @@ spring:
   liquibase:
     contexts: prod
   mail:
-    host: localhost
+    host: smtp.gmail.com
     port: 25
-    username:
-    password:
+    username: drasko.kosovic@gmail.com
+    password: trepca12345
   thymeleaf:
     cache: true
-
+#  # application:
+#  spring.mail.host=smtp.gmail.com
+#  spring.mail.port=25
+#  spring.mail.username=drasko.kosovic@gmail.com
+#  spring.mail.password=trepca12345
+#
+#  # Other properties
+#  spring.mail.properties.mail.smtp.auth=true
+#  spring.mail.properties.mail.smtp.connectiontimeout=5000
+#  spring.mail.properties.mail.smtp.timeout=5000
+#  spring.mail.properties.mail.smtp.writetimeout=5000
+#
+#  # TLS , port 587
+#  spring.mail.properties.mail.smtp.starttls.enable=true
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
 # keytool -genkey -alias tenderi -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
