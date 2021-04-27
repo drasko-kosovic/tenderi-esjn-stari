@@ -133,9 +133,9 @@
           <td>{{ viewVrednovanje.jacinaLijeka }}</td>
           <td>{{ viewVrednovanje.pakovanje }}</td>
           <td>{{ viewVrednovanje.rokIsporuke }}</td>
-          <td>{{ viewVrednovanje.bodRok }}</td>
-          <td>{{ viewVrednovanje.bodCijena }}</td>
-          <td>{{ viewVrednovanje.bodUkupno }}</td>
+          <td>{{ viewVrednovanje.bodRok | number: '1.2-2' }}</td>
+          <td>{{ viewVrednovanje.bodCijena | number: '1.2-2' }}</td>
+          <td>{{ viewVrednovanje.bodUkupno | number: '1.2-2' }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button
