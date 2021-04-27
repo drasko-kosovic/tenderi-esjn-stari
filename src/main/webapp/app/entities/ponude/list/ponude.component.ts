@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -14,7 +14,7 @@ import { PonudjaciService } from 'app/entities/ponudjaci/service/ponudjaci.servi
   selector: 'jhi-ponude',
   templateUrl: './ponude.component.html',
 })
-export class PonudeComponent implements OnInit, OnChanges {
+export class PonudeComponent implements OnInit {
   ponudjaci?: IPonudjaci[] | null;
   ponudes?: IPonude[];
   isLoading = false;
@@ -33,10 +33,6 @@ export class PonudeComponent implements OnInit, OnChanges {
     protected modalService: NgbModal,
     protected ponudjaciService: PonudjaciService
   ) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.loadPagePonudjaci();
-  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;

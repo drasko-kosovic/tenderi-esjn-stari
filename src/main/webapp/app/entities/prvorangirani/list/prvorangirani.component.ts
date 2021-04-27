@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -7,6 +7,8 @@ import { IPrvorangirani } from '../prvorangirani.model';
 
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { PrvorangiraniService } from '../service/prvorangirani.service';
+import { SERVER_API_URL } from 'app/app.constants';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'jhi-prvorangirani',
@@ -23,8 +25,19 @@ export class PrvorangiraniComponent implements OnInit {
   ngbPaginationPage = 1;
   brojPostupka: any;
   brojPonude: any;
+  public resourceUrlExel = SERVER_API_URL + '/api/excel-prvorangirani/download';
+  constructor(
+    protected prvorangiraniService: PrvorangiraniService,
+    protected activatedRoute: ActivatedRoute,
+    protected router: Router,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
-  constructor(protected prvorangiraniService: PrvorangiraniService, protected activatedRoute: ActivatedRoute, protected router: Router) {}
+  public exel(): void {
+    {
+      this.document.location.href = this.resourceUrlExel;
+    }
+  }
 
   loadPageByPostupak(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;

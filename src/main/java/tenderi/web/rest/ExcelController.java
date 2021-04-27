@@ -30,6 +30,18 @@ public class ExcelController {
             .body(file);
     }
 
+    @GetMapping(path = "/excel-prvorangirani/download")
+    public ResponseEntity<Resource> getFilePrvorangirani() {
+        String filename = "prvorangirani.xlsx";
+        InputStreamResource file = new InputStreamResource(fileService.load());
+
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
+    }
+
     @GetMapping(path = "/excel/download/sifra-postupka/{sifra}")
     public ResponseEntity<Resource> getFileBySifraPostupka(@PathVariable Integer sifra) {
         String filename = "vrednovanje.xlsx";
