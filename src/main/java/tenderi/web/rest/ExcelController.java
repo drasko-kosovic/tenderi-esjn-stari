@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tenderi.service.ExcelService;
+import tenderi.service.ExcelServicePrvorangirani;
 
 @CrossOrigin(origins = ("*"))
 @Controller
@@ -21,18 +22,6 @@ public class ExcelController {
     @GetMapping(path = "/excel/download")
     public ResponseEntity<Resource> getFile() {
         String filename = "vrednovanje.xlsx";
-        InputStreamResource file = new InputStreamResource(fileService.load());
-
-        return ResponseEntity
-            .ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
-            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
-            .body(file);
-    }
-
-    @GetMapping(path = "/excel-prvorangirani/download")
-    public ResponseEntity<Resource> getFilePrvorangirani() {
-        String filename = "prvorangirani.xlsx";
         InputStreamResource file = new InputStreamResource(fileService.load());
 
         return ResponseEntity

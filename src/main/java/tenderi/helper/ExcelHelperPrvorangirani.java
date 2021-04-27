@@ -33,7 +33,7 @@ public class ExcelHelperPrvorangirani {
     };
     static String SHEET = "Prvorangirani";
 
-    public static ByteArrayInputStream tutorialsToExcel(List<Prvorangirani> prvorangirani) {
+    public static ByteArrayInputStream tutorialsToExcelPrvorangirani(List<Prvorangirani> prvorangirani) {
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             Sheet sheet = workbook.createSheet(SHEET);
 
@@ -61,8 +61,9 @@ public class ExcelHelperPrvorangirani {
 
                 row.createCell(10).setCellValue(view_prvorangirani.getFarmaceutskiOblikLijeka());
                 row.createCell(11).setCellValue(view_prvorangirani.getJacinaLijeka());
+                row.createCell(12).setCellValue(view_prvorangirani.getTrazenaKolicina());
                 row.createCell(13).setCellValue(view_prvorangirani.getPakovanje());
-                row.createCell(16).setCellValue(view_prvorangirani.getRokIsporuke());
+                row.createCell(14).setCellValue(view_prvorangirani.getRokIsporuke());
             }
 
             workbook.write(out);
