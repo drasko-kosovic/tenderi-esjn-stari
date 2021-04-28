@@ -11,44 +11,31 @@
     -->
     <changeSet author="Drasko" id="view-vrednovanje">
         <createView catalogName="tenderi" schemaName="public" viewName="view_vrednovanje">
-            SELECT ponude.id,
-            ponude.sifra_postupka,
-            ponude.sifra_ponude,
-            ponude.broj_partije,
-            specifikacija.atc,
-            specifikacija.inn,
-            ponude.zastceni_naziv,
-            specifikacija.farmaceutski_oblik_lijeka,
-            specifikacija.jacina_lijeka,
-            specifikacija.pakovanje,
-            specifikacija.trazena_kolicina,
-            specifikacija.trazena_jedinicna_cijena,
-            specifikacija.procijenjena_vrijednost,
-            ponude.ponudjena_jedinicna_cijena,
-            ponude.ponudjena_vrijednost,
-            ponude.rok_isporuke,
-            ponude.naziv_ponudjaca,
-            ponude.naziv_proizvodjaca,
-            ponude.broj_ugovora,
-            ponude.datum_ugovora,
-            ((((90)::numeric)::double precision *
-            min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY
-            ponude.broj_partije, ponude.sifra_postupka)) /
-            ponude.ponudjena_jedinicna_cijena) AS bod_cijena,
-            ((((10)::numeric)::double precision * (min(ponude.rok_isporuke) OVER
-            (PARTITION BY ponude.broj_partije, ponude.sifra_postupka))::double
-            precision) / (ponude.rok_isporuke)::double precision) AS bod_rok,
-            (((((90)::numeric)::double precision *
-            min(ponude.ponudjena_jedinicna_cijena) OVER (PARTITION BY
-            ponude.broj_partije, ponude.sifra_postupka)) /
-            ponude.ponudjena_jedinicna_cijena) + ((((10 * min(ponude.rok_isporuke) OVER
-            (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) /
-            ponude.rok_isporuke))::numeric)::double precision) AS bod_ukupno
-            FROM (ponude
-            JOIN specifikacija ON (((ponude.sifra_postupka =
-            specifikacija.sifra_postupka) AND (ponude.broj_partije =
-            specifikacija.broj_partije))));
-
+            SELECT
+            view_vrednovanje1.id,
+            view_vrednovanje1.sifra_postupka,
+            view_vrednovanje1.sifra_ponude,
+            view_vrednovanje1.broj_partije,
+            view_vrednovanje1.atc,
+            view_vrednovanje1.inn,
+            view_vrednovanje1.zastceni_naziv,
+            view_vrednovanje1.farmaceutski_oblik_lijeka,
+            view_vrednovanje1.jacina_lijeka,
+            view_vrednovanje1.pakovanje,
+            view_vrednovanje1.trazena_kolicina,
+            view_vrednovanje1.trazena_jedinicna_cijena,
+            view_vrednovanje1.procijenjena_vrijednost,
+            view_vrednovanje1.ponudjena_jedinicna_cijena,
+            view_vrednovanje1.ponudjena_vrijednost,
+            view_vrednovanje1.rok_isporuke,
+            view_vrednovanje1.naziv_ponudjaca,
+            view_vrednovanje1.naziv_proizvodjaca,
+            view_vrednovanje1.broj_ugovora,
+            view_vrednovanje1.datum_ugovora,
+            view_vrednovanje1.bod_cijena,
+            view_vrednovanje1.bod_rok,
+            (view_vrednovanje1.bod_cijena + view_vrednovanje1.bod_rok) AS bod_ukupno
+            FROM view_vrednovanje1;
         </createView>
     </changeSet>
 
