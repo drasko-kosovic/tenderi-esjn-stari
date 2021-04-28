@@ -49,7 +49,7 @@ public class ViewVrednovanje implements Serializable {
     private String pakovanje;
 
     @Column(name = "trazena_kolicina")
-    private Integer trazanaKolicina;
+    private Integer trazenaKolicina;
 
     @Column(name = "trazena_jedinicna_cijena")
     private Double trazenaJedinicnaCijena;
@@ -167,12 +167,12 @@ public class ViewVrednovanje implements Serializable {
         this.pakovanje = pakovanje;
     }
 
-    public Integer getTrazanaKolicina() {
-        return trazanaKolicina;
+    public Integer getTrazenaKolicina() {
+        return trazenaKolicina;
     }
 
-    public void setTrazanaKolicina(Integer trazanaKolicina) {
-        this.trazanaKolicina = trazanaKolicina;
+    public void setTrazenaKolicina(Integer trazenaKolicina) {
+        this.trazenaKolicina = trazenaKolicina;
     }
 
     public Double getTrazenaJedinicnaCijena() {

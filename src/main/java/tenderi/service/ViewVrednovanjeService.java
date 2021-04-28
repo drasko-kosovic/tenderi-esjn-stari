@@ -67,8 +67,8 @@ public class ViewVrednovanjeService {
                     if (viewVrednovanje.getPonudjenaVrijednost() != null) {
                         existingViewVrednovanje.setPonudjenaVrijednost(viewVrednovanje.getPonudjenaVrijednost());
                     }
-                    if (viewVrednovanje.getTrazanaKolicina() != null) {
-                        existingViewVrednovanje.setTrazanaKolicina(viewVrednovanje.getTrazanaKolicina());
+                    if (viewVrednovanje.getTrazenaKolicina() != null) {
+                        existingViewVrednovanje.setTrazenaKolicina(viewVrednovanje.getTrazenaKolicina());
                     }
                     if (viewVrednovanje.getAtc() != null) {
                         existingViewVrednovanje.setAtc(viewVrednovanje.getAtc());

@@ -63,7 +63,7 @@ public class ExcelHelper {
                 row.createCell(6).setCellValue(view_vrednovanje.getZastceniNaziv());
                 row.createCell(7).setCellValue(view_vrednovanje.getFarmaceutskiOblikLijeka());
                 row.createCell(8).setCellValue(view_vrednovanje.getJacinaLijeka());
-                row.createCell(9).setCellValue(view_vrednovanje.getTrazanaKolicina());
+                row.createCell(9).setCellValue(view_vrednovanje.getTrazenaKolicina());
                 row.createCell(10).setCellValue(view_vrednovanje.getPakovanje());
                 row.createCell(11).setCellValue(view_vrednovanje.getNazivProizvodjaca());
                 row.createCell(12).setCellValue(view_vrednovanje.getNazivPonudjaca());

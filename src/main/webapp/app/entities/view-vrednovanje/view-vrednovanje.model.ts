@@ -10,7 +10,7 @@ export interface IViewVrednovanje {
   farmaceutskiOblikLijeka?: string | null;
   jacinaLijeka?: string | null;
   pakovanje?: string | null;
-  kolicina?: number | null;
+  trazenaKolicina?: number | null;
   trazenaJedinicnaCijena?: number | null;
   procijenjenaVrijednost?: number | null;
   ponudjenaJedinicnaCijena?: number | null;
@@ -35,7 +35,7 @@ export class ViewVrednovanje implements IViewVrednovanje {
     public farmaceutskiOblikLijeka?: string | null,
     public jacinaLijeka?: string | null,
     public pakovanje?: string | null,
-    public kolicina?: number | null,
+    public trazenaKolicina?: number | null,
     public trazenaJedinicnaCijena?: number | null,
     public procijenjenaVrijednost?: number | null,
     public ponudjenaJedinicnaCijena?: number | null,

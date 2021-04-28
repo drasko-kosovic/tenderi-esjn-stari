@@ -26,7 +26,7 @@
             <column name="naziv_ponudjaca" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="nazi_proizvodjaca" type="varchar(255)">
+            <column name="naziv_proizvodjaca" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             <column name="zastceni_naziv" type="varchar(255)">

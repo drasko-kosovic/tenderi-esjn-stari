@@ -104,7 +104,7 @@ public class ViewVrednovanjeQueryService extends QueryService<ViewVrednovanje> {
                     specification.and(buildRangeSpecification(criteria.getPonudjenaVrijednost(), ViewVrednovanje_.ponudjenaVrijednost));
             }
             if (criteria.getKolicina() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getKolicina(), ViewVrednovanje_.trazanaKolicina));
+                specification = specification.and(buildRangeSpecification(criteria.getKolicina(), ViewVrednovanje_.trazenaKolicina));
             }
             if (criteria.getAtc() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getAtc(), ViewVrednovanje_.atc));
