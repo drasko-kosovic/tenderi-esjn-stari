@@ -19,19 +19,22 @@ public class ExcelHelper {
         "sifra postupka",
         "sifra ponude",
         "broj partije",
-        "naziv ponudjaca",
-        "naziv",
-        "procijenjena vrijednost",
-        "ponudjena vrijednost",
         "atc",
         "inn",
+        "zasticeni naziv",
         "farmaceutski oblik lijeka",
         "jacina lijeka",
         "kolicina",
         "pakovanje",
-        "bod cijena",
-        "bod isporuka",
+        "naziv proizvodjaca",
+        "naziv ponudjaca",
+        "procijenjena vrijednost",
+        "procijenjena jedim. vrijednost",
+        "ponudjena vrijednost",
+        "ponudjena jedin. vrijednost",
         "rok isporuke",
+        "bod isporuka",
+        "bod cijena",
         "bod ukupno",
     };
     static String SHEET = "Vrednovanje";
@@ -55,21 +58,23 @@ public class ExcelHelper {
                 row.createCell(1).setCellValue(view_vrednovanje.getSifraPostupka());
                 row.createCell(2).setCellValue(view_vrednovanje.getSifraPonude());
                 row.createCell(3).setCellValue(view_vrednovanje.getBrojPartije());
-                row.createCell(4).setCellValue(view_vrednovanje.getNazivPonudjaca());
+                row.createCell(4).setCellValue(view_vrednovanje.getAtc());
                 row.createCell(5).setCellValue(view_vrednovanje.getInn());
-                row.createCell(6).setCellValue(view_vrednovanje.getProcijenjenaVrijednost());
-                row.createCell(7).setCellValue(view_vrednovanje.getPonudjenaVrijednost());
-                row.createCell(8).setCellValue(view_vrednovanje.getAtc());
-                row.createCell(9).setCellValue(view_vrednovanje.getInn());
-
-                row.createCell(10).setCellValue(view_vrednovanje.getFarmaceutskiOblikLijeka());
-                row.createCell(11).setCellValue(view_vrednovanje.getJacinaLijeka());
-                row.createCell(12).setCellValue(view_vrednovanje.getTrazanaKolicina());
-                row.createCell(13).setCellValue(view_vrednovanje.getPakovanje());
-                row.createCell(14).setCellValue(view_vrednovanje.getBodCijena());
-                row.createCell(15).setCellValue(view_vrednovanje.getBodRok());
-                row.createCell(16).setCellValue(view_vrednovanje.getRokIsporuke());
-                row.createCell(17).setCellValue(view_vrednovanje.getBodUkupno());
+                row.createCell(6).setCellValue(view_vrednovanje.getZastceniNaziv());
+                row.createCell(7).setCellValue(view_vrednovanje.getFarmaceutskiOblikLijeka());
+                row.createCell(8).setCellValue(view_vrednovanje.getJacinaLijeka());
+                row.createCell(9).setCellValue(view_vrednovanje.getTrazanaKolicina());
+                row.createCell(10).setCellValue(view_vrednovanje.getPakovanje());
+                row.createCell(11).setCellValue(view_vrednovanje.getNazivProizvodjaca());
+                row.createCell(12).setCellValue(view_vrednovanje.getNazivPonudjaca());
+                row.createCell(13).setCellValue(view_vrednovanje.getProcijenjenaVrijednost());
+                row.createCell(14).setCellValue(view_vrednovanje.getTrazenaJedinicnaCijena());
+                row.createCell(15).setCellValue(view_vrednovanje.getPonudjenaVrijednost());
+                row.createCell(16).setCellValue(view_vrednovanje.getPonudjenaJedinicnaCijena());
+                row.createCell(17).setCellValue(view_vrednovanje.getRokIsporuke());
+                row.createCell(18).setCellValue(view_vrednovanje.getBodRok());
+                row.createCell(19).setCellValue(view_vrednovanje.getBodCijena());
+                row.createCell(20).setCellValue(view_vrednovanje.getBodUkupno());
             }
 
             workbook.write(out);

@@ -78,15 +78,17 @@
             <th scope="col" jhiSortBy="brojPartije">
               <span jhiTranslate="tenderiApp.ponude.brojPartije">Broj Partije</span> <fa-icon icon="sort"></fa-icon>
             </th>
+            <th scope="col" jhiSortBy="zastceniNaziv">
+              <span jhiTranslate="tenderiApp.ponude.zastceniNaziv">Zasticeni Naziv</span> <fa-icon icon="sort"></fa-icon>
+            </th>
             <th scope="col" jhiSortBy="nazivPonudjaca">
               <span jhiTranslate="tenderiApp.ponude.nazivPonudjaca">Naziv Ponudjaca</span> <fa-icon icon="sort"></fa-icon>
             </th>
+
             <th scope="col" jhiSortBy="naziProizvodjaca">
-              <span jhiTranslate="tenderiApp.ponude.naziProizvodjaca">Nazi Proizvodjaca</span> <fa-icon icon="sort"></fa-icon>
+              <span jhiTranslate="tenderiApp.ponude.naziProizvodjaca">Naziv Proizvodjaca</span> <fa-icon icon="sort"></fa-icon>
             </th>
-            <th scope="col" jhiSortBy="zastceniNaziv">
-              <span jhiTranslate="tenderiApp.ponude.zastceniNaziv">Zastceni Naziv</span> <fa-icon icon="sort"></fa-icon>
-            </th>
+
             <th scope="col" jhiSortBy="ponudjenaVrijednost">
               <span jhiTranslate="tenderiApp.ponude.ponudjenaVrijednost">Ponudjena Vrijednost</span> <fa-icon icon="sort"></fa-icon>
             </th>
@@ -114,9 +116,9 @@
             <td>{{ ponude.sifraPostupka }}</td>
             <td>{{ ponude.sifraPonude }}</td>
             <td>{{ ponude.brojPartije }}</td>
-            <td>{{ ponude.nazivPonudjaca }}</td>
-            <td>{{ ponude.naziProizvodjaca }}</td>
             <td>{{ ponude.zastceniNaziv }}</td>
+            <td>{{ ponude.nazivPonudjaca }}</td>
+            <td>{{ ponude.nazivProizvodjaca }}</td>
             <td>{{ ponude.ponudjenaVrijednost }}</td>
             <td>{{ ponude.ponudjenaJedinicnaCijena }}</td>
             <td>{{ ponude.rokIsporuke }}</td>

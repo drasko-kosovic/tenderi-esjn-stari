@@ -94,7 +94,7 @@ public class PonudeQueryService extends QueryService<Ponude> {
                 specification = specification.and(buildStringSpecification(criteria.getNazivPonudjaca(), Ponude_.nazivPonudjaca));
             }
             if (criteria.getNaziProizvodjaca() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getNaziProizvodjaca(), Ponude_.naziProizvodjaca));
+                specification = specification.and(buildStringSpecification(criteria.getNaziProizvodjaca(), Ponude_.nazivProizvodjaca));
             }
             if (criteria.getZastceniNaziv() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getZastceniNaziv(), Ponude_.zastceniNaziv));

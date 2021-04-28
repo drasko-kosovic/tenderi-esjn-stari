@@ -22,7 +22,7 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "naziProizvodjaca",
+      "fieldName": "nazivProizvodjaca",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },

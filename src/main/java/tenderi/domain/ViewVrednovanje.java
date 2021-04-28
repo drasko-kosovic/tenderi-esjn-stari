@@ -57,6 +57,9 @@ public class ViewVrednovanje implements Serializable {
     @Column(name = "procijenjena_vrijednost")
     private Double procijenjenaVrijednost;
 
+    @Column(name = "ponudjena_jedinicna_cijena")
+    private Double ponudjenaJedinicnaCijena;
+
     @Column(name = "ponudjena_vrijednost")
     private Double ponudjenaVrijednost;
 
@@ -65,6 +68,9 @@ public class ViewVrednovanje implements Serializable {
 
     @Column(name = "naziv_ponudjaca")
     private String nazivPonudjaca;
+
+    @Column(name = "naziv_proizvodjaca")
+    private String nazivProizvodjaca;
 
     @Column(name = "broj_ugovora")
     private String brojUgovora;
@@ -80,34 +86,6 @@ public class ViewVrednovanje implements Serializable {
 
     @Column(name = "bod_ukupno")
     private Double bodUkupno;
-
-    public Double getBodCijena() {
-        return bodCijena;
-    }
-
-    public void setBodCijena(Double bodCijena) {
-        this.bodCijena = bodCijena;
-    }
-
-    public Double getBodRok() {
-        return bodRok;
-    }
-
-    public void setBodRok(Double bodRok) {
-        this.bodRok = bodRok;
-    }
-
-    public Double getBodUkupno() {
-        return bodUkupno;
-    }
-
-    public void setBodUkupno(Double bodUkupno) {
-        this.bodUkupno = bodUkupno;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public Long getId() {
         return id;
@@ -213,6 +191,14 @@ public class ViewVrednovanje implements Serializable {
         this.procijenjenaVrijednost = procijenjenaVrijednost;
     }
 
+    public Double getPonudjenaJedinicnaCijena() {
+        return ponudjenaJedinicnaCijena;
+    }
+
+    public void setPonudjenaJedinicnaCijena(Double ponudjenaJedinicnaCijena) {
+        this.ponudjenaJedinicnaCijena = ponudjenaJedinicnaCijena;
+    }
+
     public Double getPonudjenaVrijednost() {
         return ponudjenaVrijednost;
     }
@@ -237,6 +223,14 @@ public class ViewVrednovanje implements Serializable {
         this.nazivPonudjaca = nazivPonudjaca;
     }
 
+    public String getNazivProizvodjaca() {
+        return nazivProizvodjaca;
+    }
+
+    public void setNazivProizvodjaca(String nazivProizvodjaca) {
+        this.nazivProizvodjaca = nazivProizvodjaca;
+    }
+
     public String getBrojUgovora() {
         return brojUgovora;
     }
@@ -251,5 +245,29 @@ public class ViewVrednovanje implements Serializable {
 
     public void setDatumjUgovora(Date datumjUgovora) {
         this.datumjUgovora = datumjUgovora;
+    }
+
+    public Double getBodCijena() {
+        return bodCijena;
+    }
+
+    public void setBodCijena(Double bodCijena) {
+        this.bodCijena = bodCijena;
+    }
+
+    public Double getBodRok() {
+        return bodRok;
+    }
+
+    public void setBodRok(Double bodRok) {
+        this.bodRok = bodRok;
+    }
+
+    public Double getBodUkupno() {
+        return bodUkupno;
+    }
+
+    public void setBodUkupno(Double bodUkupno) {
+        this.bodUkupno = bodUkupno;
     }
 }

@@ -61,8 +61,8 @@ public class PonudeService {
                     if (ponude.getNazivPonudjaca() != null) {
                         existingPonude.setNazivPonudjaca(ponude.getNazivPonudjaca());
                     }
-                    if (ponude.getNaziProizvodjaca() != null) {
-                        existingPonude.setNaziProizvodjaca(ponude.getNaziProizvodjaca());
+                    if (ponude.getNazivProizvodjaca() != null) {
+                        existingPonude.setNazivProizvodjaca(ponude.getNazivProizvodjaca());
                     }
                     if (ponude.getZastceniNaziv() != null) {
                         existingPonude.setZastceniNaziv(ponude.getZastceniNaziv());

@@ -39,8 +39,8 @@ public class Ponude implements Serializable {
     private String nazivPonudjaca;
 
     @NotNull
-    @Column(name = "nazi_proizvodjaca", nullable = false)
-    private String naziProizvodjaca;
+    @Column(name = "naziv_proizvodjaca", nullable = false)
+    private String nazivProizvodjaca;
 
     @NotNull
     @Column(name = "zastceni_naziv", nullable = true)
@@ -64,6 +64,7 @@ public class Ponude implements Serializable {
     private LocalDate datumUgovora;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
     public Long getId() {
         return id;
     }
@@ -72,18 +73,8 @@ public class Ponude implements Serializable {
         this.id = id;
     }
 
-    public Ponude id(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public Integer getSifraPostupka() {
-        return this.sifraPostupka;
-    }
-
-    public Ponude sifraPostupka(Integer sifraPostupka) {
-        this.sifraPostupka = sifraPostupka;
-        return this;
+        return sifraPostupka;
     }
 
     public void setSifraPostupka(Integer sifraPostupka) {
@@ -91,12 +82,7 @@ public class Ponude implements Serializable {
     }
 
     public Integer getSifraPonude() {
-        return this.sifraPonude;
-    }
-
-    public Ponude sifraPonude(Integer sifraPonude) {
-        this.sifraPonude = sifraPonude;
-        return this;
+        return sifraPonude;
     }
 
     public void setSifraPonude(Integer sifraPonude) {
@@ -104,12 +90,7 @@ public class Ponude implements Serializable {
     }
 
     public Integer getBrojPartije() {
-        return this.brojPartije;
-    }
-
-    public Ponude brojPartije(Integer brojPartije) {
-        this.brojPartije = brojPartije;
-        return this;
+        return brojPartije;
     }
 
     public void setBrojPartije(Integer brojPartije) {
@@ -117,38 +98,23 @@ public class Ponude implements Serializable {
     }
 
     public String getNazivPonudjaca() {
-        return this.nazivPonudjaca;
-    }
-
-    public Ponude nazivPonudjaca(String nazivPonudjaca) {
-        this.nazivPonudjaca = nazivPonudjaca;
-        return this;
+        return nazivPonudjaca;
     }
 
     public void setNazivPonudjaca(String nazivPonudjaca) {
         this.nazivPonudjaca = nazivPonudjaca;
     }
 
-    public String getNaziProizvodjaca() {
-        return this.naziProizvodjaca;
+    public String getNazivProizvodjaca() {
+        return nazivProizvodjaca;
     }
 
-    public Ponude naziProizvodjaca(String naziProizvodjaca) {
-        this.naziProizvodjaca = naziProizvodjaca;
-        return this;
-    }
-
-    public void setNaziProizvodjaca(String naziProizvodjaca) {
-        this.naziProizvodjaca = naziProizvodjaca;
+    public void setNazivProizvodjaca(String nazivProizvodjaca) {
+        this.nazivProizvodjaca = nazivProizvodjaca;
     }
 
     public String getZastceniNaziv() {
-        return this.zastceniNaziv;
-    }
-
-    public Ponude zastceniNaziv(String zastceniNaziv) {
-        this.zastceniNaziv = zastceniNaziv;
-        return this;
+        return zastceniNaziv;
     }
 
     public void setZastceniNaziv(String zastceniNaziv) {
@@ -156,12 +122,7 @@ public class Ponude implements Serializable {
     }
 
     public Double getPonudjenaVrijednost() {
-        return this.ponudjenaVrijednost;
-    }
-
-    public Ponude ponudjenaVrijednost(Double ponudjenaVrijednost) {
-        this.ponudjenaVrijednost = ponudjenaVrijednost;
-        return this;
+        return ponudjenaVrijednost;
     }
 
     public void setPonudjenaVrijednost(Double ponudjenaVrijednost) {
@@ -169,12 +130,7 @@ public class Ponude implements Serializable {
     }
 
     public Double getPonudjenaJedinicnaCijena() {
-        return this.ponudjenaJedinicnaCijena;
-    }
-
-    public Ponude ponudjenaJedinicnaCijena(Double ponudjenaJedinicnaCijena) {
-        this.ponudjenaJedinicnaCijena = ponudjenaJedinicnaCijena;
-        return this;
+        return ponudjenaJedinicnaCijena;
     }
 
     public void setPonudjenaJedinicnaCijena(Double ponudjenaJedinicnaCijena) {
@@ -182,12 +138,7 @@ public class Ponude implements Serializable {
     }
 
     public Integer getRokIsporuke() {
-        return this.rokIsporuke;
-    }
-
-    public Ponude rokIsporuke(Integer rokIsporuke) {
-        this.rokIsporuke = rokIsporuke;
-        return this;
+        return rokIsporuke;
     }
 
     public void setRokIsporuke(Integer rokIsporuke) {
@@ -195,12 +146,7 @@ public class Ponude implements Serializable {
     }
 
     public String getBrojUgovora() {
-        return this.brojUgovora;
-    }
-
-    public Ponude brojUgovora(String brojUgovora) {
-        this.brojUgovora = brojUgovora;
-        return this;
+        return brojUgovora;
     }
 
     public void setBrojUgovora(String brojUgovora) {
@@ -208,53 +154,10 @@ public class Ponude implements Serializable {
     }
 
     public LocalDate getDatumUgovora() {
-        return this.datumUgovora;
-    }
-
-    public Ponude datumUgovora(LocalDate datumUgovora) {
-        this.datumUgovora = datumUgovora;
-        return this;
+        return datumUgovora;
     }
 
     public void setDatumUgovora(LocalDate datumUgovora) {
         this.datumUgovora = datumUgovora;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Ponude)) {
-            return false;
-        }
-        return id != null && id.equals(((Ponude) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "Ponude{" +
-            "id=" + getId() +
-            ", sifraPostupka=" + getSifraPostupka() +
-            ", sifraPonude=" + getSifraPonude() +
-            ", brojPartije=" + getBrojPartije() +
-            ", nazivPonudjaca='" + getNazivPonudjaca() + "'" +
-            ", naziProizvodjaca='" + getNaziProizvodjaca() + "'" +
-            ", zastceniNaziv='" + getZastceniNaziv() + "'" +
-            ", ponudjenaVrijednost=" + getPonudjenaVrijednost() +
-            ", ponudjenaJedinicnaCijena=" + getPonudjenaJedinicnaCijena() +
-            ", rokIsporuke=" + getRokIsporuke() +
-            ", brojUgovora='" + getBrojUgovora() + "'" +
-            ", datumUgovora='" + getDatumUgovora() + "'" +
-            "}";
     }
 }

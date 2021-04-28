@@ -28,6 +28,7 @@
             ponude.ponudjena_vrijednost,
             ponude.rok_isporuke,
             ponude.naziv_ponudjaca,
+            ponude.naziv_proizvodjaca,
             ponude.broj_ugovora,
             ponude.datum_ugovora,
             ((((90)::numeric)::double precision *

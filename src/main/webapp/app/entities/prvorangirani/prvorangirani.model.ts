@@ -18,6 +18,7 @@ export interface IPrvorangirani {
   ponudjenaVrijednost?: number | null;
   rokIsporuke?: number | null;
   nazivPonudjaca?: string | null;
+  nazivProizvodjaca?: string | null;
   bodIsporuka?: number | null;
   brojUgovora?: string | null;
   datumUgovora?: dayjs.Dayjs | null;
@@ -42,6 +43,7 @@ export class Prvorangirani implements IPrvorangirani {
     public ponudjenaVrijednost?: number | null,
     public rokIsporuke?: number | null,
     public nazivPonudjaca?: string | null,
+    public nazivProizvodjaca?: string | null,
     public bodIsporuka?: number | null,
     public brojUgovora?: string | null,
     public datumUgovora?: dayjs.Dayjs | null

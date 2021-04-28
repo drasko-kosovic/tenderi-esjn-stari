@@ -6,7 +6,7 @@ export interface IPonude {
   sifraPonude?: number;
   brojPartije?: number;
   nazivPonudjaca?: string;
-  naziProizvodjaca?: string;
+  nazivProizvodjaca?: string;
   zastceniNaziv?: string;
   ponudjenaVrijednost?: number;
   ponudjenaJedinicnaCijena?: number;
@@ -22,7 +22,7 @@ export class Ponude implements IPonude {
     public sifraPonude?: number,
     public brojPartije?: number,
     public nazivPonudjaca?: string,
-    public naziProizvodjaca?: string,
+    public nazivProizvodjaca?: string,
     public zastceniNaziv?: string,
     public ponudjenaVrijednost?: number,
     public ponudjenaJedinicnaCijena?: number,
