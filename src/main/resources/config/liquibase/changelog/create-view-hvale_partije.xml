@@ -2,7 +2,8 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
     <changeSet author="Drasko" id="hvale_partije">
         <createView catalogName="tenderi" schemaName="public" viewName="hvale_partije">
-            SELECT specifikacija.id,
+            SELECT
+            specifikacija.id,
             specifikacija.broj_partije,
             specifikacija.inn,
             specifikacija.farmaceutski_oblik_lijeka,
@@ -12,8 +13,11 @@
             specifikacija.procijenjena_vrijednost,
             specifikacija.sifra_postupka
             FROM specifikacija
-            WHERE (NOT (specifikacija.broj_partije IN ( SELECT view_prvorangirani.broj_partije
-            FROM view_prvorangirani)));
+            WHERE specifikacija.sifra_postupka = 456 AND
+            specifikacija.broj_partije NOT IN (SELECT
+            view_prvorangirani.broj_partije
+            FROM view_prvorangirani
+            WHERE view_prvorangirani.sifra_postupka = 456)
         </createView>
 
     </changeSet>
