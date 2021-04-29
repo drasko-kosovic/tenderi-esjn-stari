@@ -1,7 +1,14 @@
 <div>
   <h2 id="page-heading" data-cy="HvalePonudeHeading">
     <span jhiTranslate="tenderiApp.hvalePonude.home.title">Hvale Ponudes</span>
+    <input type="text" class="form-control" [(ngModel)]="sifraPosupka" id="sifraPosupka" name="sifraPosupka" placeholder="postupak" />
+    <button class="input-group-append btn btn-info" (click)="getAllHvale()">
+      <fa-icon icon="search"></fa-icon>
+    </button>
 
+    <button class="input-group-append btn btn-danger" (click)="prazanPostupak()" *ngIf="sifraPosupka">
+      <fa-icon icon="trash-alt"></fa-icon>
+    </button>
     <div class="d-flex justify-content-end">
       <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>

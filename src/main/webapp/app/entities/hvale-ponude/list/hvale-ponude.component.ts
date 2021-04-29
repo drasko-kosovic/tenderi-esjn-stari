@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -12,8 +12,8 @@ import { HvalePonudeService } from '../service/hvale-ponude.service';
   selector: 'jhi-hvale-ponude',
   templateUrl: './hvale-ponude.component.html',
 })
-export class HvalePonudeComponent implements OnInit {
-  hvalePonudes?: IHvalePonude[];
+export class HvalePonudeComponent {
+  hvalePonudes?: any;
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -21,6 +21,7 @@ export class HvalePonudeComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  sifraPosupka?: any;
 
   constructor(protected hvalePonudeService: HvalePonudeService, protected activatedRoute: ActivatedRoute, protected router: Router) {}
 
@@ -45,10 +46,20 @@ export class HvalePonudeComponent implements OnInit {
         }
       );
   }
-
-  ngOnInit(): void {
-    this.handleNavigation();
+  public getAllHvale(): any {
+    this.hvalePonudeService.hvali(this.sifraPosupka).subscribe((res: any) => {
+      this.hvalePonudes = res;
+    });
   }
+  prazanPostupak(): void {
+    this.sifraPosupka = '';
+    this.loadPage();
+  }
+
+  // ngOnInit(): void {
+  // this.handleNavigation();
+  // this.getAllHvale();
+  // }
 
   trackId(index: number, item: IHvalePonude): number {
     return item.id!;

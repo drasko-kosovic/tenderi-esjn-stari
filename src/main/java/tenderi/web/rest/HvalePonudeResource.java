@@ -59,10 +59,10 @@ public class HvalePonudeResource {
      * @param id the id of the hvalePonude to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the hvalePonude, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/hvale-ponudes/{id}")
-    public ResponseEntity<HvalePonude> getHvalePonude(@PathVariable Long id) {
-        log.debug("REST request to get HvalePonude : {}", id);
-        Optional<HvalePonude> hvalePonude = hvalePonudeRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(hvalePonude);
+
+    @GetMapping("/hvale/{sifra}")
+    public List<HvalePonude> getHvalePonude(@PathVariable Integer sifra) {
+        List<HvalePonude> hvalePonude = hvalePonudeRepository.HvalePonude(sifra);
+        return hvalePonude;
     }
 }

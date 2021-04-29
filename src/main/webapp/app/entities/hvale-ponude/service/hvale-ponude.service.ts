@@ -13,6 +13,7 @@ export type EntityArrayResponseType = HttpResponse<IHvalePonude[]>;
 @Injectable({ providedIn: 'root' })
 export class HvalePonudeService {
   public resourceUrl = this.applicationConfigService.getEndpointFor('api/hvale-ponudes');
+  public resourceUrlHvali = this.applicationConfigService.getEndpointFor('api/hvale/');
 
   constructor(protected http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
@@ -23,6 +24,10 @@ export class HvalePonudeService {
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IHvalePonude[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
+
+  hvali(sifra: number): any {
+    return this.http.get(`${this.resourceUrlHvali}/${sifra}`);
   }
 
   addHvalePonudeToCollectionIfMissing(
